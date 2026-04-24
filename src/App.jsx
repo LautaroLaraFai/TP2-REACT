@@ -116,6 +116,7 @@ function App() {
       <section id="spacer"></section> */}
 
       <p>WIP</p>
+      <img src="https://thumbs.dreamstime.com/b/hammer-man-5423023.jpg" alt="imagen de tipito martillando" />
     </div>
   )
 }
