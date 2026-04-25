@@ -5,5 +5,6 @@ import App from './App.jsx'
 import Detail from './pages/Detail/Detail.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Detail></Detail>
   </StrictMode>,
 )
