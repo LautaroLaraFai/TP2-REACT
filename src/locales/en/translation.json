@@ -13,7 +13,13 @@
          
     },
     "detail": {
-
+        "gameInfo": {
+            "price": "Price",
+            "developer": "Developer",
+            "releaseDate": "Release date",
+            "rating": "Rating",
+            "genres": "Genres"
+        }
     },
     "favorite": {
         

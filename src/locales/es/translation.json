@@ -4,8 +4,8 @@
         "langText": "Idioma",
         "LanguageSwitcher": {
             "option": {
-                "spanish": "Español",
-                "english": "Ingles"
+                "spanish": "Spanish",
+                "english": "English"
             }
         }
     },
@@ -13,7 +13,13 @@
          
     },
     "detail": {
-
+        "gameInfo": {
+            "price": "Precio",
+            "developer": "Desarrollador",
+            "releaseDate": "Fecha de lanzamiento",
+            "rating": "Rating",
+            "genres": "Géneros"
+        }
     },
     "favorite": {
         

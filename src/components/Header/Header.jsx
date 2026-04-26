@@ -4,12 +4,20 @@ import searchIcon from "../../assets/searchIcon.svg"
 import { useTranslation } from "react-i18next"
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher"
 import { Link } from "react-router"
+import { useState } from "react"
 
 const Header = () => {
+  
   const { t } = useTranslation();
 
+  const [isLangSwitcherOpen, setIsLangSwitcherOpen] = useState(false)
+  const onClose = () => {
+    setIsLangSwitcherOpen(false)
+  }
+
+
   return (
-    <div className="flex items-center gap-8 justify-between bg-[#252525] px-4 py-2 w-screen h-35">
+    <div className="sticky top-0 flex items-center gap-8 justify-between bg-[#252525] px-4 py-2 w-full h-35">
         <Link to="/" className="flex items-center m-3">
             <img 
                 src={logo} 
@@ -41,15 +49,19 @@ const Header = () => {
                 {t("header.favText")}
             </Link>
             <div className="relative">
-              <button className=" hover:text-purple-400 transition text-5xl font-medium whitespace-nowrap w-40 text-center">
-              {t("header.langText")} 
+              <button 
+                className=" hover:text-purple-400 transition text-5xl font-medium whitespace-nowrap w-40 text-center"
+                onClick={() => setIsLangSwitcherOpen(!isLangSwitcherOpen)}
+              >
+                {t("header.langText")} 
               </button>
-              <LanguageSwitcher />
+
+              {isLangSwitcherOpen && (
+                <LanguageSwitcher onClose={onClose}/>
+              )}
+              
             </div>
         </div>
-
-        
-
     </div>
   )
 }

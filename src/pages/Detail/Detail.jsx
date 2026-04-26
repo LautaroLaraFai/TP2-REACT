@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react"
 import likeIcon from "../../assets/like-icon.svg"
 import { getDataByID } from "../../services/getDataByID"
+import { useTranslation } from "react-i18next"
 
 const Detail = () => {
 
+    const { t } = useTranslation();
     const [game, setGame] = useState(null)
 
     useEffect(() =>{
@@ -103,11 +105,11 @@ const Detail = () => {
         <div className="flex flex-col h-100 w-100 gap-10">
           <h1 className="text-4xl">{game?.Name}</h1>
           <div className="flex flex-col items-start justify-center h-full w-full gap-10 text-lg">
-            <p>Precio: <span style={{ color: '#5AB65A' }}>${game?.Price}</span></p>
-            <p>Desarrollador: <span style={{ color: '#2A7FFF' }}>{game?.Developer}</span></p>
-            <p>Fecha de lanzamiento: <span style={{ color: '#FFE066' }}>{game?.ReleaseDate}</span></p>
-            <p>Rating: <span style={{ color: '#F48FB1' }}>{renderStars(game?.Rating)}</span></p>
-            <p>Géneros: <span style={{ color: '#4DD0E1' }}>{game?.Genres?.join(", ")}</span></p>
+            <p>{t("detail.gameInfo.price")}: <span style={{ color: '#5AB65A' }}>${game?.Price}</span></p>
+            <p>{t("detail.gameInfo.developer")}: <span style={{ color: '#2A7FFF' }}>{game?.Developer}</span></p>
+            <p>{t("detail.gameInfo.releaseDate")}: <span style={{ color: '#FFE066' }}>{game?.ReleaseDate}</span></p>
+            <p>{t("detail.gameInfo.rating")}: <span style={{ color: '#F48FB1' }}>{renderStars(game?.Rating)}</span></p>
+            <p>{t("detail.gameInfo.genres")}: <span style={{ color: '#4DD0E1' }}>{game?.Genres?.join(", ")}</span></p>
           </div>
         </div>
       </div>
