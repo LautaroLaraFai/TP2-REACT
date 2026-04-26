@@ -1,7 +1,13 @@
 {
     "header": {
         "favText": "Favourites",
-        "langText": "Language"
+        "langText": "Language",
+        "LanguageSwitcher": {
+            "option": {
+                "spanish": "Spanish",
+                "english": "English"
+            }
+        }
     },
     "home": {
          

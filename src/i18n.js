@@ -1,11 +1,8 @@
-import { i18n } from i18n;
+import i18n from 'i18next';  
 import { initReactI18next } from "react-i18next";
 
-import es from "../src/locales/es";
-import en from "../src/locales/en";
-import LANGUAGES from "../src/const/languages";
-
-//localStorage.getItem("language", || LANGUAGES.es)
+import es from "../src/locales/es/translation.json";
+import en from "../src/locales/en/translation.json";
 
 i18n.use(initReactI18next).init({
     resources: {
@@ -17,7 +14,7 @@ i18n.use(initReactI18next).init({
         }
     }, 
     lng: "en",
-    fallbacklng: "en",
+    fallbackLng: "es",  
     interpolation: {
         escapeValue: false
     }

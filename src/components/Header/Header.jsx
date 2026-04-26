@@ -5,10 +5,9 @@ import { useTranslation } from "react-i18next"
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher"
 import { Link } from "react-router"
 
-// const { t } = useTranslation();
-
 const Header = () => {
-  
+  const { t } = useTranslation();
+
   return (
     <div className="flex items-center gap-8 justify-between bg-[#252525] px-4 py-2 w-screen h-35">
         <Link to="/" className="flex items-center m-3">
@@ -23,7 +22,7 @@ const Header = () => {
             <input 
                 type="text" 
                 id="searchBar" 
-                className="focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transtion-all duration-200 pl-4 pr-26 text-5xl border-2 min-w-4xl h-20 border-[#E7E8C6] rounded-[10px]"
+                className="focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transtion-all duration-200 pl-4 pr-26 text-5xl border-2 min-w-3xl h-20 border-[#E7E8C6] rounded-[10px]"
             />
             <label htmlFor="searchBar">
                 <img 
@@ -39,11 +38,11 @@ const Header = () => {
                 to="/favorite" 
                 className="hover:text-purple-400 transition text-5xl font-medium whitespace-nowrap"
             >
-                Favoritos
+                {t("header.langText")}
             </Link>
             <div className="relative">
-              <button className="hover:text-purple-400 transition text-5xl font-medium whitespace-nowrap">
-              Idioma {/* Traducir */}
+              <button className=" hover:text-purple-400 transition text-5xl font-medium whitespace-nowrap w-40 text-center">
+              {t("header.langText")} 
               </button>
               <LanguageSwitcher />
             </div>
