@@ -1,4 +1,4 @@
-@import "tailwindcss";
+
 
 /* .counter {
   font-size: 16px;
@@ -184,18 +184,3 @@
     border-right-color: var(--border);
   }
 } */
-
-body{
-  background-color: rgb(61, 56, 56);
-  display: flex;
-  justify-content: center; 
-  align-items: center;     
-  height: 100vh; 
-  color: white;
-  font-size: 10rem;
-}
-
-div{
-  width: fit-content;
-  height: fit-content;
-}

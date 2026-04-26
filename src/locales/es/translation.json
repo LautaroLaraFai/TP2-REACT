@@ -1,4 +1,8 @@
 {
+    "header": {
+        "favText": "Favoritos",
+        "langText": "Idioma"
+    },
     "home": {
          
     },
