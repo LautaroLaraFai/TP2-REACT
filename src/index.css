@@ -1,4 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
 @import "tailwindcss";
+
+@layer base {
+  html {
+    font-family: 'Jersey 10', sans-serif;
+    font-weight: 400;  /* ← Forzás el peso */
+    font-style: normal;
+    color: #E7E8C6;
+  }
+}
 
 
 /* :root {
