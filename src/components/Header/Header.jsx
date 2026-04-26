@@ -3,6 +3,7 @@ import logo from "../../assets/Logo.svg"
 import searchIcon from "../../assets/searchIcon.svg"
 import { useTranslation } from "react-i18next"
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher"
+import { Link } from "react-router"
 
 // const { t } = useTranslation();
 
@@ -10,14 +11,14 @@ const Header = () => {
   
   return (
     <div className="flex items-center gap-8 justify-between bg-[#252525] px-4 py-2 w-screen h-35">
-      <div className="flex items-center m-3">
-        <img 
-          src={logo} 
-          alt="logo" 
-          className="h-20 cursor-pointer"
-        /> 
-        <span className="text-5xl p-3 cursor-pointer"> MAETS </span>
-        </div>
+        <Link to="/" className="flex items-center m-3">
+            <img 
+                src={logo} 
+                alt="logo" 
+                className="h-20"
+            /> 
+            <span className="text-5xl p-3"> MAETS </span>
+        </Link>
         <div className="relative mx-auto w-auto">
             <input 
                 type="text" 
@@ -34,9 +35,12 @@ const Header = () => {
         </div>
 
         <div className=" flex items-center gap-8">
-            <button className=" hover:text-purple-400 transition text-5xl font-medium whitespace-nowrap">
-            Favoritos {/* Traducir */}
-            </button>
+            <Link 
+                to="/favorite" 
+                className="hover:text-purple-400 transition text-5xl font-medium whitespace-nowrap"
+            >
+                Favoritos
+            </Link>
             <div className="relative">
               <button className="hover:text-purple-400 transition text-5xl font-medium whitespace-nowrap">
               Idioma {/* Traducir */}
