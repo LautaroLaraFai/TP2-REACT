@@ -38,7 +38,7 @@ const Header = () => {
                 to="/favorite" 
                 className="hover:text-purple-400 transition text-5xl font-medium whitespace-nowrap"
             >
-                {t("header.langText")}
+                {t("header.favText")}
             </Link>
             <div className="relative">
               <button className=" hover:text-purple-400 transition text-5xl font-medium whitespace-nowrap w-40 text-center">

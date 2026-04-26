@@ -47,7 +47,7 @@ const Detail = () => {
     <div style={{ color: '#E7E8C6' }}>
       <div className="flex items-center h-screen bg-neutral-800 p-25 rounded">
         {/* Carousel */}
-        <div className="relative justify-center items-center !w-170 p-10">
+        <div className="relative justify-center items-center w-170! p-10">
           <div className="relative overflow-hidden rounded-lg">
             <img 
               key={currentImage}
