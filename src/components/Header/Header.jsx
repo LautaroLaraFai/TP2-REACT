@@ -1,4 +1,3 @@
-// components/Header/Header.jsx
 import logo from "../../assets/Logo.svg"
 import searchIcon from "../../assets/searchIcon.svg"
 import { useTranslation } from "react-i18next"
@@ -7,61 +6,116 @@ import { Link } from "react-router"
 import { useState } from "react"
 
 const Header = () => {
-  
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const [isLangSwitcherOpen, setIsLangSwitcherOpen] = useState(false)
   const onClose = () => {
     setIsLangSwitcherOpen(false)
   }
 
-
   return (
-    <div className="sticky top-0 flex items-center gap-8 justify-between bg-[#252525] px-4 py-2 w-full h-35">
-        <Link to="/" className="flex items-center m-3">
-            <img 
-                src={logo} 
-                alt="logo" 
-                className="h-20"
-            /> 
-            <span className="text-5xl p-3"> MAETS </span>
+    <div
+      className="
+        z-1000 flex items-center justify-between
+        h-16 md:h-18
+        gap-3 md:gap-6
+        bg-p-bg border-2 border-a-amber rounded-2xl
+        sticky top-6 md:top-8
+        px-4 sm:px-6 md:px-8 lg:px-10
+        mt-6 md:mt-10 mb-2
+        mx-4 md:mx-6 lg:mx-10 max-md:mx-6
+      "
+    >
+      <Link to="/" className="flex items-center shrink-0">
+        <img
+          src={logo}
+          alt="logo"
+          className="h-6 sm:h-7 md:h-8 lg:h-10"
+        />
+        <span
+          className="
+            pl-1 sm:pl-2 md:pl-3
+            text-xl sm:text-2xl md:text-3xl lg:text-4xl
+            whitespace-nowrap
+          "
+        >
+          MAETS
+        </span>
+      </Link>
+
+      <div
+        className="
+          flex-1 relative
+          mx-2 md:mx-4
+          min-w-0
+        "
+      >
+        <input
+          type="text"
+          id="searchBar"
+          className="
+            w-full
+            h-9 sm:h-10 md:h-11 lg:h-12
+            pl-3 pr-10 sm:pr-12 md:pr-14
+            text-sm sm:text-base md:text-lg
+            border-2 border-a-amber rounded-xl md:rounded-2xl
+            focus:outline-none
+            focus:border-orange-700
+            focus:ring-2 focus:ring-orange-700/30
+          "
+        />
+        <label htmlFor="searchBar">
+          <img
+            src={searchIcon}
+            alt="searchIcon"
+            className="
+              absolute right-2 top-1/2 -translate-y-1/2
+              h-4 sm:h-5 md:h-6 lg:h-7
+              w-auto pointer-events-none
+            "
+          />
+        </label>
+      </div>
+
+      <div
+        className="
+          flex items-center
+          gap-2 sm:gap-3 md:gap-6
+          shrink-0
+        "
+      >
+        <Link
+          to="/favorite"
+          className="
+            text-sm sm:text-base md:text-lg lg:text-xl
+            font-medium
+            w-14 sm:w-16 md:w-22 lg:w-26
+            text-center whitespace-nowrap
+            hover:text-orange-700
+          "
+        >
+          {t("header.favText")}
         </Link>
-        <div className="relative mx-auto w-auto">
-            <input 
-                type="text" 
-                id="searchBar" 
-                className="focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transtion-all duration-200 pl-4 pr-26 text-5xl border-2 min-w-3xl h-20 border-[#E7E8C6] rounded-[10px]"
-            />
-            <label htmlFor="searchBar">
-                <img 
-                  src={searchIcon} 
-                  alt="searchIcon" 
-                  className="p-5 h-25 w-auto absolute top-1/2 -translate-y-1/2 right-0"
-                />
-            </label>
-        </div>
 
-        <div className=" flex items-center gap-8">
-            <Link 
-                to="/favorite" 
-                className="hover:text-purple-400 transition text-5xl font-medium whitespace-nowrap"
-            >
-                {t("header.favText")}
-            </Link>
-            <div className="relative">
-              <button 
-                className=" hover:text-purple-400 transition text-5xl font-medium whitespace-nowrap w-40 text-center"
-                onClick={() => setIsLangSwitcherOpen(!isLangSwitcherOpen)}
-              >
-                {t("header.langText")} 
-              </button>
+        <div className="relative">
+          <button
+            className="
+              text-sm sm:text-base md:text-lg lg:text-xl
+              font-medium
+              w-14 sm:w-16 md:w-22 lg:w-26
+              text-center whitespace-nowrap
+              hover:text-orange-700
+            "
+            onClick={() => setIsLangSwitcherOpen(!isLangSwitcherOpen)}
+          >
+            {t("header.langText")}
+          </button>
 
-              {isLangSwitcherOpen && (
-                <LanguageSwitcher onClose={onClose}/>
-              )}
-              
-            </div>
+          {isLangSwitcherOpen && (
+            <LanguageSwitcher onClose={onClose} />
+          )}
         </div>
+      </div>
     </div>
   )
 }
