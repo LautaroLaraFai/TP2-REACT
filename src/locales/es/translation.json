@@ -4,13 +4,14 @@
         "langText": "Idioma",
         "LanguageSwitcher": {
             "option": {
-                "spanish": "Spanish",
-                "english": "English"
+                "spanish": "Español",
+                "english": "Inglés"
             }
         }
     },
     "home": {
-         
+        "recommendations": "Recomendaciones",
+        "gameCardLargeStore": "Visitar tienda"
     },
     "detail": {
         "gameInfo": {

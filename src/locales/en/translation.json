@@ -10,7 +10,8 @@
         }
     },
     "home": {
-         
+        "recommendations": "Recommendations",
+        "gameCardLargeStore": "Visit store"
     },
     "detail": {
         "gameInfo": {

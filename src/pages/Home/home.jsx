@@ -3,6 +3,7 @@ import MainLayout from "../../layouts/MainLayout.jsx";
 import getData from "../../services/getData.js";
 import GameCardSmall from "../../components/GameCardSmall/GameCardSmall.jsx"
 import GameCardLarge from "../../components/GameCardLarge/GameCardLarge.jsx"
+import { useTranslation } from "react-i18next";
 
 export default function Home () {
   const [games, setGames] = useState([]);
@@ -11,6 +12,7 @@ export default function Home () {
     getData().then((data) => setGames(data)).catch(console.error);
   }, []);
 
+  const { t } = useTranslation()
   return (
     <MainLayout>
 
@@ -34,8 +36,8 @@ export default function Home () {
  
       <div className="border-t-2 border-a-amber">
         <div className="inline-block md:px-36 sm:px-10 max-sm:px-6 py-4 max-sm:py-2 border-b-2 border-r-2 border-a-amber rounded-br-lg">
-          <h2 className="md:text-[1.8em] tracking-[.07em] text-a-amber">
-            Recomendaciones
+          <h2 className="md:text-[1.8em] tracking-[.07em] text-a-red">
+            {t("home.recommendations")}
           </h2>
         </div>
       </div>

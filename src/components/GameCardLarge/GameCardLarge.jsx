@@ -1,6 +1,6 @@
+import { useTranslation } from "react-i18next";
 import gotoArrow from "../../assets/goto-arrow-inverted-color.svg";
 import FavoriteButton from "../FavoriteButton/FavoriteButton.jsx";
-
 
 export default function GameCardLarge({
   name,
@@ -10,6 +10,8 @@ export default function GameCardLarge({
   storeUrl = "",
   onClick
 }) {
+
+  const { t } = useTranslation()
 
   return (
     <article
@@ -87,7 +89,7 @@ export default function GameCardLarge({
             select-none
           "
         >
-          Visitar Tienda
+          {t("home.gameCardLargeStore")}
           <img
             src={gotoArrow}
             alt=""
