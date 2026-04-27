@@ -24,5 +24,9 @@
     },
     "favorite": {
         
+    },
+    "footer": {
+        "favText": "Favourites",
+        "copyright": "© MAETS — GAME OVER, COPYCATS. CONTENT HAS COPYRIGHT. UNAUTHORIZED COPY = FINAL BOSS APPEARS. NO CONTINUES. INSERT COIN? NO. YOU'RE DEAD."
     }
 }

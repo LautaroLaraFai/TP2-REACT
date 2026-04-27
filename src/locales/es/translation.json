@@ -24,5 +24,9 @@
     },
     "favorite": {
         
+    },
+    "footer": {
+        "favText": "Favoritos",
+        "copyright": "© MAETS — GAME OVER PARA LOS COPIONES. ESTE CONTENIDO TIENE COPYRIGHT. SI LO COPIAS SIN AUTORIZACIÓN, APARECE EL JEFE FINAL Y NO TRAE CONTINUES."
     }
 }
