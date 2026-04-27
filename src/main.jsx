@@ -4,6 +4,13 @@ import './index.css'
 import "./i18n.js"
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router'
+import Logo from './assets/Logo.svg?url'
+
+const faviconLink = document.createElement('link')
+faviconLink.rel = 'icon'
+faviconLink.type = 'image/svg+xml'
+faviconLink.href = Logo
+document.head.appendChild(faviconLink)
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
