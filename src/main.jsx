@@ -6,6 +6,7 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router'
 import Logo from './assets/Logo.svg?url'
 
+//! NO ME BORREN ESTO, ES PARA QUE SE VEA EL LOGO EN LA PESTAÑA
 const faviconLink = document.createElement('link')
 faviconLink.rel = 'icon'
 faviconLink.type = 'image/svg+xml'
