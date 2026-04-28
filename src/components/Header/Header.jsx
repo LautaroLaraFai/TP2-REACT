@@ -1,11 +1,15 @@
 import logo from "../../assets/Logo.svg"
-import searchIcon from "../../assets/searchIcon.svg"
 import { useTranslation } from "react-i18next"
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher"
 import { Link } from "react-router"
 import { useState } from "react"
+import SearchBar from "../SearchBar/SearchBar"
 
-const Header = () => {
+const Header = ({
+  setSearchActive,
+  games,
+  setFilteredGames
+}) => {
   const { t } = useTranslation()
 
   const [isLangSwitcherOpen, setIsLangSwitcherOpen] = useState(false)
@@ -43,39 +47,11 @@ const Header = () => {
         </span>
       </Link>
 
-      <div
-        className="
-          flex-1 relative
-          mx-2 md:mx-4
-          min-w-0
-        "
-      >
-        <input
-          type="text"
-          id="searchBar"
-          className="
-            w-full
-            h-9 sm:h-10 md:h-11 lg:h-12
-            pl-3 pr-10 sm:pr-12 md:pr-14
-            text-sm sm:text-base md:text-lg
-            border-2 border-a-amber rounded-xl md:rounded-2xl
-            focus:outline-none
-            focus:border-orange-700
-            focus:ring-2 focus:ring-orange-700/30
-          "
-        />
-        <label htmlFor="searchBar">
-          <img
-            src={searchIcon}
-            alt="searchIcon"
-            className="
-              absolute right-2 top-1/2 -translate-y-1/2
-              h-4 sm:h-5 md:h-6 lg:h-7
-              w-auto pointer-events-none
-            "
-          />
-        </label>
-      </div>
+      <SearchBar 
+         setSearchActive={setSearchActive}
+         games={games}
+         setFilteredGames={setFilteredGames}
+      />
 
       <div
         className="
