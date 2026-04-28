@@ -4,13 +4,14 @@
         "langText": "Idioma",
         "LanguageSwitcher": {
             "option": {
-                "spanish": "Spanish",
-                "english": "English"
+                "spanish": "Español",
+                "english": "Inglés"
             }
         }
     },
     "home": {
-         
+        "recommendations": "Recomendaciones",
+        "gameCardLargeStore": "Visitar tienda"
     },
     "detail": {
         "gameInfo": {
@@ -23,5 +24,9 @@
     },
     "favorite": {
         
+    },
+    "footer": {
+        "favText": "Favoritos",
+        "copyright": "© MAETS — GAME OVER PARA LOS COPIONES. ESTE CONTENIDO TIENE COPYRIGHT. SI LO COPIAS SIN AUTORIZACIÓN, APARECE EL JEFE FINAL Y NO TRAE CONTINUES."
     }
 }

@@ -1,3 +1,4 @@
+import { Footer } from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header.jsx";
 // import Footer from "../components/Footer/Footer.jsx";
 import "../index.css"
@@ -19,7 +20,7 @@ export default function MainLayout({ children }) {
           {children}
         </div>
 
-        {/* <Footer /> */}
+        <Footer />
       </main>
     </>
   );

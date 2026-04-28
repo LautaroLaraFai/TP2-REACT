@@ -3,6 +3,7 @@ import MainLayout from "../../layouts/MainLayout.jsx";
 import getData from "../../services/getData.js";
 import GameCardSmall from "../../components/GameCardSmall/GameCardSmall.jsx"
 import GameCardLarge from "../../components/GameCardLarge/GameCardLarge.jsx"
+import { useTranslation } from "react-i18next";
 
 import { Link } from "react-router";
 
@@ -31,7 +32,6 @@ export default function Home () {
     };
   }, []);
 
-  // 👇 AGREGÁ ESTE useEffect 👇
   useEffect(() => {
     const interval = setInterval(() => {
       const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -40,7 +40,6 @@ export default function Home () {
 
     return () => clearInterval(interval);
   }, []);
-  // 👆 HASTA ACÁ 👆
 
   const toggleFavorite = (gameId) => {
     const newFavorites = favorites.includes(gameId) 
