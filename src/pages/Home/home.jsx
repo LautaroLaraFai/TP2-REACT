@@ -8,47 +8,56 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
 export default function Home () {
-  const [games, setGames] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+    const [games, setGames] = useState([]);
+    const [favorites, setFavorites] = useState([]);
 
- useEffect(() => {
-    getData().then((data) => setGames(data)).catch(console.error);
-  }, []);
+    useEffect(() => {
+    // 1. Cargar datos iniciales
+    const initializeData = async () => {
+        try {
+            const gamesData = await getData();
+            setGames(gamesData);
+            
+            const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const favoritesAsNumbers = storedFavorites.map(id => Number(id));
+            setFavorites(favoritesAsNumbers);
+        } catch (error) {
+            console.error('Error initializing data:', error);
+        }
+    };
+    
+    initializeData();
 
-  useEffect(() => {
-    const loadFavorites = () => {
-      const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-      setFavorites(storedFavorites);
+    // 2. Sincronizar favoritos entre pestañas 
+    const syncFavorites = () => {
+        try {
+            const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const favoritesAsNumbers = storedFavorites.map(id => Number(id));
+        setFavorites(favoritesAsNumbers);
+        } catch (error) {
+            console.error('Error syncing favorites:', error);
+        }
     };
 
-    loadFavorites();
-
-    window.addEventListener('storage', loadFavorites);
-    window.addEventListener('focus', loadFavorites);
+    window.addEventListener('storage', syncFavorites);
+    window.addEventListener('focus', syncFavorites);
     
     return () => {
-      window.removeEventListener('storage', loadFavorites);
-      window.removeEventListener('focus', loadFavorites);
+        window.removeEventListener('storage', syncFavorites);
+        window.removeEventListener('focus', syncFavorites);
     };
-  }, []);
+    }, []);
+        
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-      setFavorites(storedFavorites);
-    }, 500);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const toggleFavorite = (gameId) => {
-    const newFavorites = favorites.includes(gameId) 
-      ? favorites.filter(id => id !== gameId)
-      : [...favorites, gameId];
-    
-    setFavorites(newFavorites);
-    localStorage.setItem('favorites', JSON.stringify(newFavorites));
-  };
+    const toggleFavorite = (gameId) => {
+        const idNumber = Number(gameId);
+        const newFavorites = favorites.includes(idNumber) 
+            ? favorites.filter(id => Number(id) !== idNumber)
+            : [...favorites, idNumber];
+        
+        setFavorites(newFavorites);
+        localStorage.setItem('favorites', JSON.stringify(newFavorites));
+    };
 
   return (
     <MainLayout>
@@ -88,7 +97,7 @@ export default function Home () {
                     alt={game.Name}
                     storeUrl="https://store.steampowered.com/..."
                     onClick={() => toggleFavorite(game.id)} 
-                    isFavorite={favorites.includes(game.id)} 
+                    isFavorite={favorites.includes(Number(game.id))}
                 />
         ))}
       </div>
