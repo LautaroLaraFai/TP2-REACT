@@ -8,7 +8,7 @@
 | -------------- | ----------------------------------- | ------------------------------ |
 | Marcos Chavez  | marcos.chavez@est.fi.uncoma.edu.ar  | Desarrollador Logica Principal |
 | Lucas Martinez | lucas.martinez@est.fi.uncoma.edu.ar | Desarrollador Frontend + UI    |
-| Lautaro Lara   | lautaro.lara@est.fi.uncoma.edu.ar   | Scrum Master                   |
+| Lautaro Lara   | lautaronicolas.lara@est.fi.uncoma.edu.ar   | Scrum Master                   |
 
 ---
 
