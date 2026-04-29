@@ -4,21 +4,20 @@ import { useTranslation } from "react-i18next"
 import { useParams } from "react-router"
 import MainLayout from "../../layouts/MainLayout"
 import FavoriteButton from "../../components/FavoriteButton/FavoriteButton"
+import { useGamesByID } from "../../services/globals"
 
 const Detail = () => {
     const { t } = useTranslation();
     const { id } = useParams()
-    const [game, setGame] = useState(null)
     const [favorites, setFavorites] = useState([])
     const [loading, setLoading] = useState(true)
     const [currentImage, setCurrentImage] = useState(0)
 
+    const game = useGamesByID(id)
+
     useEffect(() => {
         const initializeData = async () => {
             try {
-                const gameData = await getDataByID(id)
-                setGame(gameData)
-                
                 const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]')
                 const favoritesAsNumbers = storedFavorites.map(fav => Number(fav))
                 setFavorites(favoritesAsNumbers)

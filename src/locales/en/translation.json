@@ -11,7 +11,8 @@
     },
     "home": {
         "recommendations": "Recommendations",
-        "gameCardLargeStore": "Visit store"
+        "gameCardLargeStore": "Visit store",
+        "loading": "Loading..."
     },
     "detail": {
         "gameInfo": {

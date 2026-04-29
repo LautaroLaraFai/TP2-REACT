@@ -4,13 +4,14 @@ import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher"
 import { Link } from "react-router"
 import { useState } from "react"
 import SearchBar from "../SearchBar/SearchBar"
+import { useGames } from "../../services/globals"
 
 const Header = ({
   setSearchActive,
-  games,
   setFilteredGames
 }) => {
   const { t } = useTranslation()
+  const games = useGames()
 
   const [isLangSwitcherOpen, setIsLangSwitcherOpen] = useState(false)
   const onClose = () => {

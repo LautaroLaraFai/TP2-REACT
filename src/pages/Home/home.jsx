@@ -1,24 +1,20 @@
 import { useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout.jsx";
-import getData from "../../services/getData.js";
 import GameCardSmall from "../../components/GameCardSmall/GameCardSmall.jsx"
 import GameCardLarge from "../../components/GameCardLarge/GameCardLarge.jsx"
 import { useTranslation } from "react-i18next";
-
-import { Link } from "react-router";
+import { useGames } from "../../services/globals.jsx";
 
 export default function Home () {
-    const [games, setGames] = useState([]);
+
     const [favorites, setFavorites] = useState([]);
     const { t } = useTranslation()
+    const games = useGames()
 
     useEffect(() => {
     // 1. Cargar datos iniciales
     const initializeData = async () => {
         try {
-            const gamesData = await getData();
-            setGames(gamesData);
-            
             const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
             const favoritesAsNumbers = storedFavorites.map(id => Number(id));
             setFavorites(favoritesAsNumbers);
@@ -60,10 +56,18 @@ export default function Home () {
         localStorage.setItem('favorites', JSON.stringify(newFavorites));
     };
 
+    if (!games) {
+        return (
+            <MainLayout>
+                <div className="flex items-center justify-center h-screen bg-neutral-800">
+                    <div className="text-a-amber text-2xl">{t("home.loading")}</div>
+                </div>
+            </MainLayout>
+        );
+    }
+
   return (
-    <MainLayout 
-      games={games}
-    >
+    <MainLayout >
       {/* Principal recomendado */}
       <section className="lg:px-20 md:px-14 sm:px-10 max-sm:px-6 pt-16 pb-20 max-sm:pt-12 max-sm:pb-16">
         <GameCardLarge
