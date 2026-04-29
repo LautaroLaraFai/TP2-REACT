@@ -5,6 +5,7 @@ import { useParams } from "react-router"
 import MainLayout from "../../layouts/MainLayout"
 import FavoriteButton from "../../components/FavoriteButton/FavoriteButton"
 import { useGamesByID } from "../../services/globals"
+import { PDFDownloadButton } from "../../components/PdfGenerator/PdfGenerator.jsx"
 
 const Detail = () => {
     const { t } = useTranslation();
@@ -169,6 +170,8 @@ const Detail = () => {
                             </h2>
                             {game?.Description}
                         </div>
+                            {console.log("JUEGO EN DETAIL: ", game)}
+                        Descargar <PDFDownloadButton game={game} />
                     </div>
                 </div>
             </div>
