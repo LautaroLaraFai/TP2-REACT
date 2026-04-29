@@ -60,10 +60,11 @@ export default function Home () {
     };
 
   return (
-    <MainLayout>
-
-    {/* Principal recomendado */}
-    <section className="lg:px-20 md:px-14 sm:px-10 max-sm:px-6 pt-16 pb-20 max-sm:pt-12 max-sm:pb-16">
+    <MainLayout 
+      games={games}
+    >
+      {/* Principal recomendado */}
+      <section className="lg:px-20 md:px-14 sm:px-10 max-sm:px-6 pt-16 pb-20 max-sm:pt-12 max-sm:pb-16">
         <GameCardLarge
             description="Star Wars Jedi: Fallen Order es un videojuego de acción y aventuras ambientado dentro del universo ideado por George Lucas, concretamente entre los episodios"
             image="https://static.wikia.nocookie.net/esstarwars/images/5/57/Fallen-Order-Box-Art.jpg/revision/latest/scale-to-width-down/1000?cb=20191020063836"
