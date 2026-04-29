@@ -12,7 +12,7 @@ export default function GameCardLarge({
 }) {
   const { t } = useTranslation()
   return (
-    <div className="px-wrap-md group">
+    <div className="px-wrap-md group lg:mx-20 md:mx-14 sm:mx-10 max-sm:mx-6 mt-16 mb-20 max-sm:mt-12 max-sm:mb-16">
       <div className="px-border-md bg-a-amber md:-inset-0.75 max-md:-inset-0.5"/>
       <article
         className="

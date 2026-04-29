@@ -4,14 +4,13 @@ import GameCardSmall from "../../components/GameCardSmall/GameCardSmall.jsx"
 import GameCardLarge from "../../components/GameCardLarge/GameCardLarge.jsx"
 import { useTranslation } from "react-i18next";
 import { useGames } from "../../services/globals.jsx";
+import Section from "../../layouts/Section.jsx"
 
 export default function Home () {
 
     const [favorites, setFavorites] = useState([]);
     const { t } = useTranslation()
     const games = useGames()
-    
-    
 
     useEffect(() => {
     // 1. Cargar datos iniciales
@@ -58,7 +57,6 @@ export default function Home () {
         localStorage.setItem('favorites', JSON.stringify(newFavorites));
     };
 
-
     if (!games) {
         return (
             <MainLayout>
@@ -71,8 +69,9 @@ export default function Home () {
 
   return (
     <MainLayout >
-      {/* Principal recomendado */}
-      <section className="lg:px-20 md:px-14 sm:px-10 max-sm:px-6 pt-16 pb-20 max-sm:pt-12 max-sm:pb-16">
+    
+    {/* Principal recomendado */}
+    <Section>
         <GameCardLarge
             description="Star Wars Jedi: Fallen Order es un videojuego de acción y aventuras ambientado dentro del universo ideado por George Lucas, concretamente entre los episodios"
             image="https://static.wikia.nocookie.net/esstarwars/images/5/57/Fallen-Order-Box-Art.jpg/revision/latest/scale-to-width-down/1000?cb=20191020063836"
@@ -81,37 +80,29 @@ export default function Home () {
             alt={""}
             storeUrl="https://store.steampowered.com/..."
         />
-    </section>
+    </Section>
 
 
     {/* Todos los juegos */}
-    <section className="w-full pt-0">
- 
-      <div className="border-t-2 border-a-amber">
-        <div className="inline-block md:px-36 sm:px-10 max-sm:px-6 py-4 max-sm:py-2 border-b-2 border-r-2 border-a-amber rounded-br-lg">
-          <h2 className="md:text-[1.8em] tracking-[.07em] text-a-amber">
-            {t("home.recommendations")}
-          </h2>
-        </div>
-      </div>
- 
+    <Section
+      title={t("home.recommendations")}
+    >
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-10 lg:px-26 md:px-12 sm:px-10 max-sm:px-4">
         {games.map((game) => (
-                <GameCardSmall
-                    key={game.id}
-                    gameId={game.id}
-                    image={game.Image}
-                    price={game.Price}
-                    name={game.Name}
-                    alt={game.Name}
-                    storeUrl="https://store.steampowered.com/..."
-                    onClick={() => toggleFavorite(game.id)} 
-                    isFavorite={favorites.includes(Number(game.id))}
-                />
+          <GameCardSmall
+            key={game.id}
+            gameId={game.id}
+            image={game.Image}
+            price={game.Price}
+            name={game.Name}
+            alt={game.Name}
+            storeUrl="https://store.steampowered.com/..."
+            onClick={() => toggleFavorite(game.id)}
+            isFavorite={favorites.includes(Number(game.id))}
+          />
         ))}
       </div>
-    </section>
-
+    </Section>
 
     
     </MainLayout>
