@@ -1,16 +1,49 @@
-# React + Vite
+# Gestor de Peliculas y Series
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## Miembros del Grupo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Nombre         | Email                               | Rol                            |
+| -------------- | ----------------------------------- | ------------------------------ |
+| Marcos Chavez  | marcos.chavez@est.fi.uncoma.edu.ar  | Desarrollador Logica Principal |
+| Lucas Martinez | lucas.martinez@est.fi.uncoma.edu.ar | Desarrollador Frontend + UI    |
+| Lautaro Lara   | lautaro.lara@est.fi.uncoma.edu.ar   | Scrum Master                   |
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Descripcion de la Aplicacion
 
-## Expanding the ESLint configuration
+Aplicacion web desarrollada con React y Vite que funciona como un visualizador de juegos
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Funcionalidades principales
+
+- Poder visualizar juegos desde una api creada en mockAPI
+- Poder añadir juegos a favoritos
+- Poder quitar juegos de favoritos
+- Poder buscar juegos por su nombre
+
+---
+
+## Instalacion y Guia de Uso
+
+### Requisitos previos
+
+- Node.js (version 14 o superior)
+- npm (viene con Node.js)
+
+### Pasos para instalar y correr la aplicacion
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/LautaroLaraFai/TP2-REACT.git
+
+# 2. Entrar a la carpeta del proyecto
+cd TP2-REACT
+
+# 3. Instalar dependencias
+npm install
+
+# 4. Iniciar la aplicacion con Vite
+npm run dev
+```
