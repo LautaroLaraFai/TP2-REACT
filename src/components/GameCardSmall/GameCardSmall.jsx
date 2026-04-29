@@ -10,7 +10,7 @@ export default function GameCardS({
   isFavorite,    
   gameId
   }){
-
+    
   const handleFavoriteClick = (e) => {
       e.preventDefault();
       e.stopPropagation();

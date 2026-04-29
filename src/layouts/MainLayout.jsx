@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Footer } from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header.jsx";
 import GameCardSmall from "../components/GameCardSmall/GameCardSmall.jsx";
 import "../index.css"
 import { useTranslation } from "react-i18next";
 
-export default function MainLayout({ children, games = [] }) {
+export default function MainLayout({ children}) {
 
   const [searchActive, setSearchActive] = useState(false)
   const [filteredGames, setFilteredGames] = useState([])
@@ -16,7 +16,6 @@ export default function MainLayout({ children, games = [] }) {
     <>
       <Header 
         setSearchActive={setSearchActive}
-        games={games}
         setFilteredGames={setFilteredGames}
       />
 
@@ -47,11 +46,13 @@ export default function MainLayout({ children, games = [] }) {
                 >
                   <GameCardSmall
                     image={game.Image}
+                    gameId={game.id}
                     price={game.Price}
                     name={game.Name}
                     alt={game.Name}
                     storeUrl="https://store.steampowered.com/..."
-                    onClick={""}
+                    // onClick={() => toggleFavorite(game.id)} 
+                    // isFavorite={favorites.includes(Number(game.id))}
                   />
                 </div>
               ))}

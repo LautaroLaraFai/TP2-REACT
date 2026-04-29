@@ -10,6 +10,8 @@ export default function Home () {
     const [favorites, setFavorites] = useState([]);
     const { t } = useTranslation()
     const games = useGames()
+    
+    
 
     useEffect(() => {
     // 1. Cargar datos iniciales
@@ -55,6 +57,7 @@ export default function Home () {
         setFavorites(newFavorites);
         localStorage.setItem('favorites', JSON.stringify(newFavorites));
     };
+
 
     if (!games) {
         return (
