@@ -8,6 +8,8 @@ export default async function getData() {
     }
 }
 
+
+
 // response example
 // [
 //  {
