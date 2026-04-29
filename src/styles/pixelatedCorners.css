@@ -1,0 +1,303 @@
+/* ========== COMPLETO LARGE ========== */
+.px-wrap-lg {
+  position: relative;
+  display: inline-block;
+}
+.px-border-lg,
+.px-inner-lg {
+  clip-path: polygon(
+    0px calc(100% - 24px),
+    6px calc(100% - 24px),
+    6px calc(100% - 12px),
+    12px calc(100% - 12px),
+    12px calc(100% - 6px),
+    24px calc(100% - 6px),
+    24px 100%,
+    calc(100% - 24px) 100%,
+    calc(100% - 24px) calc(100% - 6px),
+    calc(100% - 12px) calc(100% - 6px),
+    calc(100% - 12px) calc(100% - 12px),
+    calc(100% - 6px) calc(100% - 12px),
+    calc(100% - 6px) calc(100% - 24px),
+    100% calc(100% - 24px),
+    100% 24px,
+    calc(100% - 6px) 24px,
+    calc(100% - 6px) 12px,
+    calc(100% - 12px) 12px,
+    calc(100% - 12px) 6px,
+    calc(100% - 24px) 6px,
+    calc(100% - 24px) 0px,
+    24px 0px,
+    24px 6px,
+    12px 6px,
+    12px 12px,
+    6px 12px,
+    6px 24px,
+    0px 24px
+  );
+}
+.px-border-lg {
+  position: absolute;
+  /* ESTOS SE APLICAN DENTRO DEL CONTENEDOR CON TAILWIND */
+  /* inset: -2px; PARA EL GROSOR DE LA LÍNEA */
+  /* background: var(--color-a-amber); PARA EL COLOR DE LA LÍNEA*/
+}
+.px-inner-lg {
+  position: relative;
+  width: 100%;
+}
+
+
+/* ========== COMPLETO MEDIUM ========== */
+.px-wrap-md {
+  position: relative;
+  display: block;
+}
+.px-border-md,
+.px-inner-md {
+  clip-path: polygon(
+    0px calc(100% - 20px),
+    4px calc(100% - 20px),
+    4px calc(100% - 12px),
+    8px calc(100% - 12px),
+    8px calc(100% - 8px),
+    12px calc(100% - 8px),
+    12px calc(100% - 4px),
+    20px calc(100% - 4px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 4px),
+    calc(100% - 12px) calc(100% - 4px),
+    calc(100% - 12px) calc(100% - 8px),
+    calc(100% - 8px) calc(100% - 8px),
+    calc(100% - 8px) calc(100% - 12px),
+    calc(100% - 4px) calc(100% - 12px),
+    calc(100% - 4px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 4px) 20px,
+    calc(100% - 4px) 12px,
+    calc(100% - 8px) 12px,
+    calc(100% - 8px) 8px,
+    calc(100% - 12px) 8px,
+    calc(100% - 12px) 4px,
+    calc(100% - 20px) 4px,
+    calc(100% - 20px) 0px,
+    20px 0px,
+    20px 4px,
+    12px 4px,
+    12px 8px,
+    8px 8px,
+    8px 12px,
+    4px 12px,
+    4px 20px,
+    0px 20px
+  );
+}
+.px-border-md {
+  position: absolute;
+  /* ESTOS SE APLICAN DENTRO DEL CONTENEDOR CON TAILWIND */
+  /* inset: -2px; PARA EL GROSOR DE LA LÍNEA */
+  /* background: var(--color-a-amber); PARA EL COLOR DE LA LÍNEA*/
+}
+.px-inner-md {
+  position: relative;
+}
+
+
+/* ========== COMPLETO SMALL ========== */
+.px-wrap-sm {
+  position: relative;
+  display: inline-block;
+}
+.px-border-sm,
+.px-inner-sm {
+  clip-path: polygon(
+    0px calc(100% - 8px),
+    4px calc(100% - 8px),
+    4px calc(100% - 4px),
+    8px calc(100% - 4px),
+    8px 100%,
+    calc(100% - 8px) 100%,
+    calc(100% - 8px) calc(100% - 4px),
+    calc(100% - 4px) calc(100% - 4px),
+    calc(100% - 4px) calc(100% - 8px),
+    100% calc(100% - 8px),
+    100% 8px,
+    calc(100% - 4px) 8px,
+    calc(100% - 4px) 4px,
+    calc(100% - 8px) 4px,
+    calc(100% - 8px) 0px,
+    8px 0px,
+    8px 4px,
+    4px 4px,
+    4px 8px,
+    0px 8px
+  );
+}
+.px-border-sm {
+  position: absolute;
+  /* ESTOS SE APLICAN DENTRO DEL CONTENEDOR CON TAILWIND */
+  /* inset: -2px; PARA EL GROSOR DE LA LÍNEA */
+  /* background: var(--color-a-lime); PARA EL COLOR DE LA LÍNEA*/
+}
+.px-inner-sm {
+  position: relative;
+}
+
+
+/* ========== COMPLETO (más redondeado) SMALL ========== */
+/* no sirve para contenedores muy pequeños */
+.px-wrap-rsm {
+  position: relative;
+  display: inline-block;
+}
+.px-border-rsm,
+.px-inner-rsm {
+  clip-path: polygon(
+    0px calc(100% - 16px),
+    4px calc(100% - 16px),
+    4px calc(100% - 8px),
+    8px calc(100% - 8px),
+    8px calc(100% - 4px),
+    16px calc(100% - 4px),
+    16px 100%,
+    calc(100% - 16px) 100%,
+    calc(100% - 16px) calc(100% - 4px),
+    calc(100% - 8px) calc(100% - 4px),
+    calc(100% - 8px) calc(100% - 8px),
+    calc(100% - 4px) calc(100% - 8px),
+    calc(100% - 4px) calc(100% - 16px),
+    100% calc(100% - 16px),
+    100% 16px,
+    calc(100% - 4px) 16px,
+    calc(100% - 4px) 8px,
+    calc(100% - 8px) 8px,
+    calc(100% - 8px) 4px,
+    calc(100% - 16px) 4px,
+    calc(100% - 16px) 0px,
+    16px 0px,
+    16px 4px,
+    8px 4px,
+    8px 8px,
+    4px 8px,
+    4px 16px,
+    0px 16px
+  );
+}
+.px-border-rsm {
+  position: absolute;
+  /* ESTOS SE APLICAN DENTRO DEL CONTENEDOR CON TAILWIND */
+  /* inset: -2px; PARA EL GROSOR DE LA LÍNEA */
+  /* background: var(--color-a-lime); PARA EL COLOR DE LA LÍNEA*/
+}
+.px-inner-rsm {
+  position: relative;
+}
+
+
+/* ========== ESQUINA BR ========== */
+.px-wrap-md-br {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.px-border-md-br,
+.px-inner-md-br {
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% calc(100% - 20px),
+    calc(100% - 4px) calc(100% - 20px),
+    calc(100% - 4px) calc(100% - 12px),
+    calc(100% - 8px) calc(100% - 12px),
+    calc(100% - 8px) calc(100% - 8px),
+    calc(100% - 12px) calc(100% - 8px),
+    calc(100% - 12px) calc(100% - 4px),
+    calc(100% - 20px) calc(100% - 4px),
+    calc(100% - 20px) 100%,
+    0% 100%
+  );
+}
+.px-border-md-br {
+  position: absolute;
+  /* ESTOS SE APLICAN DENTRO DEL CONTENEDOR CON TAILWIND */
+  /* inset: -2px; PARA EL GROSOR DE LA LÍNEA */
+  /* background: var(--color-a-lime); PARA EL COLOR DE LA LÍNEA*/
+}
+.px-inner-md-br {
+  position: relative;
+}
+
+
+
+/* ========== ESQUINAS TL y TR ========== */
+.px-wrap-lg-t {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.px-border-lg-t,
+.px-inner-lg-t {
+  clip-path: polygon(
+    0px 100%,
+    0px 24px,
+    6px 24px,
+    6px 12px,
+    12px 12px,
+    12px 6px,
+    24px 6px,
+    24px 0px,
+    calc(100% - 24px) 0px,
+    calc(100% - 24px) 6px,
+    calc(100% - 12px) 6px,
+    calc(100% - 12px) 12px,
+    calc(100% - 6px) 12px,
+    calc(100% - 6px) 24px,
+    100% 24px,
+    100% 100%
+  );
+}
+.px-border-lg-t {
+  position: absolute;
+}
+.px-inner-lg-t {
+  position: relative;
+  width: 100%;
+}
+
+
+/* ========== ESQUINAS BL y BR ========== */
+.px-wrap-lg-b {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.px-border-lg-b,
+.px-inner-lg-b {
+  clip-path: polygon(
+    0px 0px,
+    100% 0px,
+    100% calc(100% - 24px),
+    calc(100% - 6px) calc(100% - 24px),
+    calc(100% - 6px) calc(100% - 12px),
+    calc(100% - 12px) calc(100% - 12px),
+    calc(100% - 12px) calc(100% - 6px),
+    calc(100% - 24px) calc(100% - 6px),
+    calc(100% - 24px) 100%,
+    24px 100%,
+    24px calc(100% - 6px),
+    12px calc(100% - 6px),
+    12px calc(100% - 12px),
+    6px calc(100% - 12px),
+    6px calc(100% - 24px),
+    0px calc(100% - 24px)
+  );
+}
+.px-border-lg-b {
+  position: absolute;
+}
+.px-inner-lg-b {
+  position: relative;
+  width: 100%;
+}
