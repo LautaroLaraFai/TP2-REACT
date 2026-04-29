@@ -14,9 +14,7 @@ export default function GameCardS({
     const handleFavoriteClick = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        setTimeout(() => {
-            if (onClick) onClick();
-        }, 100);
+        onClick(); 
     };
 
     return (
