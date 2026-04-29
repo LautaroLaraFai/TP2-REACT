@@ -19,7 +19,8 @@
             "developer": "Developer",
             "releaseDate": "Release date",
             "rating": "Rating",
-            "genres": "Genres"
+            "genres": "Genres",
+            "description": "Description"
         },
         "loadingText": "Loading..."
     },
