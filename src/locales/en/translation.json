@@ -1,6 +1,6 @@
 {
     "header": {
-        "favText": "Favourites",
+        "favText": "Favorites",
         "langText": "Language",
         "LanguageSwitcher": {
             "option": {
@@ -20,16 +20,20 @@
             "releaseDate": "Release date",
             "rating": "Rating",
             "genres": "Genres"
-        }
+        },
+        "loadingText": "Loading..."
     },
     "favorite": {
-        
+        "favLoadingText": "Loading favorites...",
+        "favTitle": "Favorites",
+        "favNoGameInfo": "You dont have any favorite games yet",
+        "favExploreText": "Explore games"
     },
     "mainLayout": {
         "searchResultsText": "No results :("
     },
     "footer": {
-        "favText": "Favourites",
+        "favText": "Favorites",
         "copyright": "© MAETS — GAME OVER, COPYCATS. CONTENT HAS COPYRIGHT. UNAUTHORIZED COPY = FINAL BOSS APPEARS. NO CONTINUES. INSERT COIN? NO. YOU'RE DEAD."
     }
 }

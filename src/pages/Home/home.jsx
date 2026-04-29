@@ -10,6 +10,7 @@ import { Link } from "react-router";
 export default function Home () {
     const [games, setGames] = useState([]);
     const [favorites, setFavorites] = useState([]);
+    const { t } = useTranslation()
 
     useEffect(() => {
     // 1. Cargar datos iniciales
@@ -82,7 +83,7 @@ export default function Home () {
       <div className="border-t-2 border-a-amber">
         <div className="inline-block md:px-36 sm:px-10 max-sm:px-6 py-4 max-sm:py-2 border-b-2 border-r-2 border-a-amber rounded-br-lg">
           <h2 className="md:text-[1.8em] tracking-[.07em] text-a-amber">
-            Recomendaciones
+            {t("home.recommendations")}
           </h2>
         </div>
       </div>

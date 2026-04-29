@@ -3,10 +3,12 @@ import MainLayout from "../../layouts/MainLayout.jsx";
 import { getDataByID } from "../../services/getDataByID.js";
 import GameCardSmall from "../../components/GameCardSmall/GameCardSmall.jsx"
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Favorites() {
     const [favoriteGames, setFavoriteGames] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { t } = useTranslation()
 
     useEffect(() => {
     const loadFavorites = async () => {
@@ -57,7 +59,7 @@ export default function Favorites() {
         return (
         <MainLayout>
             <div className="flex justify-center items-center h-96">
-            <p className="text-a-amber text-2xl">Cargando favoritos...</p>
+            <p className="text-a-amber text-2xl">{t("favorite.favLoadingText")}</p>
             </div>
         </MainLayout>
         );
@@ -69,16 +71,16 @@ export default function Favorites() {
         <div className="border-t-2 border-a-amber">
           <div className="inline-block md:px-36 sm:px-10 max-sm:px-6 py-4 max-sm:py-2 border-b-2 border-r-2 border-a-amber rounded-br-lg">
             <h2 className="md:text-[1.8em] tracking-[.07em] text-a-amber">
-              Favoritos
+              {t("favorite.favTitle")}
             </h2>
           </div>
         </div>
 
         {favoriteGames.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-a-amber text-xl mb-4">No tienes juegos favoritos aún</p>
+            <p className="text-a-amber text-xl mb-4">{t("favorite.favNoGameInfo")}</p>
             <Link to="/" className="text-a-lime hover:text-a-amber transition">
-              Explorar juegos
+              {t("favorite.favExploreText")}
             </Link>
           </div>
         ) : (

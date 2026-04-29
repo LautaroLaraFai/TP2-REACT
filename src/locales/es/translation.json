@@ -20,10 +20,14 @@
             "releaseDate": "Fecha de lanzamiento",
             "rating": "Rating",
             "genres": "Géneros"
-        }
+        },
+        "loadingText": "Cargando..."
     },
     "favorite": {
-        
+        "favLoadingText": "Cargando favoritos...",
+        "favTitle": "Favoritos",
+        "favNoGameInfo": "No tienes juegos favoritos aún",
+        "favExploreText": "Explorar juegos"
     },
     "mainLayout": {
         "searchResultsText": "Sin resultados :("

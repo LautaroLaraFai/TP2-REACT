@@ -62,6 +62,9 @@ const Detail = () => {
         game?.Image,
         game?.Screenshots?.[0],
         game?.Screenshots?.[1],
+        game?.Screenshots?.[2],
+        game?.Screenshots?.[3],
+        game?.Screenshots?.[4],
     ].filter(img => img)
 
     const prevImage = () => {
@@ -83,7 +86,7 @@ const Detail = () => {
         return (
             <MainLayout>
                 <div className="flex items-center justify-center h-screen bg-neutral-800">
-                    <div className="text-(--color-a-amber) text-2xl">Loading...</div>
+                    <div className="text-(--color-a-amber) text-2xl">{t("detail.loadingText")}</div>
                 </div>
             </MainLayout>
         )
