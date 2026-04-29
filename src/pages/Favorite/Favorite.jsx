@@ -5,63 +5,63 @@ import GameCardSmall from "../../components/GameCardSmall/GameCardSmall.jsx"
 import { Link } from "react-router-dom";
 
 export default function Favorites() {
-  const [favoriteGames, setFavoriteGames] = useState([]);
-  const [loading, setLoading] = useState(true);
+    const [favoriteGames, setFavoriteGames] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-  const loadFavorites = async () => {
-    const favoritesIds = JSON.parse(localStorage.getItem('favorites') || '[]');
-    
-    if (favoritesIds.length === 0) {
-      setFavoriteGames([]);
-      setLoading(false);
-      return;
-    }
-    
-    const games = await Promise.all(
-      favoritesIds.map(async (id) => {
-        const gameData = await getDataByID(id);
-        return gameData;
-      })
-    );
-    
-    setFavoriteGames(games.filter(game => game !== null));
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    loadFavorites();
-  }, []);
-
-  useEffect(() => {
-    const syncFavorites = () => {
-      loadFavorites();
+    useEffect(() => {
+    const loadFavorites = async () => {
+        try {
+        const favoritesIdsRaw = JSON.parse(localStorage.getItem('favorites') || '[]');
+        const favoritesIds = favoritesIdsRaw.map(id => Number(id));
+        
+        if (favoritesIds.length === 0) {
+            setFavoriteGames([]);
+            setLoading(false);
+            return;
+        }
+        
+        const games = await Promise.all(
+            favoritesIds.map(async (id) => {
+            const gameData = await getDataByID(id);
+            return gameData;
+            })
+        );
+        
+        setFavoriteGames(games.filter(game => game !== null));
+        setLoading(false);
+        } catch (error) {
+        console.error('Error:', error);
+        setFavoriteGames([]);
+        setLoading(false);
+        }
     };
 
-    window.addEventListener('storage', syncFavorites);
-    window.addEventListener('focus', syncFavorites);
+    loadFavorites();
+    window.addEventListener('storage', loadFavorites);
+    window.addEventListener('focus', loadFavorites);
     
     return () => {
-      window.removeEventListener('storage', syncFavorites);
-      window.removeEventListener('focus', syncFavorites);
+        window.removeEventListener('storage', loadFavorites);
+        window.removeEventListener('focus', loadFavorites);
     };
-  }, []);
+    }, []);
 
-  const removeFavorite = (gameId) => {
-    const favoritesIds = JSON.parse(localStorage.getItem('favorites') || '[]');
-    const newFavorites = favoritesIds.filter(id => id !== gameId);
-    localStorage.setItem('favorites', JSON.stringify(newFavorites));
-    setFavoriteGames(prev => prev.filter(game => game.id !== gameId));
-  };
+    const removeFavorite = (gameId) => {
+        const favoritesIdsRaw = JSON.parse(localStorage.getItem('favorites') || '[]');
+        const newFavorites = favoritesIdsRaw.filter(id => Number(id) !== Number(gameId));  
+        localStorage.setItem('favorites', JSON.stringify(newFavorites));
+        setFavoriteGames(prev => prev.filter(game => Number(game.id) !== Number(gameId)));  
+    };
 
-  if (loading) {
-    return (
-      <MainLayout>
-        <div className="flex justify-center items-center h-96">
-          <p className="text-a-amber text-2xl">Cargando favoritos...</p>
-        </div>
-      </MainLayout>
-    );
-  }
+    if (loading) {
+        return (
+        <MainLayout>
+            <div className="flex justify-center items-center h-96">
+            <p className="text-a-amber text-2xl">Cargando favoritos...</p>
+            </div>
+        </MainLayout>
+        );
+    }
 
   return (
     <MainLayout>
