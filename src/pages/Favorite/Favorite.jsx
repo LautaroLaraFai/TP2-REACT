@@ -4,6 +4,7 @@ import { getDataByID } from "../../services/getDataByID.js";
 import GameCardSmall from "../../components/GameCardSmall/GameCardSmall.jsx"
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import Section from "../../layouts/Section.jsx"
 
 export default function Favorites() {
     const [favoriteGames, setFavoriteGames] = useState([]);
@@ -67,15 +68,9 @@ export default function Favorites() {
 
   return (
     <MainLayout>
-      <section className="w-full pt-16">
-        <div className="border-t-2 border-a-amber">
-          <div className="inline-block md:px-36 sm:px-10 max-sm:px-6 py-4 max-sm:py-2 border-b-2 border-r-2 border-a-amber rounded-br-lg">
-            <h2 className="md:text-[1.8em] tracking-[.07em] text-a-amber">
-              {t("favorite.favTitle")}
-            </h2>
-          </div>
-        </div>
-
+      <Section
+        title={t("favorite.favTitle")}
+      >
         {favoriteGames.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-a-amber text-xl mb-4">{t("favorite.favNoGameInfo")}</p>
@@ -100,7 +95,7 @@ export default function Favorites() {
             ))}
           </div>
         )}
-      </section>
+      </Section>
     </MainLayout>
   );
 }
