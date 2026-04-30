@@ -74,7 +74,7 @@ export default function Home () {
       }
       endMessage={
         <div className="text-a-amber text-2xl w-full flex justify-center mt-5 mb-10">
-          Ya haz visto todo!!
+          Ya has visto todo!!
         </div>
       }
     >
