@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import gotoArrow from "../../assets/goto-arrow-inverted-color.svg";
 import FavoriteButton from "../FavoriteButton/FavoriteButton.jsx";
+import { Link } from "react-router-dom";
 
 export default function GameCardLarge({
   name,
@@ -31,7 +32,6 @@ export default function GameCardLarge({
           aspect-video w-full
         "
       >
-        {/* ✅ Link envuelve la imagen */}
         <Link to={`/detail/${gameId}`} className="block absolute inset-0">
           <img
             src={image}
@@ -101,11 +101,9 @@ export default function GameCardLarge({
               bg-a-amber
             "
           >
-            <a
-              href={storeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-wrap-sm group select-none group flex!"
+            <Link
+              to={`/detail/${gameId}`}
+              className="px-wrap-sm group select-none flex! cursor-pointer"
             >
               <div className="px-border-sm bg-a-amber md:-inset-0.75 max-md:-inset-0.5"/>
               <div
@@ -124,8 +122,7 @@ export default function GameCardLarge({
                   className="lg:w-5 lg:h-5 md:w-4 md:h-4 sm:w-3 sm:h-3 max-sm:w-2.5 max-sm:h-2.5"
                 />
               </div>
-            </a>
-
+            </Link>
             <div
               className="
                 flex items-center text-p-bg text-nowrap
