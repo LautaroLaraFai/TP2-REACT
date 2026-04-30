@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import gotoArrow from "../../assets/goto-arrow-inverted-color.svg";
 import FavoriteButton from "../FavoriteButton/FavoriteButton.jsx";
 import { Link } from "react-router-dom";
@@ -8,19 +9,18 @@ export default function GameCardLarge({
   description,
   price,
   image = "",
-  onClick,
+  storeUrl = "",
+  onClick,       
   isFavorite,    
   gameId
 }) {
-
-  const { t } = useTranslation()
-
+  const { t } = useTranslation();
+  
   const handleFavoriteClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    onClick();
+    onClick(); 
   };
-
 
   return (
     <div className="px-wrap-md group lg:mx-20 md:mx-14 sm:mx-10 max-sm:mx-6 mt-12 mb-14 max-sm:mt-8 max-sm:mb-10">
@@ -52,18 +52,20 @@ export default function GameCardLarge({
               md:py-3 max-md:py-1.5 md:pr-3 max-md:pr-1.5
             "
           >
-            <h2
-              className="
-                truncate w-full tracking-[.07em] mr-2 text-a-amber
-                lg:text-[2em] md:text-[1.6em] sm:text-[1.2em] max-sm:text-[1em]
-              "
-            >
-              {name}
-            </h2>
+            <Link to={`/detail/${gameId}`}>
+              <h2
+                className="
+                  truncate w-full tracking-[.07em] mr-2 text-a-amber hover:text-a-lime transition-colors
+                  lg:text-[1.6em] md:text-[1.3em] sm:text-[1em] max-sm:text-[0.9em]
+                "
+              >
+                {name}
+              </h2>
+            </Link>
             <p
               className="
                 text-xs sm:text-sm md:text-base leading-tight line-clamp-2
-              text-a-darkamber mb-1 mr-2
+                text-a-darkamber mb-1 mr-2
               "
             >
               {description}

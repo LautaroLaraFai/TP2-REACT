@@ -14,9 +14,10 @@ export default function Home () {
   const [favorites, setFavorites] = useState([]);
   const { t } = useTranslation()
 
-  const { games, fetchData, hasMore, frontPageGame } = usePageOfData();
+    const startGame = games?.find(game => game.id === '51')
+    console.log(startGame)
 
-  useEffect(() => {
+    useEffect(() => {
     // 1. Cargar datos iniciales
     const initializeData = async () => {
       try {
@@ -56,9 +57,19 @@ export default function Home () {
       ? favorites.filter(id => Number(id) !== idNumber)
       : [...favorites, idNumber];
     
-    setFavorites(newFavorites);
-    localStorage.setItem('favorites', JSON.stringify(newFavorites));
-  };
+    {/* Principal*/}
+    <Section>
+        <GameCardLarge
+            key={startGame.id}
+            gameId={51}  
+            description={startGame.Description}
+            image={startGame.Image}
+            price={startGame.Price}
+            name={startGame.Name}
+            onClick={() => toggleFavorite(startGame.id)}  
+            isFavorite={favorites.includes(Number(startGame.id))} 
+        />
+    </Section>
 
  
   return (
