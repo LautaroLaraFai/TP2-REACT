@@ -43,9 +43,11 @@ export const useGamesByID = (id) => {
             lastID = id
             savedGame = data
             setGame(data)
+            console.log(data)
         }
 
         loadByID()
+        
     }, [id])
 
     return game
