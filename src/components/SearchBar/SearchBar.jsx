@@ -12,27 +12,34 @@ const SearchBar = ({
   const [value, setValue] = useState("")
 
   const handleChange = (e) => {
-    const newValue = e.target.value.trim()
-    setValue(newValue)
-    if (newValue.trim()) {
-      const resultado = []
-      games.map((game, index) => {
-        if (!game) {
-          console.error(`Game en índice ${index} es undefined`)
-          return
-        }
-        if (!game.Name) {
-          console.error(`Game en índice ${index} no tiene name:`, game)
-          return
-        }
-        if (game.Name.toLowerCase().includes(newValue.toLowerCase())) {
-          resultado.push(game)
-        }
-      })
-      setFilteredGames(resultado)
-    } else {
+    const rawValue = e.target.value
+    const newValue = rawValue.trim()
+    setValue(rawValue) 
+    
+    const isSearchByDeveloper = newValue[0] === "@"
+    const searchParam = isSearchByDeveloper ? "Developer" : "Name"
+    const searchTerm = isSearchByDeveloper ? newValue.slice(1).trim() : newValue
+    
+    if (searchTerm === "") {
       setFilteredGames([])
+      return
     }
+    
+    const resultado = []
+    games.forEach((game, index) => {
+      if (!game) {
+        console.error(`Game en índice ${index} es undefined`)
+        return
+      }
+      if (!game[searchParam]) {
+        console.error(`Game en índice ${index} no tiene ${searchParam}:`, game)
+        return
+      }
+      if (game[searchParam].toLowerCase().includes(searchTerm.toLowerCase())) {
+        resultado.push(game)
+      }
+    })
+    setFilteredGames(resultado)
   }
 
   useEffect(() => {
