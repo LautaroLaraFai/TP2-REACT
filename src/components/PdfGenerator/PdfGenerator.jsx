@@ -1,4 +1,5 @@
 import { Document, Page, Text, StyleSheet, PDFDownloadLink, Image } from '@react-pdf/renderer';
+import { useTranslation } from 'react-i18next';
 
 const styles = StyleSheet.create({
   page: {
@@ -41,11 +42,13 @@ const styles = StyleSheet.create({
 });
 
 const GamePDF = ({ game }) => {
+  const { t } = useTranslation();
+  
   if (!game) {
     return (
       <Document>
         <Page>
-          <Text>Cargando...</Text>
+          <Text>{t("detail.pdf.state.loading")}</Text>
         </Page>
       </Document>
     );
@@ -94,15 +97,21 @@ const GamePDF = ({ game }) => {
   );
 };
 
-export const PDFDownloadButton = ({ game }) => (
-  <PDFDownloadLink
-    document={<GamePDF game={game} />}
-    fileName={`${game?.Name || 'juego'}.pdf`}
-  >
-    {({ loading }) => (
-      <button className="bg-a-amber text-p-bg px-4 py-2 rounded cursor-pointer">
-        {loading ? 'Generando...' : 'Descargar PDF'} {/*TRADUCIR*/}
-      </button>
-    )}
-  </PDFDownloadLink>
-);
+
+
+export const PDFDownloadButton = ({ game }) => {
+  const { t } = useTranslation();
+  
+  return (
+    <PDFDownloadLink
+      document={<GamePDF game={game} />}
+      fileName={`${game?.Name || 'juego'}.pdf`}
+    >
+      {({ loading }) => (
+        <button className="bg-a-amber text-p-bg px-4 py-2 rounded cursor-pointer">
+          {loading ? t("detail.pdf.state.generating") : t("detail.pdf.state.completed")}
+        </button>
+      )}
+    </PDFDownloadLink>
+  );
+};

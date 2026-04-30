@@ -170,7 +170,7 @@ const Detail = () => {
                             </h2>
                             {game?.Description}
                         </div>
-                        {t("detail.downloadText")} {game !== null ? <PDFDownloadButton game={game} /> : ""}
+                        {t("detail.downloadText")} <PDFDownloadButton game={game} />
                     </div>
                 </div>
             </div>

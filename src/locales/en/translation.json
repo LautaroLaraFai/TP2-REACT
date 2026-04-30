@@ -24,7 +24,14 @@
             "description": "Description"
         },
         "loadingText": "Loading...",
-        "downloadText": "Download"
+        "downloadText": "Download",
+        "pdf": {
+                "state": {
+                    "loading": "Loading...",
+                    "generating": "Generating...",
+                    "completed": "Download PDF"
+                }
+            }
     },
     "favorite": {
         "favLoadingText": "Loading favorites...",

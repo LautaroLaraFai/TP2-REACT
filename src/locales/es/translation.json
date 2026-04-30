@@ -24,7 +24,14 @@
             "description": "Descripción"
         },
         "loadingText": "Cargando...",
-        "downloadText": "Descargar"
+        "downloadText": "Descargar",
+        "pdf": {
+            "state": {
+                "loading": "Cargando...",
+                "generating": "Generando...",
+                "completed": "Descargar PDF"
+            }
+        }
     },
     "favorite": {
         "favLoadingText": "Cargando favoritos...",
