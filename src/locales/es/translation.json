@@ -23,7 +23,15 @@
             "genres": "Géneros",
             "description": "Descripción"
         },
-        "loadingText": "Cargando..."
+        "loadingText": "Cargando...",
+        "downloadText": "Descargar",
+        "pdf": {
+            "state": {
+                "loading": "Cargando...",
+                "generating": "Generando...",
+                "completed": "Descargar PDF"
+            }
+        }
     },
     "favorite": {
         "favLoadingText": "Cargando favoritos...",

@@ -7,7 +7,8 @@ export default function GameCardS({
   image = "",
   onClick,       
   isFavorite,    
-  gameId
+  gameId,
+  disableSearch
   }){
     
   const handleFavoriteClick = (e) => {
@@ -16,11 +17,16 @@ export default function GameCardS({
       onClick(); 
   };
 
+
+
   return (
     <div className="px-wrap-md group relative">
       <div className="px-border-md bg-a-amber md:-inset-0.75 max-md:-inset-0.5" />
       <div className="px-inner-md flex flex-col overflow-hidden">
-      <Link to={`/detail/${gameId}`} className="block">
+      <Link 
+        to={`/detail/${gameId}`} 
+        className="block"
+        onClick={disableSearch}>
         <img
           src={image}
           className="w-full object-cover aspect-video"
