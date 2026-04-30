@@ -83,10 +83,13 @@ export default function Home () {
         {frontPageGame && (
           <GameCardLarge
             key={frontPageGame?.id}
+            gameId={frontPageGame?.id}
             name={frontPageGame?.Name}
             description={frontPageGame?.Description}
             price={frontPageGame?.Price}
             image={frontPageGame?.Image}
+            onClick={() => toggleFavorite(frontPageGame?.id)}
+            isFavorite={favorites.includes(Number(frontPageGame?.id))} 
           />
         )}
       </Section>
