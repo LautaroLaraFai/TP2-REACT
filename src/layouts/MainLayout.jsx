@@ -5,13 +5,15 @@ import GameCardSmall from "../components/GameCardSmall/GameCardSmall.jsx";
 import "../index.css"
 import { useTranslation } from "react-i18next";
 
-export default function MainLayout({ children}) {
+export default function MainLayout({ children }) {
 
   const [searchActive, setSearchActive] = useState(false)
   const [filteredGames, setFilteredGames] = useState([])
-  
-  const { t } = useTranslation();
 
+  const { t } = useTranslation();
+  const disableSearch = () => {
+    setSearchActive(false)
+  }
   return (
     <>
       <Header 
@@ -53,6 +55,7 @@ export default function MainLayout({ children}) {
                     storeUrl="https://store.steampowered.com/..."
                     // onClick={() => toggleFavorite(game.id)} 
                     // isFavorite={favorites.includes(Number(game.id))}
+                    disableSearch={disableSearch}
                   />
                 </div>
               ))}
