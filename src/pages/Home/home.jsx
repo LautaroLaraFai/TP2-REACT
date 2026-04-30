@@ -12,6 +12,9 @@ export default function Home () {
     const { t } = useTranslation()
     const games = useGames()
 
+    const startGame = games?.find(game => game.id === '51')
+    console.log(startGame)
+
     useEffect(() => {
     // 1. Cargar datos iniciales
     const initializeData = async () => {
@@ -70,15 +73,17 @@ export default function Home () {
   return (
     <MainLayout >
     
-    {/* Principal recomendado */}
+    {/* Principal*/}
     <Section>
         <GameCardLarge
-            description="Star Wars Jedi: Fallen Order es un videojuego de acción y aventuras ambientado dentro del universo ideado por George Lucas, concretamente entre los episodios"
-            image="https://static.wikia.nocookie.net/esstarwars/images/5/57/Fallen-Order-Box-Art.jpg/revision/latest/scale-to-width-down/1000?cb=20191020063836"
-            price="60.968,75"
-            name="Star Wars - The Fallen Order"
-            alt={""}
-            storeUrl="https://store.steampowered.com/..."
+            key={startGame.id}
+            gameId={51}  
+            description={startGame.Description}
+            image={startGame.Image}
+            price={startGame.Price}
+            name={startGame.Name}
+            onClick={() => toggleFavorite(startGame.id)}  
+            isFavorite={favorites.includes(Number(startGame.id))} 
         />
     </Section>
 
