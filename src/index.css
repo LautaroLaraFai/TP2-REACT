@@ -67,3 +67,22 @@ html::-webkit-scrollbar-thumb:hover {
 ::-moz-selection {
     background: hsl(from var(--color-a-lime) h s l / 0.4);
 }
+
+
+
+/**ESTILOS PARA EL SEARCH */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-card {
+  animation: fadeInUp 0.5s ease-out forwards;
+}

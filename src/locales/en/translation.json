@@ -1,6 +1,6 @@
 {
     "header": {
-        "favText": "Favourites",
+        "favText": "Favorites",
         "langText": "Language",
         "LanguageSwitcher": {
             "option": {
@@ -11,7 +11,9 @@
     },
     "home": {
         "recommendations": "Recommendations",
-        "gameCardLargeStore": "Visit store"
+        "gameCardLargeStore": "Visit store",
+        "loading": "Loading...",
+        "seenAllText": "you've seen it all!!"
     },
     "detail": {
         "gameInfo": {
@@ -19,14 +21,29 @@
             "developer": "Developer",
             "releaseDate": "Release date",
             "rating": "Rating",
-            "genres": "Genres"
-        }
+            "genres": "Genres",
+            "description": "Description"
+        },
+        "loadingText": "Loading...",
+        "pdf": {
+                "state": {
+                    "loading": "Loading...",
+                    "generating": "Generating...",
+                    "completed": "Download PDF"
+                }
+            }
     },
     "favorite": {
-        
+        "favLoadingText": "Loading favorites...",
+        "favTitle": "Favorites",
+        "favNoGameInfo": "You dont have any favorite games yet",
+        "favExploreText": "Explore games"
+    },
+    "mainLayout": {
+        "searchResultsText": "No results :("
     },
     "footer": {
-        "favText": "Favourites",
+        "favText": "Favorites",
         "copyright": "© MAETS — GAME OVER, COPYCATS. CONTENT HAS COPYRIGHT. UNAUTHORIZED COPY = FINAL BOSS APPEARS. NO CONTINUES. INSERT COIN? NO. YOU'RE DEAD."
     }
 }

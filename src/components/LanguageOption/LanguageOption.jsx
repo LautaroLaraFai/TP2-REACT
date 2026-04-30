@@ -20,7 +20,7 @@ const LanguageOption = ({ content, languagePrefix, onClose }) => {
     <div
       onClick={handleClick}
       className={`
-        w-full
+        w-full z-1000
         px-3 py-2 md:px-4 md:py-2.5
         text-sm sm:text-base md:text-lg
         text-center whitespace-nowrap
