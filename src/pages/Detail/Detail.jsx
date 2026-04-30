@@ -96,11 +96,11 @@ const Detail = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                         
                         <div className="space-y-4">
-                            <div className="relative bg-neutral-800 rounded-xl overflow-hidden">
+                            <div className="relative bg-neutral-800 rounded-xl overflow-hidden h-[350px] md:h-[400px]">
                                 {images.length > 0 && (
                                     <img 
                                         key={currentImage}
-                                        className="w-full h-auto object-cover transition-all duration-500 ease-in-out" 
+                                        className="w-full h-full object-cover transition-all duration-500 ease-in-out" 
                                         src={images[currentImage]} 
                                         alt={game?.Name}
                                     />
