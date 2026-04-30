@@ -7,7 +7,6 @@ export default function GameCardLarge({
   description,
   price,
   image = "",
-  storeUrl = "",
   onClick
 }) {
   const { t } = useTranslation()
@@ -84,10 +83,9 @@ export default function GameCardLarge({
             "
           >
             <a
-              href={storeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-wrap-sm group select-none group flex!"
+              className="px-wrap-sm group select-none group flex! cursor-pointer"
             >
               <div className="px-border-sm bg-a-amber md:-inset-0.75 max-md:-inset-0.5"/>
               <div
