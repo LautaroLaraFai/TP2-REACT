@@ -12,7 +12,8 @@
     "home": {
         "recommendations": "Recommendations",
         "gameCardLargeStore": "Visit store",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "seenAllText": "you've seen it all!!"
     },
     "detail": {
         "gameInfo": {
@@ -24,7 +25,6 @@
             "description": "Description"
         },
         "loadingText": "Loading...",
-        "downloadText": "Download",
         "pdf": {
                 "state": {
                     "loading": "Loading...",

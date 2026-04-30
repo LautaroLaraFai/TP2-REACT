@@ -161,12 +161,13 @@ const Detail = () => {
                                     ))}
                                 </div>
                                 
-                                <div className="flex-shrink-0 flex items-center">
+                                <div className="flex-shrink-0 flex items-center gap-3">
                                     <FavoriteButton  
                                         isAdded={favorites.includes(Number(id))}
                                         onClick={toggleFavorite}
                                         extraStyles="w-12 h-12 cursor-pointer transition-all duration-300 hover:scale-110"
                                     />
+                                    <PDFDownloadButton game={game} />
                                 </div>
                             </div>
                         </div>
@@ -233,7 +234,6 @@ const Detail = () => {
                                 {game?.Description}
                             </div>
                         </div>
-                        {t("detail.downloadText")} <PDFDownloadButton game={game} />
                     </div>
                 </div>
             </div>
