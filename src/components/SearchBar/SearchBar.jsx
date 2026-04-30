@@ -1,15 +1,20 @@
+import { useEffect, useState } from "react"
 import searchIcon from "../../assets/searchIcon.svg"
 
 const SearchBar = ({
+  clearInput,
+  setClearInput,
   setSearchActive,
   games,
   setFilteredGames
 }) => {
+
+  const [value, setValue] = useState("")
+
   const handleChange = (e) => {
-    const textValue = e.target.value
-    const hasText = textValue !== ""
-    setSearchActive(hasText)
-    if (hasText) {
+    const newValue = e.target.value.trim()
+    setValue(newValue)
+    if (newValue.trim()) {
       const resultado = []
       games.map((game, index) => {
         if (!game) {
@@ -20,7 +25,7 @@ const SearchBar = ({
           console.error(`Game en índice ${index} no tiene name:`, game)
           return
         }
-        if (game.Name.toLowerCase().includes(textValue.toLowerCase())) {
+        if (game.Name.toLowerCase().includes(newValue.toLowerCase())) {
           resultado.push(game)
         }
       })
@@ -30,6 +35,21 @@ const SearchBar = ({
     }
   }
 
+  useEffect(() => {
+    if (clearInput){
+      setValue("")
+      setClearInput(false)
+    }
+  }, [clearInput])
+
+  useEffect(() => {
+    if(value === ""){
+      setSearchActive(false)
+    }else{
+      setSearchActive(true)
+    }
+  }, [value])
+
   return (
     <div className="px-wrap-sm flex-1! mx-2 md:mx-4 min-w-0">
       <div className="px-border-sm bg-a-amber -inset-0.5"/>
@@ -37,6 +57,7 @@ const SearchBar = ({
         <input
           type="text"
           id="searchBar"
+          value={value}
           className="
             w-full bg-p-bg
             h-9 sm:h-10 md:h-11 lg:h-12

@@ -9,16 +9,20 @@ export default function MainLayout({ children }) {
 
   const [searchActive, setSearchActive] = useState(false)
   const [filteredGames, setFilteredGames] = useState([])
+  const [clearInput, setClearInput] = useState(false)
 
   const { t } = useTranslation();
   const disableSearch = () => {
     setSearchActive(false)
+    setClearInput(true)
   }
   return (
     <>
       <Header 
         setSearchActive={setSearchActive}
         setFilteredGames={setFilteredGames}
+        clearInput={clearInput} 
+        setClearInput={setClearInput}
       />
 
       <main 

@@ -7,6 +7,8 @@ import SearchBar from "../SearchBar/SearchBar"
 import { useGames } from "../../services/globals"
 
 const Header = ({
+  clearInput,
+  setClearInput,
   setSearchActive,
   setFilteredGames
 }) => {
@@ -55,6 +57,8 @@ const Header = ({
           </span>
         </Link>
         <SearchBar
+          clearInput={clearInput} 
+          setClearInput={setClearInput}
           setSearchActive={setSearchActive}
           games={games}
           setFilteredGames={setFilteredGames}
