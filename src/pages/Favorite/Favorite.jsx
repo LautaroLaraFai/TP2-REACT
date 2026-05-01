@@ -11,50 +11,7 @@ export default function Favorites() {
     const [loading, setLoading] = useState(true);
     const { t } = useTranslation()
 
-    useEffect(() => {
-    const loadFavorites = async () => {
-        try {
-        const favoritesIdsRaw = JSON.parse(localStorage.getItem('favorites') || '[]');
-        const favoritesIds = favoritesIdsRaw.map(id => Number(id));
-        
-        if (favoritesIds.length === 0) {
-            setFavoriteGames([]);
-            setLoading(false);
-            return;
-        }
-        
-        const games = await Promise.all(
-            favoritesIds.map(async (id) => {
-            const gameData = await getDataByID(id);
-            return gameData;
-            })
-        );
-        
-        setFavoriteGames(games.filter(game => game !== null));
-        setLoading(false);
-        } catch (error) {
-        console.error('Error:', error);
-        setFavoriteGames([]);
-        setLoading(false);
-        }
-    };
-
-    loadFavorites();
-    window.addEventListener('storage', loadFavorites);
-    window.addEventListener('focus', loadFavorites);
     
-    return () => {
-        window.removeEventListener('storage', loadFavorites);
-        window.removeEventListener('focus', loadFavorites);
-    };
-    }, []);
-
-    const removeFavorite = (gameId) => {
-        const favoritesIdsRaw = JSON.parse(localStorage.getItem('favorites') || '[]');
-        const newFavorites = favoritesIdsRaw.filter(id => Number(id) !== Number(gameId));  
-        localStorage.setItem('favorites', JSON.stringify(newFavorites));
-        setFavoriteGames(prev => prev.filter(game => Number(game.id) !== Number(gameId)));  
-    };
 
     if (loading) {
         return (
@@ -79,6 +36,7 @@ export default function Favorites() {
             </Link>
           </div>
         ) : (
+          // !COMPONETIZAR
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-10 lg:px-26 md:px-12 sm:px-10 max-sm:px-4">
             {favoriteGames.map((game) => (
               <GameCardSmall
@@ -94,6 +52,7 @@ export default function Favorites() {
               />
             ))}
           </div>
+          // !COMPONETIZAR
         )}
       </Section>
     </MainLayout>
