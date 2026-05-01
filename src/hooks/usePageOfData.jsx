@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import getData from "../services/getData"
 
 const usePageOfData = () => {
   const [games, setGames] = useState([]);
@@ -11,8 +12,7 @@ const usePageOfData = () => {
   const fetchData = () => {
     const fetchGames = async () => {
       try {
-        const response = await fetch(`https://69e6dd1368208c1debe7fc08.mockapi.io/SNG/Games?page=${page}&limit=${page_limit}`);
-        const data = await response.json();
+        const data = await getData({ page, limit: page_limit });
         if (data?.length === 0) {
           setHasMore(false);
           return;
