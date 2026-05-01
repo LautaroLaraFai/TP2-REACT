@@ -71,4 +71,4 @@ npm run dev
 **Deploy (recomendado):**
 
 **Accede a la aplicacion desde:**  
-👉 [https://tp-2-react-nine.vercel.app/](https://tp-2-react-nine.vercel.app/)
+[https://tp-2-react-nine.vercel.app/](https://tp-2-react-nine.vercel.app/)
