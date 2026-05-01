@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useTranslation } from "react-i18next"
-import { useParams } from "react-router"
+import { useParams, useNavigate } from "react-router"
 import MainLayout from "../../layouts/MainLayout"
 import FavoriteButton from "../../components/FavoriteButton/FavoriteButton"
 import { useGamesByID } from "../../services/globals"
@@ -9,13 +9,26 @@ import { PDFDownloadButton } from "../../components/PdfGenerator/PdfGenerator.js
 const Detail = () => {
     const { t } = useTranslation();
     const { id } = useParams()
+    const navigate = useNavigate()
     const [favorites, setFavorites] = useState([])
     const [loading, setLoading] = useState(true)
     const [currentImage, setCurrentImage] = useState(0)
 
     const game = useGamesByID(id)
 
+    // Redireccionar si el id no existe o no esta dentro de la api
     useEffect(() => {
+        const gameId = Number(id);
+        const isValidId = id && !isNaN(gameId) && gameId > 0 && gameId <= 51;
+        
+        if (!isValidId) {
+            navigate('/');
+        }
+    }, [id, navigate]);
+
+
+    useEffect(() => {
+
         const initializeData = async () => {
             try {
                 const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]')
