@@ -4,6 +4,7 @@ import MainLayout from "../../layouts/MainLayout.jsx";
 import Section from "../../layouts/Section.jsx";
 import { useFavorite } from "../../hooks/useFavorite.jsx";
 import { CardGrid } from "../../components/CardGrid/CardGrid.jsx";
+import Loader from "../../layouts/Loader/Loader.jsx";
 
 export default function Favorites() {
   const { t } = useTranslation();
@@ -13,8 +14,10 @@ export default function Favorites() {
     return (
       <MainLayout>
         <div className="flex justify-center items-center h-96">
-          <p className="text-a-amber text-2xl">{t("favorite.favLoadingText")}</p>
+          {/* <p className="text-a-amber text-2xl">{t("favorite.favLoadingText")}</p> */}
+          <Loader />
         </div>
+        
       </MainLayout>
     );
   }
