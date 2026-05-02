@@ -1,6 +1,8 @@
 import { Document, Page, Text, View, StyleSheet, PDFDownloadLink, Image } from '@react-pdf/renderer';
 import { useTranslation } from 'react-i18next';
-import logo from "../../assets/Logo.png"
+import logo from "../../../public/Logo.png"
+import { Buffer } from 'buffer';
+window.Buffer = Buffer;
 
 const COLORS = {
   pageBg: '#474843',
@@ -9,8 +11,8 @@ const COLORS = {
   text: '#E7E8C6',
   textMuted: '#999A86',
   border: '#E7E8C6',
-  gold: '#E7E8C6',
-  goldEmpty: '#999A86',
+  gold: '#ca3500',
+  goldEmpty: '#7c2506',
 };
 
 const styles = StyleSheet.create({
@@ -48,7 +50,6 @@ const styles = StyleSheet.create({
     width: 260,
     height: 180,
     borderRadius: 8,
-    objectFit: 'cover',
   },
   infoBox: {
     flex: 1,
@@ -148,8 +149,11 @@ const GamePDF = ({ game }) => {
           </View>
 
           <View style={styles.contentRow}>
-            {game.Image && (
+            {/* {game.Image && (
               <Image src={game.Image} style={styles.gameImage} />
+            )} */}
+            {game.Image && (
+              <Image src={`/api/image-proxy?url=${encodeURIComponent(game.Image)}`} style={styles.gameImage} />
             )}
 
             <View style={styles.infoBox}>
