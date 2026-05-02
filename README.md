@@ -1,49 +1,74 @@
-# Gestor de Peliculas y Series
-
----
+# Visualizador de Juegos
 
 ## Miembros del Grupo
 
-| Nombre         | Email                               | Rol                            |
-| -------------- | ----------------------------------- | ------------------------------ |
-| Marcos Chavez  | marcos.chavez@est.fi.uncoma.edu.ar  | Desarrollador Logica Principal |
-| Lucas Martinez | lucas.martinez@est.fi.uncoma.edu.ar | Desarrollador Frontend + UI    |
-| Lautaro Lara   | lautaronicolas.lara@est.fi.uncoma.edu.ar   | Scrum Master                   |
+| Nombre         | Email                                    | Rol                            |
+| -------------- | ---------------------------------------- | ------------------------------ |
+| Marcos Chavez  | marcos.chavez@est.fi.uncoma.edu.ar       | Desarrollador Logica Principal |
+| Lucas Martinez | lucas.martinez@est.fi.uncoma.edu.ar      | Desarrollador Frontend + UI    |
+| Lautaro Lara   | lautaronicolas.lara@est.fi.uncoma.edu.ar | PM                             |
 
 ---
 
 ## Descripcion de la Aplicacion
 
-Aplicacion web desarrollada con React y Vite que funciona como un visualizador de juegos
+Aplicacion web desarrollada con React y Vite que funciona como un visualizador de juegos.
 
-### Funcionalidades principales
+### Funcionalidades Principales
 
-- Poder visualizar juegos desde una api creada en mockAPI
-- Poder añadir juegos a favoritos
-- Poder quitar juegos de favoritos
-- Poder buscar juegos por su nombre
+- Visualizar juegos obtenidos desde una API creada en mockAPI
+- Anadir juegos a favoritos
+- Quitar juegos de favoritos
+- Buscar juegos por nombre
+- Buscar juegos por desarrollador
+- Descargar la informacion del juego en formato PDF
+- Visualizar la pagina en dispositivos moviles (responsive)
+- Visualizar la pagina en ingles y espanol (solo la informacion que no viene de la API)
+
+---
+
+## Tecnologias y Librerias Utilizadas
+
+| Tecnologia            | Descripcion                    |
+| --------------------- | ------------------------------ |
+| React                 | Framework principal            |
+| React Router          | Navegacion entre paginas       |
+| React-pdf             | Generacion de archivos PDF     |
+| Tailwind CSS          | Estilizado y diseno responsive |
+| i18next               | Internacionalizacion (ES/EN)   |
+| React Infinite Scroll | Carga infinita de juegos       |
+| Vercel                | Plataforma de deploy           |
 
 ---
 
 ## Instalacion y Guia de Uso
 
-### Requisitos previos
+### Requisitos Previos
 
 - Node.js (version 14 o superior)
-- npm (viene con Node.js)
+- npm (viene incluido con Node.js)
 
-### Pasos para instalar y correr la aplicacion
+### Pasos para Instalar y Ejecutar la Aplicacion
+
+La aplicacion puede verse de 2 formas:
+
+**Forma 1 - Local:**
 
 ```bash
-# 1. Clonar el repositorio
+# Clonar el repositorio
 git clone https://github.com/LautaroLaraFai/TP2-REACT.git
 
-# 2. Entrar a la carpeta del proyecto
+# Entrar a la carpeta del proyecto
 cd TP2-REACT
 
-# 3. Instalar dependencias
+# Instalar dependencias
 npm install
 
-# 4. Iniciar la aplicacion con Vite
+# Iniciar la aplicacion con Vite
 npm run dev
 ```
+
+**Deploy (recomendado):**
+
+**Accede a la aplicacion desde:**  
+[https://tp-2-react-nine.vercel.app/](https://tp-2-react-nine.vercel.app/)
