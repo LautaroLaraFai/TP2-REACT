@@ -1,45 +1,63 @@
 import { useEffect, useState } from "react"
 import searchIcon from "../../assets/searchIcon.svg"
+import getDataByFilter from "../../services/getDataByFilter"
 
 const SearchBar = ({
   clearInput,
   setClearInput,
   setSearchActive,
-  games,
-  setFilteredGames
+  setFilteredGames,
+  setIsLoading
 }) => {
 
   const [value, setValue] = useState("")
 
   const handleChange = (e) => {
-    const rawValue = e.target.value
-    const newValue = rawValue.trim()
-    setValue(rawValue) 
-    
-    const isSearchByDeveloper = newValue[0] === "@"
-    const searchParam = isSearchByDeveloper ? "Developer" : "Name"
-    const searchTerm = isSearchByDeveloper ? newValue.slice(1).trim() : newValue
-    
-    if (searchTerm === "") {
+    setValue(e.target.value)
+  }
+
+  const handleKey = (e) => {
+    if (e.key === "Enter") {
       setFilteredGames([])
-      return
+      setSearchActive(true)
+      searchGame(e.target.value)
     }
-    
-    const resultado = []
-    games.forEach((game, index) => {
-      if (!game) {
-        console.error(`Game en índice ${index} es undefined`)
+  }
+  const searchGame = async (valueToSearch) => {
+      setIsLoading(true)
+
+      const rawValue = valueToSearch
+      const newValue = rawValue.trim()
+      setValue(rawValue) 
+      
+      const isSearchByDeveloper = valueToSearch[0] === "@"
+      const searchParam = isSearchByDeveloper ? "Developer" : "Name"
+      const searchValue = isSearchByDeveloper ? newValue.slice(1).trim() : newValue
+      
+      if (searchValue === "") {
+        setFilteredGames([])
+        setIsLoading(false)
         return
       }
-      if (!game[searchParam]) {
-        console.error(`Game en índice ${index} no tiene ${searchParam}:`, game)
-        return
-      }
-      if (game[searchParam].toLowerCase().includes(searchTerm.toLowerCase())) {
-        resultado.push(game)
-      }
-    })
-    setFilteredGames(resultado)
+
+    try {
+      const games = await getDataByFilter(searchParam, searchValue)
+      const resultado = []
+
+      games.forEach((game, index) => {
+        if (!game) {
+          console.error(`Game en índice ${index} es undefined`)
+          return
+        }
+          resultado.push(game)
+      })
+
+      setIsLoading(resultado === 0)
+      setFilteredGames(resultado)
+    } catch(e){
+      console.error("Error: ",e)
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {
@@ -52,8 +70,6 @@ const SearchBar = ({
   useEffect(() => {
     if(value === ""){
       setSearchActive(false)
-    }else{
-      setSearchActive(true)
     }
   }, [value])
 
@@ -73,6 +89,7 @@ const SearchBar = ({
             focus:outline-none
             focus:bg-t-bg
           "
+          onKeyDown={(e) => handleKey(e)}
           onChange={(e) => handleChange(e)}
         />
         <label htmlFor="searchBar">

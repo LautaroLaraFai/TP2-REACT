@@ -4,16 +4,15 @@ import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher"
 import { Link } from "react-router"
 import { useState } from "react"
 import SearchBar from "../SearchBar/SearchBar"
-import { useGames } from "../../services/globals"
 
 const Header = ({
   clearInput,
   setClearInput,
   setSearchActive,
-  setFilteredGames
+  setFilteredGames,
+  setIsLoading
 }) => {
   const { t } = useTranslation()
-  const games = useGames()
 
   const [isLangSwitcherOpen, setIsLangSwitcherOpen] = useState(false)
   const onClose = () => {
@@ -60,8 +59,8 @@ const Header = ({
           clearInput={clearInput} 
           setClearInput={setClearInput}
           setSearchActive={setSearchActive}
-          games={games}
           setFilteredGames={setFilteredGames}
+          setIsLoading={setIsLoading}
         />
         <div
           className="
