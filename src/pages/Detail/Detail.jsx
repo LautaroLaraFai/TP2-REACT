@@ -26,7 +26,7 @@ const Detail = () => {
         if (!isValidId) {
             navigate('/');
         }
-    }, [id, navigate]);
+    }, [id, navigate])
 
 
     useEffect(() => {
@@ -42,51 +42,23 @@ const Detail = () => {
                 setLoading(false)
             }
         }
-        
+
         initializeData()
 
         const syncFavorites = () => {
-            const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]')
-            const favoritesAsNumbers = storedFavorites.map(fav => Number(fav))
-            setFavorites(favoritesAsNumbers)
+        const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]')
+        const favoritesAsNumbers = storedFavorites.map(fav => Number(fav))
+        setFavorites(favoritesAsNumbers)
         }
 
         window.addEventListener('storage', syncFavorites)
         window.addEventListener('focus', syncFavorites)
         
         return () => {
-            window.removeEventListener('storage', syncFavorites)
-            window.removeEventListener('focus', syncFavorites)
+        window.removeEventListener('storage', syncFavorites)
+        window.removeEventListener('focus', syncFavorites)
         }
     }, [id])
-
-    const toggleFavorite = () => {
-        const gameId = Number(id)
-        const newFavorites = favorites.includes(gameId) 
-            ? favorites.filter(fid => fid !== gameId)
-            : [...favorites, gameId]
-        
-        setFavorites(newFavorites)
-        localStorage.setItem('favorites', JSON.stringify(newFavorites))
-        window.dispatchEvent(new Event('storage'))
-    }
-    
-    initializeData()
-
-    const syncFavorites = () => {
-      const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]')
-      const favoritesAsNumbers = storedFavorites.map(fav => Number(fav))
-      setFavorites(favoritesAsNumbers)
-    }
-
-    window.addEventListener('storage', syncFavorites)
-    window.addEventListener('focus', syncFavorites)
-    
-    return () => {
-      window.removeEventListener('storage', syncFavorites)
-      window.removeEventListener('focus', syncFavorites)
-    }
-  }, [id])
 
   const toggleFavorite = () => {
     const gameId = Number(id)
