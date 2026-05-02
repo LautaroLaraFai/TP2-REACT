@@ -14,10 +14,8 @@ export default function Favorites() {
     return (
       <MainLayout>
         <div className="flex justify-center items-center h-96">
-          {/* <p className="text-a-amber text-2xl">{t("favorite.favLoadingText")}</p> */}
           <Loader />
         </div>
-        
       </MainLayout>
     );
   }
