@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useTranslation } from "react-i18next"
-import { useParams } from "react-router"
+import { useParams, useNavigate } from "react-router"
 import MainLayout from "../../layouts/MainLayout"
 import FavoriteButton from "../../components/FavoriteButton/FavoriteButton"
 import { useGamesByID } from "../../services/globals"
@@ -9,25 +9,66 @@ import leftArrow from "../../assets/left-arrow.svg"
 import rightArrow from "../../assets/right-arrow.svg"
 
 const Detail = () => {
-  const { t } = useTranslation();
-  const { id } = useParams()
-  const [favorites, setFavorites] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [currentImage, setCurrentImage] = useState(0)
+    const { t } = useTranslation();
+    const { id } = useParams()
+    const navigate = useNavigate()
+    const [favorites, setFavorites] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [currentImage, setCurrentImage] = useState(0)
 
-  const game = useGamesByID(id)
+    const game = useGamesByID(id)
 
-  useEffect(() => {
-    const initializeData = async () => {
-      try {
-        const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]')
-        const favoritesAsNumbers = storedFavorites.map(fav => Number(fav))
-        setFavorites(favoritesAsNumbers)
-        setLoading(false)
-      } catch (error) {
-        console.error('Error:', error)
-        setLoading(false)
-      }
+    // Redireccionar si el id no existe o no esta dentro de la api
+    useEffect(() => {
+        const gameId = Number(id);
+        const isValidId = id && !isNaN(gameId) && gameId > 0 && gameId <= 51;
+        
+        if (!isValidId) {
+            navigate('/');
+        }
+    }, [id, navigate]);
+
+
+    useEffect(() => {
+
+        const initializeData = async () => {
+            try {
+                const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]')
+                const favoritesAsNumbers = storedFavorites.map(fav => Number(fav))
+                setFavorites(favoritesAsNumbers)
+                setLoading(false)
+            } catch (error) {
+                console.error('Error:', error)
+                setLoading(false)
+            }
+        }
+        
+        initializeData()
+
+        const syncFavorites = () => {
+            const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]')
+            const favoritesAsNumbers = storedFavorites.map(fav => Number(fav))
+            setFavorites(favoritesAsNumbers)
+        }
+
+        window.addEventListener('storage', syncFavorites)
+        window.addEventListener('focus', syncFavorites)
+        
+        return () => {
+            window.removeEventListener('storage', syncFavorites)
+            window.removeEventListener('focus', syncFavorites)
+        }
+    }, [id])
+
+    const toggleFavorite = () => {
+        const gameId = Number(id)
+        const newFavorites = favorites.includes(gameId) 
+            ? favorites.filter(fid => fid !== gameId)
+            : [...favorites, gameId]
+        
+        setFavorites(newFavorites)
+        localStorage.setItem('favorites', JSON.stringify(newFavorites))
+        window.dispatchEvent(new Event('storage'))
     }
     
     initializeData()
