@@ -6,6 +6,7 @@ import "./i18n.js"
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router'
 import Logo from './assets/Logo.svg?url'
+import ScrollToTop from "./services/ScrollToTop";
 
 //! NO ME BORREN ESTO, ES PARA QUE SE VEA EL LOGO EN LA PESTAÑA
 const faviconLink = document.createElement('link')
@@ -16,6 +17,7 @@ document.head.appendChild(faviconLink)
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
+      <ScrollToTop />
       <App />
     </BrowserRouter>
 )
