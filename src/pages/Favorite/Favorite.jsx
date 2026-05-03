@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
 import Section from "../../layouts/Section.jsx";
 import { useFavorite } from "../../hooks/useFavorite.jsx";
-import { CardGrid } from "../../components/CardGrid/CardGrid.jsx";
+import { CardGridFavorite } from "../../components/CardGridFavorite/CardGridFavorite.jsx";
 import Loader from "../../layouts/Loader/Loader.jsx";
 
 export default function Favorites() {
@@ -31,7 +31,7 @@ export default function Favorites() {
             </Link>
           </div>
         ) : (
-          <CardGrid toggleFavorite={toggleFavorite} isFavorite={isFavorite} games={favoriteGames}/>
+          <CardGridFavorite toggleFavorite={toggleFavorite} isFavorite={isFavorite} games={favoriteGames}/>
         )}
       </Section>
     </MainLayout>

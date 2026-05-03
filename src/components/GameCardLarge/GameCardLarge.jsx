@@ -23,7 +23,7 @@ export default function GameCardLarge({
 
 
   return (
-    <div className="px-wrap-md group lg:mx-20 md:mx-14 sm:mx-10 max-sm:mx-6 mt-12 mb-14 max-sm:mt-8 max-sm:mb-10">
+    <div className="px-wrap-md group lg:mx-26 md:mx-12 sm:mx-10 max-sm:mx-5 mt-12 mb-14 max-sm:mt-8 max-sm:mb-10">
       <div className="px-border-md bg-a-amber md:-inset-0.75 max-md:-inset-0.5"/>
       <article
         className="
@@ -62,7 +62,8 @@ export default function GameCardLarge({
             </h2>
             <p
               className="
-                text-xs sm:text-sm md:text-base leading-tight line-clamp-2
+                text-xs sm:text-sm md:text-base leading-tight
+                lg:line-clamp-4 md:line-clamp-3 sm:line-clamp-2 max-sm:line-clamp-2
               text-a-darkamber mb-1 mr-2
               "
             >
