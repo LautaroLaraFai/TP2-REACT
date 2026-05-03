@@ -48,6 +48,7 @@ export const useFavorite = () => {
     favoriteIds,      
     favoriteGames,    
     loading,          
+    setLoading,
     toggleFavorite,   
     isFavorite        
   };
