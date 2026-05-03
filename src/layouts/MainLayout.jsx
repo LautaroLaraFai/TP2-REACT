@@ -31,7 +31,9 @@ export default function MainLayout({ children }) {
       <main 
         className="
           flex flex-col min-h-[calc(100vh-24px)]
-          lg:mx-10 mt-10 mx-4 mb-2 md:mx-10 max-md:mx-6
+          md:mt-10 sm:mt-8 max-sm:mt-6
+          md:mb-4 max-md:mb-3
+          lg:mx-10 md:mx-8 sm:mx-6 max-sm:mx-4
         "
       >
         {/* Contenido */}
