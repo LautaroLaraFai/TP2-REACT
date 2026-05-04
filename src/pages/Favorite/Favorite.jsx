@@ -31,7 +31,12 @@ export default function Favorites() {
             </Link>
           </div>
         ) : (
-          <CardGridFavorite toggleFavorite={toggleFavorite} isFavorite={isFavorite} games={favoriteGames}/>
+          <CardGridFavorite
+            toggleFavorite={toggleFavorite}
+            isFavorite={isFavorite}
+            games={favoriteGames}
+            animated={true}
+          />
         )}
       </Section>
     </MainLayout>
