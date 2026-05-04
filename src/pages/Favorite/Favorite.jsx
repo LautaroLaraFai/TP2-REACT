@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
 import Section from "../../layouts/Section.jsx";
-import { useFavorite } from "../../hooks/useFavorite.jsx";
+import useFavorite from "../../hooks/useFavorite.jsx";
 import { CardGridFavorite } from "../../components/CardGridFavorite/CardGridFavorite.jsx";
 import Loader from "../../layouts/Loader/Loader.jsx";
 
@@ -31,7 +31,12 @@ export default function Favorites() {
             </Link>
           </div>
         ) : (
-          <CardGridFavorite toggleFavorite={toggleFavorite} isFavorite={isFavorite} games={favoriteGames}/>
+          <CardGridFavorite
+            toggleFavorite={toggleFavorite}
+            isFavorite={isFavorite}
+            games={favoriteGames}
+            animated={true}
+          />
         )}
       </Section>
     </MainLayout>

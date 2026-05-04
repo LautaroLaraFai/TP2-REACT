@@ -1,34 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Footer } from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header.jsx";
-import "../index.css"
-import { useTranslation } from "react-i18next";
-import useFavorite from "../hooks/useFavorite.jsx"
+import "../index.css";
+import SearchResults from "../components/SearchResults/SearchResults.jsx";
 
 export default function MainLayout({ children }) {
+  const [searchActive, setSearchActive] = useState(false);
+  const [filteredGames, setFilteredGames] = useState([]);
+  const [clearInput, setClearInput] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [searchActive, setSearchActive] = useState(false)
-  const [filteredGames, setFilteredGames] = useState([])
-  const [clearInput, setClearInput] = useState(false)
-  const {loading, setLoading} = useFavorite()
-
-  const { t } = useTranslation();
-  
   const disableSearch = () => {
-    setSearchActive(false)
-    setClearInput(true)
-  }
+    setSearchActive(false);
+    setClearInput(true);
+  };
+
   return (
     <>
-      <Header 
+      <Header
         setSearchActive={setSearchActive}
         setFilteredGames={setFilteredGames}
-        clearInput={clearInput} 
+        clearInput={clearInput}
         setClearInput={setClearInput}
-        setIsLoading={setLoading}
+        setIsLoading={setIsLoading}
       />
 
-      <main 
+      <main
         className="
           flex flex-col min-h-[calc(100vh-24px)]
           md:mt-10 sm:mt-8 max-sm:mt-6
@@ -36,19 +33,30 @@ export default function MainLayout({ children }) {
           lg:mx-10 md:mx-8 sm:mx-6 max-sm:mx-4
         "
       >
-        {/* Contenido */}
-        <div className={`${searchActive ? "hidden flex-1!" : "flex-1! px-wrap-lg-t"}`}>
-          <div className="px-border-lg-t bg-p-bg md:-inset-0.75 max-md:-inset-0.5"/>
-          <div className="px-inner-lg-t bg-p-bg">
-            {children}
+        {/* Contenido normal */}
+        {!searchActive && (
+          <div className="flex-1! px-wrap-lg-t">
+            <div className="px-border-lg-t bg-p-bg md:-inset-0.75 max-md:-inset-0.5" />
+            <div className="px-inner-lg-t bg-p-bg">
+              {children}
+            </div>
           </div>
-        </div>
+        )}
 
-        <SearchResults 
-          filteredGames={filteredGames}
-          loading={loading}
-          disableSearch={disableSearch}
-        />
+        {/* Resultados de búsqueda */}
+        {searchActive && (
+          <div className="px-wrap-lg-t">
+            <div className="px-border-lg-t bg-p-bg md:-inset-0.75 max-md:-inset-0.5" />
+            <div className="px-inner-lg-t">
+              <SearchResults
+                isLoading={isLoading}
+                filteredGames={filteredGames}
+                disableSearch={disableSearch}
+              />
+            </div>
+          </div>
+        )}
+
         <Footer />
       </main>
     </>

@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from "../../layouts/Loader/Loader.jsx"
 import usePageOfData from "../../hooks/usePageOfData.jsx"
 import CardGrid from "../../components/CardGrid/CardGrid.jsx"
-import { useFavorite } from "../../hooks/useFavorite.jsx";
+import useFavorite from "../../hooks/useFavorite.jsx";
 
 export default function Home () {
 
