@@ -86,13 +86,15 @@ const Header = ({
               text-center whitespace-nowrap
               hover:text-orange-700 active:text-orange-600
             "
-            onClick={() => setClearInput(true)}
+            onClick={() => {
+              setClearInput(true)
+              setSearchActive(false)
+              setFilteredGames([])
+            }}
           >
             {t("header.favText")}
           </Link>
-          <div className="relative"
-          // onClick={() => setClearInput(true)}
-          >
+          <div className="relative">
             <button
               className="
                 text-sm sm:text-base md:text-lg lg:text-xl
