@@ -9,8 +9,7 @@ export default function MainLayout({ children }) {
   const [searchActive, setSearchActive] = useState(false);
   const [filteredGames, setFilteredGames] = useState([]);
   const [clearInput, setClearInput] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const { toggleFavorite, isFavorite } = useFavorite()
+  const { toggleFavorite, isFavorite, loading, setLoading } = useFavorite()
 
   const disableSearch = () => {
     setSearchActive(false);
@@ -24,7 +23,7 @@ export default function MainLayout({ children }) {
         setFilteredGames={setFilteredGames}
         clearInput={clearInput}
         setClearInput={setClearInput}
-        setIsLoading={setIsLoading}
+        setIsLoading={setLoading}
       />
 
       <main
@@ -51,7 +50,7 @@ export default function MainLayout({ children }) {
             <div className="px-border-lg-t bg-p-bg md:-inset-0.75 max-md:-inset-0.5" />
             <div className="px-inner-lg-t">
               <SearchResults
-                isLoading={isLoading}
+                isLoading={loading}
                 filteredGames={filteredGames}
                 disableSearch={disableSearch}
                 toggleFavorite={toggleFavorite}
