@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getDataByID } from '../services/getDataByID';
 
-export const useFavorite = () => {
+export default function useFavorite() {
   const [favoriteIds, setFavoriteIds] = useState([]);
   const [favoriteGames, setFavoriteGames] = useState([]);
   const [loading, setLoading] = useState(true);

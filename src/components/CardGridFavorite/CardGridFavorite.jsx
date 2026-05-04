@@ -1,4 +1,4 @@
-import { useFavorite } from "../../hooks/useFavorite.jsx"
+import useFavorite from "../../hooks/useFavorite.jsx"
 import GameCardMedium from "../GameCardMedium/GameCardMedium.jsx";
 
 export const CardGridFavorite = ({ games, toggleFavorite, isFavorite }) => {
