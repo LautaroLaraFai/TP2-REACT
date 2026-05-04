@@ -3,12 +3,14 @@ import { Footer } from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header.jsx";
 import "../index.css";
 import SearchResults from "../components/SearchResults/SearchResults.jsx";
+import useFavorite from "../hooks/useFavorite.jsx";
 
 export default function MainLayout({ children }) {
   const [searchActive, setSearchActive] = useState(false);
   const [filteredGames, setFilteredGames] = useState([]);
   const [clearInput, setClearInput] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { toggleFavorite, isFavorite } = useFavorite()
 
   const disableSearch = () => {
     setSearchActive(false);
@@ -52,6 +54,8 @@ export default function MainLayout({ children }) {
                 isLoading={isLoading}
                 filteredGames={filteredGames}
                 disableSearch={disableSearch}
+                toggleFavorite={toggleFavorite}
+                isFavorite={isFavorite}
               />
             </div>
           </div>

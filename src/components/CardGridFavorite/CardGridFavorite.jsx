@@ -18,7 +18,7 @@ export const CardGridFavorite = ({
             image={game?.Image}
             genres={game?.Genres}
             releaseDate={game?.ReleaseDate}
-            onClick={() => toggleFavorite(game.id)}
+            onClick={toggleFavorite ? () => toggleFavorite(game.id) : undefined}
             isFavorite={isFavorite(game.id)}
           />
         );
