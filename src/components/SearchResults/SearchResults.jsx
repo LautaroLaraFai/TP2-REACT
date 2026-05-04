@@ -1,4 +1,4 @@
-import Loader from "../../layouts/Loader/Loader.jsx";
+import Loader from "../Loader/Loader.jsx";
 import { useTranslation } from "react-i18next";
 import CardGrid from "../CardGrid/CardGrid.jsx";
 

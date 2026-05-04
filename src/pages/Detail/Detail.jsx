@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useParams, useNavigate } from "react-router"
 import MainLayout from "../../layouts/MainLayout"
@@ -8,17 +8,16 @@ import { PDFDownloadButton } from "../../components/PdfGenerator/PdfGenerator.js
 import SpanInfo from "../../components/SpanInfo/SpanInfo.jsx"
 import ImageGallery from "../../components/ImagenGallery/ImagenGallery.jsx"
 import RatingStars from "../../components/RatingStars/RatingStars.jsx"
+import useFavorite from "../../hooks/useFavorite.jsx"
 
 const Detail = () => {
-    const { t } = useTranslation();
-    const { id } = useParams()
-    const navigate = useNavigate()
-    const [favorites, setFavorites] = useState([])
-    const [loading, setLoading] = useState(true)
-
+  const { t } = useTranslation();
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const { loading, isFavorite, toggleFavorite } = useFavorite()
+  
     const game = useGamesByID(id)
 
-    // Redireccionar si el id no existe o no esta dentro de la api
     useEffect(() => {
         const gameId = Number(id);
         const isValidId = id && !isNaN(gameId) && gameId > 0 && gameId <= 54;
@@ -28,76 +27,19 @@ const Detail = () => {
         }
     }, [id, navigate])
 
-
-    useEffect(() => {
-
-        const initializeData = async () => {
-            try {
-                const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]')
-                const favoritesAsNumbers = storedFavorites.map(fav => Number(fav))
-                setFavorites(favoritesAsNumbers)
-                setLoading(false)
-            } catch (error) {
-                console.error('Error:', error)
-                setLoading(false)
-            }
-        }
-
-        initializeData()
-
-        const syncFavorites = () => {
-        const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]')
-        const favoritesAsNumbers = storedFavorites.map(fav => Number(fav))
-        setFavorites(favoritesAsNumbers)
-        }
-
-        window.addEventListener('storage', syncFavorites)
-        window.addEventListener('focus', syncFavorites)
-        
-        return () => {
-        window.removeEventListener('storage', syncFavorites)
-        window.removeEventListener('focus', syncFavorites)
-        }
-    }, [id])
-
-    const toggleFavorite = () => {
-        const gameId = Number(id)
-        const newFavorites = favorites.includes(gameId) 
-        ? favorites.filter(fid => fid !== gameId)
-        : [...favorites, gameId]
-        
-        setFavorites(newFavorites)
-        localStorage.setItem('favorites', JSON.stringify(newFavorites))
-        window.dispatchEvent(new Event('storage'))
-    }
-
-    const images = [
-        game?.Image,
-        game?.Screenshots?.[0],
-        game?.Screenshots?.[1],
-        game?.Screenshots?.[2],
-        game?.Screenshots?.[3],
-        game?.Screenshots?.[4],
-    ].filter(img => img)
-
-
     if (loading) {
         return (
-        <MainLayout>
             <div className="flex items-center justify-center h-screen bg-neutral-800">
             <div className="text-a-amber text-2xl">{t("detail.loadingText")}</div>
             </div>
-        </MainLayout>
         )
     }
 
-
   return (
-    <MainLayout>
     <div className="max-w-7xl mx-auto px-4 py-8 lg:px-4 md:px-8 max-md:px-8 md:py-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
         
-        <ImageGallery images={images} />
+        <ImageGallery game={game} />
               
         {/* Información */}
         <div className="px-wrap-md">
@@ -118,8 +60,8 @@ const Detail = () => {
 
             <div className="shrink-0 flex items-center gap-3 mt-5 justify-between lg:px-4 md:px-3 sm:px-2 max-sm:px-1">
               <FavoriteButton  
-                isAdded={favorites.includes(Number(id))}
-                onClick={toggleFavorite}
+                isAdded={isFavorite(id)}
+                onClick={toggleFavorite ? () => toggleFavorite(game.id) : undefined}
                 extraStyles="lg:scale-110 md:scale-100 max-md:scale-90 cursor-pointer"
               />
               <PDFDownloadButton game={game} />
@@ -131,7 +73,6 @@ const Detail = () => {
 
       {/* Descripción */}
       <div className="px-wrap-md mb-10 lg:mt-10 md:mt-8 max-md:mt-4">
-        {/* <div className="px-border-md bg-s-bg -inset-0.5"/> */}
         <div className="px-inner-md bg-p-bg p-8">
           <h2 className="text-2xl md:text-3xl mb-4">
             {t("detail.gameInfo.description")}
@@ -142,7 +83,6 @@ const Detail = () => {
         </div>
       </div>
     </div>
-    </MainLayout>
   )
 }
 

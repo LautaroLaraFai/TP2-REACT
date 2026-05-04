@@ -3,7 +3,7 @@ import GameCardLarge from "../../components/GameCardLarge/GameCardLarge.jsx"
 import { useTranslation } from "react-i18next";
 import Section from "../../layouts/Section.jsx"
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Loader from "../../layouts/Loader/Loader.jsx"
+import Loader from "../../components/Loader/Loader.jsx"
 import usePageOfData from "../../hooks/usePageOfData.jsx"
 import CardGrid from "../../components/CardGrid/CardGrid.jsx"
 import useFavorite from "../../hooks/useFavorite.jsx";
@@ -16,7 +16,6 @@ export default function Home () {
   const { toggleFavorite, isFavorite } = useFavorite()
   
   return (
-    <MainLayout>
     <InfiniteScroll
       dataLength={games.length}
       next={fetchData}
@@ -61,6 +60,5 @@ export default function Home () {
       </Section>
 
     </InfiniteScroll>
-    </MainLayout>
   );
 };

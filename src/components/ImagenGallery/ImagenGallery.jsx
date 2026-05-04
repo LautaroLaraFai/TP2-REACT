@@ -2,8 +2,17 @@ import { useState } from "react"
 import leftArrow from "../../assets/left-arrow.svg"
 import rightArrow from "../../assets/right-arrow.svg"
 
-const ImageGallery = ({ images }) => {
+const ImageGallery = ({ game }) => {
     const [currentImage, setCurrentImage] = useState(0)
+
+    const images = [
+            game?.Image,
+            game?.Screenshots?.[0],
+            game?.Screenshots?.[1],
+            game?.Screenshots?.[2],
+            game?.Screenshots?.[3],
+            game?.Screenshots?.[4],
+        ].filter(img => img)
 
     // Si no hay imágenes, no mostrar nada
     if (!images || images.length === 0) {
