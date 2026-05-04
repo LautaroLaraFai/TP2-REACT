@@ -21,7 +21,7 @@ const Detail = () => {
     // Redireccionar si el id no existe o no esta dentro de la api
     useEffect(() => {
         const gameId = Number(id);
-        const isValidId = id && !isNaN(gameId) && gameId > 0 && gameId <= 51;
+        const isValidId = id && !isNaN(gameId) && gameId > 0 && gameId <= 54;
         
         if (!isValidId) {
             navigate('/');

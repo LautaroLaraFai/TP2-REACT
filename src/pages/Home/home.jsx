@@ -15,8 +15,6 @@ export default function Home () {
   const { games, fetchData, hasMore, frontPageGame } = usePageOfData();
   const { toggleFavorite, isFavorite } = useFavorite()
   
-
- 
   return (
     <MainLayout>
     <InfiniteScroll
@@ -35,7 +33,6 @@ export default function Home () {
       }
     >
       {/* Front Page Game */}
-      {console.log(frontPageGame?.id)}
       <Section>
         {frontPageGame && (
           
@@ -51,9 +48,7 @@ export default function Home () {
           />
         )}
 
-
       </Section>
-        {console.log("ID DEL FRONTPAGE EN HOME",frontPageGame?.id)}
 
       <Section
         title={t("home.recommendations")}
