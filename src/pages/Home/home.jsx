@@ -29,7 +29,7 @@ export default function Home () {
         </div>
       }
       endMessage={
-        <div className="text-a-amber text-2xl w-full flex justify-center mt-5 mb-10">
+        <div className="text-a-amber text-2xl w-full flex justify-center mt-5 mb-20">
           {t("home.seenAllText")}
         </div>
       }

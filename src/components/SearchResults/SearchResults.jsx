@@ -5,7 +5,9 @@ import CardGrid from "../CardGrid/CardGrid.jsx";
 export default function SearchResults({
   isLoading,
   filteredGames,
-  disableSearch
+  disableSearch,
+  toggleFavorite,
+  isFavorite
 }) {
   const { t } = useTranslation();
 
@@ -28,6 +30,8 @@ export default function SearchResults({
   return (
     <CardGrid
       games={filteredGames}
+      toggleFavorite={toggleFavorite}
+      isFavorite={isFavorite}
       disableSearch={disableSearch}
       animated={true}
     />

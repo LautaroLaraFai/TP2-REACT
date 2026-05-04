@@ -18,12 +18,13 @@ export default function GameCardMedium({
   };
 
   return (
-    <div className="px-wrap-sm group relative lg:mx-16 md:mx-12 sm:mx-8 max-sm:mx-4">
+    <div className="px-wrap-sm group relative lg:w-200 lg:mx-auto md:mx-12 sm:mx-8 max-sm:mx-4">
       <div className="px-border-sm bg-a-amber -inset-0.5" />
       <div className="px-inner-sm flex flex-row overflow-hidden">
+
         <Link
           to={`/detail/${gameId}`}
-          className="block shrink-0 w-[clamp(100px,20%,180px)] border-r-3 border-a-amber"
+          className="block shrink-0 w-[clamp(70px,18%,180px)] border-r-3 border-a-amber"
         >
           <img
             src={image}
@@ -32,45 +33,47 @@ export default function GameCardMedium({
           />
         </Link>
 
-        <div className="bg-p-bg flex flex-1 items-center px-3 py-2 gap-3 min-w-0">
-          <div className="flex flex-col justify-center gap-4 flex-1 min-w-0 mt-2 ml-4">
-            <span
-              className="
+        <div className="
+          bg-p-bg flex flex-1 items-center min-w-0
+          px-2 py-2 gap-1 sm:gap-2 md:gap-3 overflow-hidden
+        ">
+
+          <div className="
+            flex flex-col justify-center gap-1 sm:gap-2 md:gap-4
+            flex-1 min-w-0
+            mt-2 ml-1 sm:ml-2 md:ml-4
+          ">
+            <span className="
               truncate text-a-amber
-              lg:text-3xl md:text-2xl sm:text-xl max-sm:text-lg leading-4.5
-              "
-              >
+              text-sm sm:text-xl md:text-2xl lg:text-3xl leading-tight
+            ">
               {name}
             </span>
-            <span
-              className="
-              truncate text-a-darkamber
-              font-medium tracking-wide
-              lg:text-xl md:text-lg sm:text-base max-sm:text-sm leading-4.5
-              "
-              >
+            <span className="
+              truncate text-a-darkamber font-medium tracking-wide
+              text-xs sm:text-base md:text-lg lg:text-xl leading-tight
+            ">
               {genres?.join(", ")}
             </span>
           </div>
 
-          <div className="flex flex-col items-end gap-0 mt-4 shrink-0 md:mr-6 max-md:mr-0">
-            <div
-              className="
-                text-nowrap
-                lg:text-2xl md:text-xl sm:text-lg max-sm:text-base
-                text-white
-                "
-                >
+          <div className="
+            flex flex-col items-end shrink-0
+            mt-2 mr-0 sm:mr-2 md:mr-6 min-w-0
+          ">
+            <span className="
+              text-white font-semibold
+              text-xs sm:text-base md:text-xl lg:text-2xl
+              whitespace-nowrap
+            ">
               USD$ {price}
-            </div>
+            </span>
             {releaseDate && (
-              <span
-              className="
-                text-a-darkamber
-                font-semibold tracking-widest uppercase whitespace-nowrap
-                lg:text-base md:text-base sm:text-sm max-sm:text-sm leading-4.5
-              "
-              >
+              <span className="
+                text-a-darkamber font-semibold tracking-widest uppercase
+                text-[10px] sm:text-sm md:text-base leading-tight
+                whitespace-nowrap
+              ">
                 {releaseDate}
               </span>
             )}
@@ -81,12 +84,13 @@ export default function GameCardMedium({
               isAdded={isFavorite}
               onClick={handleFavoriteClick}
               extraStyles={`
-                md:mr-4 max-md:mr-0
-                lg:scale-110 md:scale-90 sm:scale-80 max-sm:scale-70 z-20
+                shrink-0
+                scale-60 sm:scale-80 md:scale-90 lg:scale-110
+                mr-0 sm:mr-1 md:mr-4
+                z-20
               `}
             />
           )}
-
         </div>
       </div>
     </div>

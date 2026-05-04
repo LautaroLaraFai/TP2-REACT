@@ -7,7 +7,7 @@ export const CardGridFavorite = ({
   animated = false
 }) => {
   return (
-    <div className="flex flex-col gap-4 py-10 lg:px-26 md:px-12 sm:px-10 max-sm:px-4 md:mb-30 max-md:mb-20">
+    <div className="flex flex-col items-center gap-4 py-10 lg:px-26 md:px-12 sm:px-10 max-sm:px-4 md:mb-30 max-md:mb-20">
       {games.map((game, index) => {
         const content = (
           <GameCardMedium
@@ -18,7 +18,7 @@ export const CardGridFavorite = ({
             image={game?.Image}
             genres={game?.Genres}
             releaseDate={game?.ReleaseDate}
-            onClick={() => toggleFavorite(game.id)}
+            onClick={toggleFavorite ? () => toggleFavorite(game.id) : undefined}
             isFavorite={isFavorite(game.id)}
           />
         );
