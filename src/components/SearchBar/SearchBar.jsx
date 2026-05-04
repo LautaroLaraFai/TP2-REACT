@@ -100,6 +100,12 @@ const SearchBar = ({
             text-sm sm:text-base md:text-lg
             focus:outline-none
             focus:bg-t-bg
+            [&:-webkit-autofill]:[box-shadow:0_0_0px_1000px_var(--color-t-bg)_inset]
+            [&:-webkit-autofill]:[-webkit-text-fill-color:var(--color-a-amber)]
+            [&:-webkit-autofill:focus]:[box-shadow:0_0_0px_1000px_var(--color-t-bg)_inset]
+            [&:-webkit-autofill:focus]:[-webkit-text-fill-color:var(--color-a-amber)]
+            [&:-webkit-autofill]:font-jersey
+            caret-a-amber
           "
           onKeyDown={handleKey}
           onChange={handleChange}

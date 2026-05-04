@@ -8,7 +8,7 @@ const CardGrid = ({
   animated = false
 }) => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-10 lg:px-26 md:px-12 sm:px-10 max-sm:px-4">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-10 lg:px-26 md:px-12 sm:px-10 max-sm:px-4 md:mb-30 max-md:mb-20">
       {games.map((game, index) => {
         const Wrapper = animated ? "div" : null;
 
@@ -20,7 +20,6 @@ const CardGrid = ({
             price={game.Price}
             name={game.Name}
             alt={game.Name}
-            storeUrl="https://store.steampowered.com/..."
             onClick={toggleFavorite ? () => toggleFavorite(game.id) : undefined}
             isFavorite={isFavorite ? isFavorite(game.id) : undefined}
             disableSearch={disableSearch}

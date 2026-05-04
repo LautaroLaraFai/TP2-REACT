@@ -44,7 +44,7 @@ export default function GameCardLarge({
           />
         </Link>
 
-        <div className="px-wrap-md-br absolute top-0 max-w-9/10 min-w-1/3 lg:max-w-5/9 z-10">
+        <div className="px-wrap-md-br absolute top-0 max-w-8/10 min-w-1/3 lg:max-w-5/9 z-10">
           <div className="px-border-md-br bg-a-amber md:-inset-0.75 max-md:-inset-0.5"/>
           <div
             className="
@@ -78,9 +78,9 @@ export default function GameCardLarge({
           extraStyles={`
             absolute
             lg:top-6 lg:right-6 lg:scale-130
-            md:top-2 md:right-2 md:scale-100
-            sm:top-1.5 sm:right-1.5 sm:scale-90
-            max-sm:top-0 max-sm:right-0 max-sm:scale-70
+            md:top-4 md:right-4 md:scale-100
+            sm:top-2.5 sm:right-2.5 sm:scale-90
+            max-sm:top-1 max-sm:right-1 max-sm:scale-70
             z-20
           `}
         />
