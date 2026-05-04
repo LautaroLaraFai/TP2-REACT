@@ -74,9 +74,14 @@ export const Footer = () => {
 
         {/* Enlaces de navegación */}
         <div className="flex justify-center md:gap-16 max-md:gap-8 mb-4">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="px-wrap-sm hover:text-orange-700 active:text-orange-600 font-medium lg:text-xl md:text-lg sm:text-base max-sm:text-sm"
+            onClick={() => {
+              setClearInput(true)
+              setSearchActive(false)
+              setFilteredGames([])
+            }}
           >
             <span className="px-inner-sm bg-t-bg/80 inline-block! md:px-5 max-md:px-4 py-0.5">Home</span>
           </Link>
