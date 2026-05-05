@@ -10,7 +10,7 @@
 
 ---
 
-## Descripción de la Aplicación
+## Descripcion de la Aplicacion
 
 Aplicacion web desarrollada con React y Vite que funciona como un visualizador de juegos.
 
@@ -43,11 +43,10 @@ Aplicacion web desarrollada con React y Vite que funciona como un visualizador d
 
 ## Decisiones importantes tomadas
 
-- Hicimos un analisis del estado del codigo y llegamos a la conclusión de que deberiamos componentizar más
+- Realizamos un analisis del codigo y decidimos aumentar la componentizacion para mejorar la reutilizacion y mantenibilidad
+  -> Se implemento un hook personalizado (`useFavorite`) para centralizar la logica de favoritos y evitar duplicacion de codigo entre paginas
 
-- Un resultado de ese analisis fue que decidimos crear un hook personalizado (useFavorite) ya que se repetía en todas las paginas lo cual causaba redundancia y hacia que se dificulte la lectura de codigo.
-
-- Decidimos utilizar un proxy a la hora de obtener las imágenes para el PDF ya que las imágenes eran bloqueadas por CORS
+- Se implemento un proxy mediante *API Routes* (Vercel) para resolver restricciones de CORS (***Cross-Origin Resource Sharing***) al renderizar imagenes en la generacion de PDFs con React-pdf.
 
 ---
 
@@ -78,7 +77,7 @@ npm install
 npm run dev
 ```
 
-**Despliegue en producción (recomendado):**
+**Despliegue en produccion (recomendado):**
 
 **Accede a la aplicacion desde:**  
 [https://tp-2-react-nine.vercel.app/](https://tp-2-react-nine.vercel.app/)
