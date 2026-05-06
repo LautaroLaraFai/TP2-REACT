@@ -14,7 +14,11 @@ const LanguageOption = ({ content, languagePrefix, onClose }) => {
   const newContent =
     content === "Español"
       ? t("header.LanguageSwitcher.option.spanish")
-      : t("header.LanguageSwitcher.option.english")
+      : content === "Ingles"
+      ? t("header.LanguageSwitcher.option.english")
+      : content === "Lengua Negra"
+      ? t("header.LanguageSwitcher.option.blackTongue")
+      : content
 
   return (  
     <div

@@ -5,7 +5,8 @@
         "LanguageSwitcher": {
             "option": {
                 "spanish": "Español",
-                "english": "Inglés"
+                "english": "Inglés",
+                "blackTongue": "lengua negra"
             }
         }
     },

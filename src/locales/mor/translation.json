@@ -1,0 +1,50 @@
+{
+    "header": {
+        "favText": "Udu",
+        "langText": "Ghash",
+        "LanguageSwitcher": {
+            "option": {
+                "spanish": "Olog",
+                "english": "Saurondil",
+                "blackTongue": "Lugbúrz"
+            }
+        }
+    },
+    "home": {
+        "recommendations": "Burzum",
+        "gameCardLargeStore": "Skai gothob",
+        "loading": "Krimp...",
+        "seenAllText": "Gimbat uluith!!"
+    },
+    "detail": {
+        "gameInfo": {
+            "price": "Ugru",
+            "developer": "Zigur",
+            "releaseDate": "Ush nar",
+            "rating": "Ghashn",
+            "genres": "Olg",
+            "description": "Gimbatul"
+        },
+        "loadingText": "Krimp...",
+        "pdf": {
+            "state": {
+                "loading": "Krimp...",
+                "generating": "Trak...",
+                "completed": "Gothob skai"
+            }
+        }
+    },
+    "favorite": {
+        "favLoadingText": "Krimp udu...",
+        "favTitle": "Udu",
+        "favNoGameInfo": "Udu gothob nar",
+        "favExploreText": "Gimbat gothrim"
+    },
+    "mainLayout": {
+        "searchResultsText": "Nar ash :)"
+    },
+    "footer": {
+        "favText": "Udu",
+        "copyright": "© MAETS — NAR LAM. GOTHOB SKAI. TARK GIMBAT GHAASH. ASH BURZUM NA KHIL. UDO NAR FASH. SKAI GURM."
+    }
+}

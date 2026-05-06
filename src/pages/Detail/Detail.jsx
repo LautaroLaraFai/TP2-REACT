@@ -23,7 +23,7 @@ const Detail = () => {
         const isValidId = id && !isNaN(gameId) && gameId > 0 && gameId <= 54;
         
         if (!isValidId) {
-            navigate('/');
+            navigate('/error');
         }
     }, [id, navigate])
 

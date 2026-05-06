@@ -22,6 +22,9 @@ const LanguageSwitcher = ({onClose}) => {
           <div>
             <LanguageOption content={"Ingles"} languagePrefix={"en"} onClose={onClose}/> 
           </div>
+          <div>
+            <LanguageOption content={"Lengua Negra"} languagePrefix={"mor"} onClose={onClose}/> 
+          </div>
         </ul>
       </div>
     </div>
