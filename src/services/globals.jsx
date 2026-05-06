@@ -1,40 +1,24 @@
+// globals.jsx
 import { useState, useEffect } from 'react'
-import getData from "./getData";
+import { useLocation } from 'react-router-dom'
 import { getDataByID } from './getDataByID';
-
-
-let savedGames = null
-
-export const useGames = () => {
-    const [games, setGames] = useState(savedGames)
-
-    useEffect(() => {
-        const load = async () => {
-            if (savedGames) {
-                setGames(savedGames)
-                return
-            }
-            
-            const data = await getData()
-            savedGames = data
-            setGames(data)
-        }
-        
-        load()
-    }, [])
-
-    return games
-}
 
 let lastID = null
 let savedGame = null
 
 export const useGamesByID = (id) => {
     const [game, setGame] = useState(savedGame)
+    const location = useLocation()
+
+    // Solo hacer fetch si la pagina actual es Detail
+    const isDetailPage = location.pathname.startsWith('/detail/')
 
     useEffect(() => {
+        if (!isDetailPage) return
+        if (!id) return
+
         const loadByID = async () => {
-            if (lastID === id) {
+            if (lastID === id && savedGame) {
                 setGame(savedGame)
                 return
             }
@@ -43,12 +27,10 @@ export const useGamesByID = (id) => {
             lastID = id
             savedGame = data
             setGame(data)
-            console.log(data)
         }
 
         loadByID()
-        
-    }, [id])
+    }, [id, isDetailPage])
 
     return game
 }

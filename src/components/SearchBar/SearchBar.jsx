@@ -13,49 +13,67 @@ const SearchBar = ({
   const [value, setValue] = useState("")
 
   const handleChange = (e) => {
-    setValue(e.target.value)
+    const newValue = e.target.value
+    setValue(newValue)
+
+    if (newValue.trim() === "") {
+      setSearchActive(false)
+      setFilteredGames([])
+    }
   }
 
   const handleKey = (e) => {
     if (e.key === "Enter") {
+      const value = e.target.value.trim()
+
+      if (value === "") {
+        setSearchActive(false)
+        setFilteredGames([])
+        return
+      }
+
       setFilteredGames([])
       setSearchActive(true)
-      searchGame(e.target.value)
+      searchGame(value)
     }
   }
-  const searchGame = async (valueToSearch) => {
-      setIsLoading(true)
 
-      const rawValue = valueToSearch
-      const newValue = rawValue.trim()
-      setValue(rawValue) 
-      
-      const isSearchByDeveloper = valueToSearch[0] === "@"
-      const searchParam = isSearchByDeveloper ? "Developer" : "Name"
-      const searchValue = isSearchByDeveloper ? newValue.slice(1).trim() : newValue
-      
-      if (searchValue === "") {
+  const searchGame = async (valueToSearch) => {
+    setIsLoading(true)
+
+    const rawValue = valueToSearch
+    const newValue = rawValue.trim()
+    setValue(rawValue)
+
+    const isSearchByDeveloper = valueToSearch[0] === "@"
+    const searchParam = isSearchByDeveloper ? "Developer" : "Name"
+    const searchValue = isSearchByDeveloper
+      ? newValue.slice(1).trim()
+      : newValue
+
+    if (searchValue === "") {
+      setFilteredGames([])
+      setIsLoading(false)
+      setSearchActive(false)
+      return
+    }
+
+    try {
+      const games = await getDataByFilter(searchParam, searchValue)
+
+      if (!Array.isArray(games)) {
+        console.error("Respuesta inválida:", games)
         setFilteredGames([])
         setIsLoading(false)
         return
       }
 
-    try {
-      const games = await getDataByFilter(searchParam, searchValue)
-      const resultado = []
+      setFilteredGames(games)
+      setIsLoading(false)
 
-      games.forEach((game, index) => {
-        if (!game) {
-          console.error(`Game en índice ${index} es undefined`)
-          return
-        }
-          resultado.push(game)
-      })
-
-      setIsLoading(resultado === 0)
-      setFilteredGames(resultado)
-    } catch(e){
-      console.error("Error: ",e)
+    } catch (e) {
+      console.error("Error: ", e)
+      setFilteredGames([])
       setIsLoading(false)
     }
   }
@@ -67,14 +85,8 @@ const SearchBar = ({
     }
   }, [clearInput])
 
-  useEffect(() => {
-    if(value === ""){
-      setSearchActive(false)
-    }
-  }, [value])
-
   return (
-    <div className="px-wrap-sm flex-1! mx-2 md:mx-4 min-w-0">
+    <div className="px-wrap-sm flex-1 mx-2 md:mx-4 min-w-0">
       <div className="px-border-sm bg-a-amber -inset-0.5"/>
       <div className="px-inner-sm relative w-full">
         <input
@@ -88,9 +100,15 @@ const SearchBar = ({
             text-sm sm:text-base md:text-lg
             focus:outline-none
             focus:bg-t-bg
+            [&:-webkit-autofill]:[box-shadow:0_0_0px_1000px_var(--color-t-bg)_inset]
+            [&:-webkit-autofill]:[-webkit-text-fill-color:var(--color-a-amber)]
+            [&:-webkit-autofill:focus]:[box-shadow:0_0_0px_1000px_var(--color-t-bg)_inset]
+            [&:-webkit-autofill:focus]:[-webkit-text-fill-color:var(--color-a-amber)]
+            [&:-webkit-autofill]:font-jersey
+            caret-a-amber
           "
-          onKeyDown={(e) => handleKey(e)}
-          onChange={(e) => handleChange(e)}
+          onKeyDown={handleKey}
+          onChange={handleChange}
         />
         <label htmlFor="searchBar">
           <img

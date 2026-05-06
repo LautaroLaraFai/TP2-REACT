@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import FavoriteButton from "../FavoriteButton/FavoriteButton.jsx";
 
-export default function GameCardS({
+export default function GameCardSmall({
   name,
   price,
   image = "",

@@ -19,13 +19,13 @@ const Header = ({
     setIsLangSwitcherOpen(false)
   }
   return (
-    <div
+    <header
       className="
         px-wrap-lg
         z-1000 flex!
         sticky! top-6 md:top-8
-        mt-6 mb-2 md:mt-10
-        lg:mx-10 mx-4 md:mx-10 max-md:mx-6
+        md:mt-10 sm:mt-8 max-sm:mt-6
+        lg:mx-10 md:mx-8 sm:mx-6 max-sm:mx-4
       "
     >
       <div className="px-border-lg bg-a-amber md:-inset-0.75 max-md:-inset-0.5" />
@@ -39,7 +39,15 @@ const Header = ({
           px-4 sm:px-6 md:px-8 lg:px-10
         "
       >
-        <Link to="/" className="flex items-center shrink-0" onClick={() => setClearInput(true)}>
+        <Link
+          to="/"
+          className="flex items-center shrink-0"
+          onClick={() => {
+            setClearInput(true)
+            setSearchActive(false)
+            setFilteredGames([])
+          }}
+        >
           <img
             src={logo}
             alt="logo"
@@ -76,21 +84,24 @@ const Header = ({
               font-medium
               w-14 sm:w-16 md:w-22 lg:w-26
               text-center whitespace-nowrap
-              hover:text-orange-700
+              hover:text-orange-700 active:text-orange-600
             "
-            onClick={() => setClearInput(true)}
+            onClick={() => {
+              setClearInput(true)
+              setSearchActive(false)
+              setFilteredGames([])
+            }}
           >
             {t("header.favText")}
           </Link>
-          <div className="relative"
-          onClick={() => setClearInput(true)}>
+          <div className="relative">
             <button
               className="
                 text-sm sm:text-base md:text-lg lg:text-xl
                 font-medium
                 w-14 sm:w-16 md:w-22 lg:w-26
                 text-center whitespace-nowrap
-                hover:text-orange-700
+                hover:text-orange-700 active:text-orange-600 cursor-pointer
               "
               onClick={() => setIsLangSwitcherOpen(!isLangSwitcherOpen)}>
               {t("header.langText")}
@@ -103,7 +114,7 @@ const Header = ({
           <LanguageSwitcher onClose={onClose} />
         </div>
       )}
-    </div>
+    </header>
   )
 }
 export default Header

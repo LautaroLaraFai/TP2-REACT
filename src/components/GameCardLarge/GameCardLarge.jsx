@@ -23,7 +23,7 @@ export default function GameCardLarge({
 
 
   return (
-    <div className="px-wrap-md group lg:mx-20 md:mx-14 sm:mx-10 max-sm:mx-6 mt-12 mb-14 max-sm:mt-8 max-sm:mb-10">
+    <div className="px-wrap-md group lg:mx-26 md:mx-12 sm:mx-10 max-sm:mx-5 mt-12 mb-14 max-sm:mt-8 max-sm:mb-10">
       <div className="px-border-md bg-a-amber md:-inset-0.75 max-md:-inset-0.5"/>
       <article
         className="
@@ -44,7 +44,7 @@ export default function GameCardLarge({
           />
         </Link>
 
-        <div className="px-wrap-md-br absolute top-0 max-w-9/10 min-w-1/3 lg:max-w-5/9 z-10">
+        <div className="px-wrap-md-br absolute top-0 max-w-8/10 min-w-1/3 lg:max-w-5/9 z-10">
           <div className="px-border-md-br bg-a-amber md:-inset-0.75 max-md:-inset-0.5"/>
           <div
             className="
@@ -62,7 +62,8 @@ export default function GameCardLarge({
             </h2>
             <p
               className="
-                text-xs sm:text-sm md:text-base leading-tight line-clamp-2
+                text-xs sm:text-sm md:text-base leading-tight
+                lg:line-clamp-4 md:line-clamp-3 sm:line-clamp-2 max-sm:line-clamp-2
               text-a-darkamber mb-1 mr-2
               "
             >
@@ -77,9 +78,9 @@ export default function GameCardLarge({
           extraStyles={`
             absolute
             lg:top-6 lg:right-6 lg:scale-130
-            md:top-2 md:right-2 md:scale-100
-            sm:top-1.5 sm:right-1.5 sm:scale-90
-            max-sm:top-0 max-sm:right-0 max-sm:scale-70
+            md:top-4 md:right-4 md:scale-100
+            sm:top-2.5 sm:right-2.5 sm:scale-90
+            max-sm:top-1 max-sm:right-1 max-sm:scale-70
             z-20
           `}
         />

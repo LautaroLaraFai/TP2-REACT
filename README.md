@@ -2,11 +2,11 @@
 
 ## Miembros del Grupo
 
-| Nombre         | Email                                    | Rol                            |
-| -------------- | ---------------------------------------- | ------------------------------ |
-| Marcos Chavez  | marcos.chavez@est.fi.uncoma.edu.ar       | Desarrollador Logica Principal |
-| Lucas Martinez | lucas.martinez@est.fi.uncoma.edu.ar      | Desarrollador Frontend + UI    |
-| Lautaro Lara   | lautaronicolas.lara@est.fi.uncoma.edu.ar | PM                             |
+| Nombre         | Email                                      | Rol                            |
+| -------------- | ------------------------------------------ | ------------------------------ |
+| Marcos Chavez  | <marcos.chavez@est.fi.uncoma.edu.ar>       | Desarrollador Logica Principal |
+| Lucas Martinez | <lucas.martinez@est.fi.uncoma.edu.ar>      | Desarrollador Frontend + UI    |
+| Lautaro Lara   | <lautaronicolas.lara@est.fi.uncoma.edu.ar> | Scrum Master                   |
 
 ---
 
@@ -17,7 +17,7 @@ Aplicacion web desarrollada con React y Vite que funciona como un visualizador d
 ### Funcionalidades Principales
 
 - Visualizar juegos obtenidos desde una API creada en mockAPI
-- Anadir juegos a favoritos
+- Añadir juegos a favoritos
 - Quitar juegos de favoritos
 - Buscar juegos por nombre
 - Buscar juegos por desarrollador
@@ -41,11 +41,20 @@ Aplicacion web desarrollada con React y Vite que funciona como un visualizador d
 
 ---
 
+## Decisiones importantes tomadas
+
+- Realizamos un analisis del codigo y decidimos aumentar la componentizacion para mejorar la reutilizacion y mantenibilidad
+  -> Se implemento un hook personalizado (`useFavorite`) para centralizar la logica de favoritos y evitar duplicacion de codigo entre paginas
+
+- Se implemento un proxy mediante *API Routes* (Vercel) para resolver restricciones de CORS (***Cross-Origin Resource Sharing***) al renderizar imagenes en la generacion de PDFs con React-pdf.
+
+---
+
 ## Instalacion y Guia de Uso
 
 ### Requisitos Previos
 
-- Node.js (version 14 o superior)
+- Node.js (versión 14 o superior)
 - npm (viene incluido con Node.js)
 
 ### Pasos para Instalar y Ejecutar la Aplicacion
@@ -68,7 +77,7 @@ npm install
 npm run dev
 ```
 
-**Deploy (recomendado):**
+**Despliegue en produccion (recomendado):**
 
 **Accede a la aplicacion desde:**  
 [https://tp-2-react-nine.vercel.app/](https://tp-2-react-nine.vercel.app/)
