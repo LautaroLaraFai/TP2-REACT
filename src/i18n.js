@@ -3,6 +3,7 @@ import { initReactI18next } from "react-i18next";
 
 import es from "../src/locales/es/translation.json";
 import en from "../src/locales/en/translation.json";
+import mor from "../src/locales/mor/translation.json";
 
 const savedLanguage = localStorage.getItem("language") || "es";  
 
@@ -13,6 +14,9 @@ i18n.use(initReactI18next).init({
         },
         en: {
             translation: en
+        },
+        mor: {
+            translation: mor
         }
     }, 
     lng: savedLanguage,
