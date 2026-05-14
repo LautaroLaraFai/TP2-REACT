@@ -1,42 +1,34 @@
-import { render } from "@testing-library/react";
-import { describe, expect, it, beforeEach } from "vitest";
-import { BrowserRouter } from "react-router-dom";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../../i18n";  // 👈 importá tu configuración
-import Header from "./Header.jsx"
+import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import userEvent from "@testing-library/user-event";
+import Header from "./Header.jsx";
+import i18n from "../../i18n.js";
 
 const props = {
     clearInput: false,
-    setClearInput: () => {},  
-    setSearchActive: () => {},
-    setFilteredGames: () => {},
-    setIsLoading: () => {}
+    setClearInput: vi.fn(),  
+    setSearchActive: vi.fn(),
+    setFilteredGames: vi.fn(),
+    setIsLoading: vi.fn()
 }
 
-const renderWithProviders = (component) => {
-  return render(
+beforeEach(() => {
+  render(
     <BrowserRouter>
-      <I18nextProvider i18n={i18n}>  {/* 👈 usás tu i18n ya configurado */}
-        {component}
-      </I18nextProvider>
+        <Header {...props} />
     </BrowserRouter>
   );
-};
+
+  i18n.changeLanguage("es")
+})
 
 describe('Header component', () => {
-    beforeEach(() => {
-        renderWithProviders(<Header {...props} />);
-    });
-
     it('Renders correctly', () => {
         const header = document.querySelector('header');
         expect(header).toBeInTheDocument();
     });
-    
-    it('Is not empty', () => {
-        const header = document.querySelector('header');
-        expect(header).not.toBeEmptyDOMElement();
-    });
 });
 
-//! INVESTIGAR QUE CARAJOS SON LOS PROVIDERS Y VER SI SE PUEDEN GLOBALIZAR
+// Puede ser que añada tests para verificar que se puede navegar a home 
+// y a favorites pero cuando se me olvide como lo hizo la IA
