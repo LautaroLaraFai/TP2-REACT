@@ -21,10 +21,10 @@ jobs:
         uses: actions/checkout@v4
 
       # Instala Node.js dentro del contenedor
-      - name: Instala node.js 20
+      - name: Instala node.js 24
         uses: actions/setup-node@v4
         with:
-          node-version: "20" # Versión de Node a instalar
+          node-version: "24" # Versión de Node a instalar
           cache: "npm" # Guarda cache de node_modules para que sea más rápido
 
       # Instala las dependencias de tu proyecto (npm ci es como npm install pero más rápido y exacto)
