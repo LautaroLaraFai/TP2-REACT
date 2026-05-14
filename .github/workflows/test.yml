@@ -3,9 +3,9 @@ name: Tests automáticos
 # Activadores de los tests
 on:
   push:
-    branches: [main] # Se activa cuando se hace git push a la rama main
+    branches: [main, dev] # Se activa cuando se hace git push a la rama main o dev
   pull_request:
-    branches: [main] # Se activa cuando se abre un Pull Request hacia main
+    branches: [main, dev] # Se activa cuando se abre un Pull Request hacia main o dev
 
 # Trabajos que tiene que realizar (pueden ser varios)
 jobs:
@@ -17,16 +17,20 @@ jobs:
     # Pasos a seguir dentro del contenedor
     steps:
       # Copia todo el código del repositorio dentro del contenedor
-      - uses: actions/checkout@v4
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
 
       # Instala Node.js dentro del contenedor
-      - uses: actions/setup-node@v4
+      - name: Instala node.js 20
+        uses: actions/setup-node@v4
         with:
           node-version: "20" # Versión de Node a instalar
           cache: "npm" # Guarda cache de node_modules para que sea más rápido
 
       # Instala las dependencias de tu proyecto (npm ci es como npm install pero más rápido y exacto)
-      - run: npm ci
+      - name: Instala dependencias del proyecto
+        run: npm ci
 
       # Ejecuta todos los tests una sola vez
-      - run: npm run test:run
+      - name: Ejecución de tests
+        run: npm run test:run
