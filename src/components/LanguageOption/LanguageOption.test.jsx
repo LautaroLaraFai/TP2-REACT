@@ -27,4 +27,14 @@ describe('LanguageOption component', () => {
 
         expect(spy).toHaveBeenCalledWith('es');  
     });
+
+    it('Should have a diferent class when selected', async () => {
+        const user = userEvent.setup();
+        render(<LanguageOption content={"Español"} languagePrefix={"es"} onClose={mockedOnClose} />);
+
+        const element = screen.getByText("Español");
+        await user.click(element);    
+        
+        expect(element.className).toContain('bg-s-neutral border-l-4 border-orange-700')
+    })
 });
