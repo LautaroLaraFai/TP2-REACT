@@ -14,13 +14,13 @@ const props = {
 }
 
 beforeEach(() => {
-  render(
-    <BrowserRouter>
-        <Header {...props} />
-    </BrowserRouter>
-  );
+    render(
+        <BrowserRouter>
+            <Header {...props} />
+        </BrowserRouter>
+    );
 
-  i18n.changeLanguage("es")
+    i18n.changeLanguage("es")
 })
 
 describe('Header component', () => {
