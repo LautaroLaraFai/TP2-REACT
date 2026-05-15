@@ -27,7 +27,7 @@ jobs:
           node-version: "24" # Versión de Node a instalar
           cache: "npm" # Guarda cache de node_modules para que sea más rápido
 
-      # Instala las dependencias de tu proyecto (npm ci es como npm install pero más rápido y exacto)
+      # Instala las dependencias del proyecto (npm ci es como npm install pero más rápido y exacto)
       - name: Instala dependencias del proyecto
         run: npm ci
 
