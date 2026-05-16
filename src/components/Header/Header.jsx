@@ -1,7 +1,7 @@
 import logo from "../../assets/Logo.svg"
 import { useTranslation } from "react-i18next"
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher"
-import { Link } from "react-router"
+import { Link } from "react-router-dom"
 import { useState } from "react"
 import SearchBar from "../SearchBar/SearchBar"
 
@@ -47,6 +47,7 @@ const Header = ({
             setSearchActive(false)
             setFilteredGames([])
           }}
+          aria-label="to home"
         >
           <img
             src={logo}

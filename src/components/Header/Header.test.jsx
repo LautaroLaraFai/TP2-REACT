@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router";
+import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import userEvent from "@testing-library/user-event";
 import Header from "./Header.jsx";
@@ -14,21 +14,56 @@ const props = {
 }
 
 beforeEach(() => {
-    render(
-        <BrowserRouter>
-            <Header {...props} />
-        </BrowserRouter>
-    );
-
-    i18n.changeLanguage("es")
-})
+    i18n.changeLanguage("es");
+    vi.clearAllMocks();
+});
 
 describe('Header component', () => {
+
     it('Renders correctly', () => {
+        render(
+            <MemoryRouter>
+                <Header {...props} />
+            </MemoryRouter>
+        );
+        
         const header = document.querySelector('header');
         expect(header).toBeInTheDocument();
     });
-});
 
-// Puede ser que añada tests para verificar que se puede navegar a home 
-// y a favorites pero cuando se me olvide como lo hizo la IA
+    it('Should navigate to favorite when clicking on favorite', async () => {
+        const user = userEvent.setup();
+        
+        render(
+            <MemoryRouter initialEntries={["/"]}>
+                <Routes>
+                    <Route path="/" element={<Header {...props} />} />
+                    <Route path="/favorite" element={<div data-testid="favorite-page"> Favoritos </div>} />
+                </Routes>
+            </MemoryRouter>
+        );
+        
+        const trigger = screen.getByText("Favoritos");
+        await user.click(trigger);
+        
+        expect(screen.getByTestId("favorite-page")).toBeInTheDocument();
+    });
+
+    it('Should navigate to home when clicking on the logo', async () => {
+        const user = userEvent.setup();
+        
+        render(
+            <MemoryRouter initialEntries={["/favorite"]}>
+                <Routes>
+                    <Route path="/" element={<div data-testid="home-page"> ESTOY EN HOME </div>} />
+                    <Route path="/favorite" element={<Header {...props} />} />
+                </Routes>
+            </MemoryRouter>
+        );
+        
+        const trigger = screen.getByLabelText("to home");
+        await user.click(trigger);
+        
+        expect(screen.getByTestId("home-page")).toBeInTheDocument();
+    });
+});
