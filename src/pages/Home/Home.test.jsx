@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import Home from "./Home";
+import Home from "./home";
 
 //? 't' devuelve 'key'
 vi.mock("react-i18next", () => ({
@@ -82,7 +82,7 @@ describe("Home Component", () => {
   });
 
 
-  
+
   it("Renderiza correctamente el juego principal", () => {
     render(<Home/>);
 
