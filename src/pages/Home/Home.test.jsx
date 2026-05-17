@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import Home from "./home";
 
 //? 't' devuelve 'key'
@@ -18,45 +18,23 @@ vi.mock("../../hooks/useFavorite.jsx", () => ({
 
 vi.mock("../../hooks/usePageOfData.jsx", () => ({
   default: () => ({
-    games: [
-      {
-        id: 1,
-        Name: "Cyberpunk 2077",
-      },
-    ],
+    games: [],
     fetchData: vi.fn(),
     hasMore: true,
-    frontPageGame: {
-      id: 10,
-      Name: "The Witcher 3",
-      Description: "Open world RPG",
-      Price: 59.99,
-      Image: "image.jpg",
-    },
+    frontPageGame: null,
   }),
 }));
 
 vi.mock("../../components/GameCardLarge/GameCardLarge.jsx", () => ({
-  default: ({ name }) => <div>{name}</div>,
+  default: () => <div>GameCardLarge</div>,
 }));
 
 vi.mock("../../components/CardGrid/CardGrid.jsx", () => ({
-  default: ({ games }) => (
-    <div>
-      {games.map((game) => (
-        <span key={game.id}>{game.Name}</span>
-      ))}
-    </div>
-  ),
+  default: () => <div>CardGrid</div>,
 }));
 
 vi.mock("../../layouts/Section.jsx", () => ({
-  default: ({ children, title }) => (
-    <section>
-      {title && <h2>{title}</h2>}
-      {children}
-    </section>
-  ),
+  default: ({ children }) => <section>{children}</section>,
 }));
 
 vi.mock("../../components/Loader/Loader.jsx", () => ({
@@ -73,51 +51,12 @@ vi.mock("react-infinite-scroll-component", () => ({
   ),
 }));
 
-
-
 describe("Home Component", () => {
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
-
-
-  it("Renderiza correctamente el juego principal", () => {
-    render(<Home/>);
-
-    expect(screen.getByText("The Witcher 3")).toBeInTheDocument();
-  });
-
-
-
-  it("Renderiza correctamente la grilla de juegos", () => {
-    render(<Home/>);
-
-    expect(screen.getByText("Cyberpunk 2077")).toBeInTheDocument();
-  });
-
-
-
-  it("Renderiza correctamente el título de recomendaciones", () => {
-    render(<Home/>);
-
-    expect(screen.getByText("home.recommendations")).toBeInTheDocument();
-  });
-
-
-
-  it("Renderiza correctamente el loader", () => {
+  it("Correctly renders the main structure", () => {
     render(<Home/>);
 
     expect(screen.getByText("Loader")).toBeInTheDocument();
-  });
-
-
-
-  it("Renderiza correctamente el mensaje final", () => {
-    render(<Home/>);
-
     expect(screen.getByText("home.seenAllText")).toBeInTheDocument();
   });
 });

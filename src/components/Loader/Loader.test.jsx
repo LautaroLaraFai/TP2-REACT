@@ -4,7 +4,7 @@ import Loader from "./Loader"
 
 describe("Loader Component", () => {
 
-  it("Renderiza correctamente el spinner", () => {
+  it("Correctly renders the loader spinner", () => {
     const { container } = render(<Loader/>);
     const element = container.firstChild;
   

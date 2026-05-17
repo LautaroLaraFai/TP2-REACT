@@ -18,7 +18,7 @@ describe("GameCardMedium Component", () => {
   };
 
   const renderComponent = (props = {}) => {
-    return render(
+    render(
       <MemoryRouter>
         <GameCardMedium {...defaultProps} {...props} />
       </MemoryRouter>
@@ -27,7 +27,7 @@ describe("GameCardMedium Component", () => {
 
 
 
-  it("Renderiza correctamente el nombre del juego", () => {
+  it("Correctly renders the game name", () => {
     renderComponent();
 
     expect(screen.getByText("Cyberpunk 2077")).toBeInTheDocument();
@@ -35,7 +35,7 @@ describe("GameCardMedium Component", () => {
 
 
 
-  it("Renderiza correctamente el precio", () => {
+  it("Correctly renders the price", () => {
     renderComponent();
 
     expect(screen.getByText("USD$ 59.99")).toBeInTheDocument();
@@ -43,7 +43,7 @@ describe("GameCardMedium Component", () => {
 
 
 
-  it("Renderiza correctamente los géneros", () => {
+  it("Correctly renders the genres", () => {
     renderComponent();
 
     expect(screen.getByText("RPG, Action")).toBeInTheDocument();
@@ -51,7 +51,7 @@ describe("GameCardMedium Component", () => {
 
 
 
-  it("Renderiza correctamente la fecha", () => {
+  it("Correctly renders the release date", () => {
     renderComponent();
 
     expect(screen.getByText("2020")).toBeInTheDocument();
@@ -59,7 +59,7 @@ describe("GameCardMedium Component", () => {
 
 
 
-  it("Renderiza correctamente la imagen del juego", () => {
+  it("Correctly renders the game image", () => {
     renderComponent();
 
     const image = screen.getByRole("img", {name: /Cyberpunk 2077/i,});
@@ -71,7 +71,7 @@ describe("GameCardMedium Component", () => {
 
 
 
-  it("Renderiza correctamente el link", () => {
+  it("Correctly renders the link", () => {
     renderComponent();
 
     const link = screen.getByRole("link");
@@ -81,7 +81,7 @@ describe("GameCardMedium Component", () => {
 
 
 
-  it("Ejecuta onClick al hacer click en favoritos", async () => {
+  it("Executes onClick when clicking the favorites button", async () => {
     const onClick = vi.fn();
     const user = userEvent.setup();
 
@@ -96,7 +96,7 @@ describe("GameCardMedium Component", () => {
 
 
 
-  it("No renderiza releaseDate si no existe", () => {
+  it("Does not render releaseDate if it does not exist", () => {
     renderComponent({ releaseDate: null });
 
     expect(screen.queryByText("2020")).not.toBeInTheDocument();
