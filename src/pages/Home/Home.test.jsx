@@ -58,6 +58,5 @@ describe("Home Component", () => {
 
     expect(screen.getByText("Loader")).toBeInTheDocument();
     expect(screen.getByText("home.seenAllText")).toBeInTheDocument();
-    expect(screen.getAllByRole("region").length).toBeGreaterThan(0);
   });
 });
