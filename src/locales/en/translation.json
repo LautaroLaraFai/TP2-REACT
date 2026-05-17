@@ -8,7 +8,8 @@
                 "english": "English",
                 "blackTongue": "Black Speech"
             }
-        }
+        },
+        "searchBarPlaceholder": "Search game or @developer..."
     },
     "home": {
         "recommendations": "Recommendations",
