@@ -21,19 +21,17 @@ describe("Footer Component", () => {
 
 
 
-  it("Renderiza correctamente los nombres del equipo", () => {
+  it("Correctly renders the team members' names", () => {
     renderComponent();
 
     expect(screen.getByText("Marcos Chavez")).toBeInTheDocument();
-
     expect(screen.getByText("Lautaro Lara")).toBeInTheDocument();
-
     expect(screen.getByText("Lucas Martinez")).toBeInTheDocument();
   });
 
 
   
-  it("Renderiza correctamente el rol Project Manager", () => {
+  it("Correctly renders the Project Manager role", () => {
     renderComponent();
 
     expect(screen.getByText("Project Manager")).toBeInTheDocument();
@@ -41,17 +39,16 @@ describe("Footer Component", () => {
 
 
 
-  it("Renderiza correctamente los links de navegación", () => {
+  it("Correctly renders the navigation links", () => {
     renderComponent();
 
     expect(screen.getByRole("link", { name: /Home/i })).toBeInTheDocument();
-
     expect(screen.getByRole("link", { name: /footer.favText/i })).toBeInTheDocument();
   });
 
 
 
-  it("Renderiza correctamente el copyright", () => {
+  it("Correctly renders the copyright", () => {
     renderComponent();
 
     expect(screen.getByText("footer.copyright")).toBeInTheDocument();
@@ -59,19 +56,17 @@ describe("Footer Component", () => {
 
 
 
-  it("Renderiza correctamente las imágenes de perfil", () => {
+  it("Correctly renders the profile images", () => {
     renderComponent();
 
     expect(screen.getByRole("img", { name: /Marcos Chavez/i })).toBeInTheDocument();
-
     expect(screen.getByRole("img", { name: /Lautaro Lara/i })).toBeInTheDocument();
-
     expect(screen.getByRole("img", { name: /Lucas Martinez/i })).toBeInTheDocument();
   });
 
 
 
-  it("Renderiza correctamente los links externos de GitHub", () => {
+  it("Correctly renders the external GitHub", () => {
     renderComponent();
 
     const githubLinks = screen.getAllByRole("link");

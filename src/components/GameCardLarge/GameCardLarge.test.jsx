@@ -32,7 +32,7 @@ describe("GameCardLarge Component", () => {
 
 
 
-  it("Renderiza correctamente el nombre del juego", () => {
+  it("Render game name", () => {
     renderComponent();
 
     expect(screen.getByText("Cyberpunk 2077")).toBeInTheDocument();
@@ -40,7 +40,7 @@ describe("GameCardLarge Component", () => {
 
 
 
-  it("Renderiza correctamente la descripción", () => {
+  it("Render game description", () => {
     renderComponent();
 
     expect(screen.getByText("Open world futuristic RPG")).toBeInTheDocument();
@@ -48,7 +48,7 @@ describe("GameCardLarge Component", () => {
 
 
 
-  it("Renderiza correctamente el precio", () => {
+  it("Render game price", () => {
     renderComponent();
 
     expect(screen.getByText("USD$ 59.99")).toBeInTheDocument();
@@ -56,7 +56,7 @@ describe("GameCardLarge Component", () => {
 
 
 
-  it("Renderiza correctamente la imagen", () => {
+  it("Render game image", () => {
     renderComponent();
 
     const image = screen.getByRole("img", {name: /Cyberpunk 2077/i,});
@@ -68,7 +68,7 @@ describe("GameCardLarge Component", () => {
 
 
 
-  it("Renderiza correctamente el botón de store", () => {
+  it("Correctly renders the store button", () => {
     renderComponent();
 
     expect(screen.getByText("home.gameCardLargeStore")).toBeInTheDocument();
@@ -76,7 +76,7 @@ describe("GameCardLarge Component", () => {
 
 
 
-  it("Renderiza links hacia el detalle del juego", () => {
+  it("Render link to game details", () => {
     renderComponent();
 
     const links = screen.getAllByRole("link");
@@ -90,7 +90,7 @@ describe("GameCardLarge Component", () => {
 
 
 
-  it("Ejecuta onClick al hacer click en favoritos", async () => {
+  it("Execute onClick when clicking favorite button", async () => {
     const onClick = vi.fn();
     const user = userEvent.setup();
 

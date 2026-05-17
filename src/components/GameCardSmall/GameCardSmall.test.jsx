@@ -18,7 +18,7 @@ describe("GameCardSmall Component", () => {
 
 
 
-  it("Renderiza correctamente el nombre del juego", () => {
+  it("Correctly renders the game name", () => {
     render(
       //? Necesita MemoryRouter porque GameCardSmall funciona con Link, que funciona dentro de React Router
       <MemoryRouter>
@@ -31,7 +31,7 @@ describe("GameCardSmall Component", () => {
 
 
 
-  it("Renderiza correctamente el precio", () => {
+  it("Correctly renders the price", () => {
     render(
       <MemoryRouter>
         <GameCardSmall {...defaultProps} />
@@ -43,7 +43,7 @@ describe("GameCardSmall Component", () => {
 
 
 
-  it("Renderiza correctamente la imagen", () => {
+  it("Correctly renders the image", () => {
     render(
       <MemoryRouter>
         <GameCardSmall {...defaultProps} />
@@ -61,7 +61,7 @@ describe("GameCardSmall Component", () => {
 
 
 
-  it("Renderiza el link hacia el detalle del juego", () => {
+  it("Renders the link to the game detail page", () => {
     render(
       <MemoryRouter>
         <GameCardSmall {...defaultProps} />
@@ -75,7 +75,7 @@ describe("GameCardSmall Component", () => {
 
 
   
-  it("Ejecuta onClick al hacer click en favoritos", async () => {
+  it("Executes onClick when clicking the favorites button", async () => {
     const onClick = vi.fn();
     const user = userEvent.setup();
 
@@ -97,7 +97,7 @@ describe("GameCardSmall Component", () => {
 
 
 
-  it("Ejecuta disableSearch al hacer click en el link", async () => {
+  it("Executes disableSearch when clicking the link", async () => {
     const disableSearch = vi.fn();
     const user = userEvent.setup();
 
