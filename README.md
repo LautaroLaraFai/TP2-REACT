@@ -2,11 +2,35 @@
 
 ## Miembros del Grupo
 
+<details>
+<summary>Roles TP2</summary>
+
 | Nombre         | Email                                      | Rol                            |
 | -------------- | ------------------------------------------ | ------------------------------ |
 | Marcos Chavez  | <marcos.chavez@est.fi.uncoma.edu.ar>       | Desarrollador Logica Principal |
 | Lucas Martinez | <lucas.martinez@est.fi.uncoma.edu.ar>      | Desarrollador Frontend + UI    |
 | Lautaro Lara   | <lautaronicolas.lara@est.fi.uncoma.edu.ar> | Scrum Master                   |
+
+</details>
+<details><summary>Roles TP Testing Automático</summary>
+
+| Nombre         | Email                                      | Rol                            |
+| -------------- | ------------------------------------------ | ------------------------------ |
+| Marcos Chavez  | <marcos.chavez@est.fi.uncoma.edu.ar>       | Desarrollador                  |
+| Lucas Martinez | <lucas.martinez@est.fi.uncoma.edu.ar>      | Desarrollador                  |
+| Lautaro Lara   | <lautaronicolas.lara@est.fi.uncoma.edu.ar> | Desarrollador                  |
+
+</details>
+<details><summary>Roles TP3</summary>
+
+| Nombre         | Email                                      | Rol                            |
+| -------------- | ------------------------------------------ | ------------------------------ |
+| Marcos Chavez  | <marcos.chavez@est.fi.uncoma.edu.ar>       | Desarrollador                  |
+| Lucas Martinez | <lucas.martinez@est.fi.uncoma.edu.ar>      | Scrum Master                   |
+| Lautaro Lara   | <lautaronicolas.lara@est.fi.uncoma.edu.ar> | Desarrollador                  |
+
+</details>
+
 
 ---
 
