@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import lautiPixelArt from "../../images/lautiPixelArt.png";
 import lucasPixelArt from "../../images/lucasPixelArt.png";
 import marcosPixelArt from "../../images/marcosPixelArt.png";

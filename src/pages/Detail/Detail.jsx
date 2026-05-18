@@ -6,7 +6,7 @@ import FavoriteButton from "../../components/FavoriteButton/FavoriteButton"
 import { useGamesByID } from "../../services/globals"
 import { PDFDownloadButton } from "../../components/PdfGenerator/PdfGenerator.jsx"
 import SpanInfo from "../../components/SpanInfo/SpanInfo.jsx"
-import ImageGallery from "../../components/ImagenGallery/ImagenGallery.jsx"
+import ImageGallery from "../../components/ImagenGallery/ImageGallery.jsx"
 import RatingStars from "../../components/RatingStars/RatingStars.jsx"
 import useFavorite from "../../hooks/useFavorite.jsx"
 

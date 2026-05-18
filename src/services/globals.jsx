@@ -1,4 +1,4 @@
-// globals.jsx
+//!  Este archivo es un intento de optimizar los fetchs
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getDataByID } from './getDataByID';

@@ -196,6 +196,9 @@ const GamePDF = ({ game }) => {
 export const PDFDownloadButton = ({ game }) => {
   const { t } = useTranslation();
 
+  if (!game) {
+    return null
+  }
   return (
     <PDFDownloadLink
       document={<GamePDF game={game} />}

@@ -8,7 +8,8 @@
                 "english": "Saurondil",
                 "blackTongue": "Lugbúrz"
             }
-        }
+        },
+        "searchBarPlaceholder": "Gimbatul lûpo agh @ufum..."
     },
     "home": {
         "recommendations": "Burzum",

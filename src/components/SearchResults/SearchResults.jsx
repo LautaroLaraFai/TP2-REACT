@@ -13,7 +13,7 @@ export default function SearchResults({
 
   if (isLoading) {
     return (
-      <div className="flex justify-center py-10">
+      <div className="flex justify-center py-10" aria-label="loader-container">
         <Loader />
       </div>
     );

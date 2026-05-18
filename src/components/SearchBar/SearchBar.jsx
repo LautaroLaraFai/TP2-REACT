@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import searchIcon from "../../assets/searchIcon.svg"
 import getDataByFilter from "../../services/getDataByFilter"
+import { useTranslation } from "react-i18next"
 
 const SearchBar = ({
   clearInput,
@@ -11,6 +12,7 @@ const SearchBar = ({
 }) => {
 
   const [value, setValue] = useState("")
+  const { t } = useTranslation()
 
   const handleChange = (e) => {
     const newValue = e.target.value
@@ -109,6 +111,7 @@ const SearchBar = ({
           "
           onKeyDown={handleKey}
           onChange={handleChange}
+          placeholder={t("header.searchBarPlaceholder")}
         />
         <label htmlFor="searchBar">
           <img

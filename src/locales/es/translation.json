@@ -6,9 +6,10 @@
             "option": {
                 "spanish": "Español",
                 "english": "Inglés",
-                "blackTongue": "lengua negra"
+                "blackTongue": "Lengua Negra"
             }
-        }
+        },
+        "searchBarPlaceholder": "Buscar juego o @desarrollador..."
     },
     "home": {
         "recommendations": "Recomendaciones",

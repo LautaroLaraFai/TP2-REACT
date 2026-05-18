@@ -2,11 +2,35 @@
 
 ## Miembros del Grupo
 
+<details>
+<summary>Roles TP2</summary>
+
 | Nombre         | Email                                      | Rol                            |
 | -------------- | ------------------------------------------ | ------------------------------ |
 | Marcos Chavez  | <marcos.chavez@est.fi.uncoma.edu.ar>       | Desarrollador Logica Principal |
 | Lucas Martinez | <lucas.martinez@est.fi.uncoma.edu.ar>      | Desarrollador Frontend + UI    |
 | Lautaro Lara   | <lautaronicolas.lara@est.fi.uncoma.edu.ar> | Scrum Master                   |
+
+</details>
+<details><summary>Roles TP Testing Automático</summary>
+
+| Nombre         | Email                                      | Rol                            |
+| -------------- | ------------------------------------------ | ------------------------------ |
+| Marcos Chavez  | <marcos.chavez@est.fi.uncoma.edu.ar>       | Desarrollador                  |
+| Lucas Martinez | <lucas.martinez@est.fi.uncoma.edu.ar>      | Desarrollador                  |
+| Lautaro Lara   | <lautaronicolas.lara@est.fi.uncoma.edu.ar> | Desarrollador                  |
+
+</details>
+<details><summary>Roles TP3</summary>
+
+| Nombre         | Email                                      | Rol                            |
+| -------------- | ------------------------------------------ | ------------------------------ |
+| Marcos Chavez  | <marcos.chavez@est.fi.uncoma.edu.ar>       | Desarrollador                  |
+| Lucas Martinez | <lucas.martinez@est.fi.uncoma.edu.ar>      | Scrum Master                   |
+| Lautaro Lara   | <lautaronicolas.lara@est.fi.uncoma.edu.ar> | Desarrollador                  |
+
+</details>
+
 
 ---
 
@@ -38,6 +62,40 @@ Aplicacion web desarrollada con React y Vite que funciona como un visualizador d
 | i18next               | Internacionalizacion (ES/EN)   |
 | React Infinite Scroll | Carga infinita de juegos       |
 | Vercel                | Plataforma de deploy           |
+
+---
+
+## Testing
+
+### Librerias utilizadas para testing
+
+| Libreria                     | Descripcion                                  |
+| ---------------------------- | -------------------------------------------- |
+| Vitest                       | Framework de testing                         |
+| React Testing Library        | Testing de componentes React                 |
+| jest-dom                     | Matchers adicionales para assertions en DOM  |
+| user-event                   | Simulacion de interacciones del usuario      |
+| jsdom                        | Entorno DOM para ejecucion de tests          |
+| coverage-v8                  | Reportes de coverage                         |
+
+### Ejecutar los tests
+
+```bash
+# Ejecutar tests en modo watch
+npm run test
+
+# Ejecutar todos los tests una sola vez
+npm run test:run
+
+# Generar reporte de coverage
+npm run test:coverage
+```
+
+### Instalacion de dependencias
+
+```bash
+npm install
+```
 
 ---
 
@@ -81,3 +139,5 @@ npm run dev
 
 **Accede a la aplicacion desde:**  
 [https://tp-2-react-nine.vercel.app/](https://tp-2-react-nine.vercel.app/)
+
+<br/>

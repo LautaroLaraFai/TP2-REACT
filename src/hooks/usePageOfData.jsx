@@ -20,7 +20,7 @@ const usePageOfData = () => {
         setGames((game) => [...game, ...data]);
 
       } catch (error) {
-        console.error("Error ferching games:", error);
+        console.error("Error fetching games:", error);
       }
     };
     fetchGames();
