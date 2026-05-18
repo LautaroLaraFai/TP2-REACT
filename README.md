@@ -76,6 +76,7 @@ Aplicacion web desarrollada con React y Vite que funciona como un visualizador d
 | jest-dom                     | Matchers adicionales para assertions en DOM  |
 | user-event                   | Simulacion de interacciones del usuario      |
 | jsdom                        | Entorno DOM para ejecucion de tests          |
+| coverage-v8                  | Reportes de coverage                         |
 
 ### Ejecutar los tests
 
@@ -85,6 +86,9 @@ npm run test
 
 # Ejecutar todos los tests una sola vez
 npm run test:run
+
+# Generar reporte de coverage
+npm run test:coverage
 ```
 
 ### Instalacion de dependencias
