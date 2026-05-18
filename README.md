@@ -65,6 +65,36 @@ Aplicacion web desarrollada con React y Vite que funciona como un visualizador d
 
 ---
 
+## Testing
+
+### Librerias utilizadas para testing
+
+| Libreria                     | Descripcion                                  |
+| ---------------------------- | -------------------------------------------- |
+| Vitest                       | Framework de testing                         |
+| React Testing Library        | Testing de componentes React                 |
+| jest-dom                     | Matchers adicionales para assertions en DOM  |
+| user-event                   | Simulacion de interacciones del usuario      |
+| jsdom                        | Entorno DOM para ejecucion de tests          |
+
+### Ejecutar los tests
+
+```bash
+# Ejecutar tests en modo watch
+npm run test
+
+# Ejecutar todos los tests una sola vez
+npm run test:run
+```
+
+### Instalacion de dependencias
+
+```bash
+npm install
+```
+
+---
+
 ## Decisiones importantes tomadas
 
 - Realizamos un analisis del codigo y decidimos aumentar la componentizacion para mejorar la reutilizacion y mantenibilidad
@@ -105,3 +135,5 @@ npm run dev
 
 **Accede a la aplicacion desde:**  
 [https://tp-2-react-nine.vercel.app/](https://tp-2-react-nine.vercel.app/)
+
+<br/>
