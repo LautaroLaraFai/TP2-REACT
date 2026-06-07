@@ -1,17 +1,21 @@
-export default async function getData({ page=1, limit=60 } = {}) {
+const API_BASE_URL = 'http://localhost:3000';
+
+export default async function getData() {
     try {
-        const response = await fetch(
-            `https://69e6dd1368208c1debe7fc08.mockapi.io/SNG/Games?page=${page}&limit=${limit}`
-        );
-        const games = await response.json()  
-        return games 
+        const response = await fetch(`${API_BASE_URL}/games?limit=200`);
+        
+        if (!response.ok) {
+            throw new Error(`Error ${response.status}`);
+        }
+        
+        const data = await response.json();
+        return data.data || [];
+        
     } catch (error) {
-        console.error(error)
+        console.error("Error al obtener juegos:", error);
+        return [];
     }
 }
-
-
-
 // response example
 // [
 //  {
