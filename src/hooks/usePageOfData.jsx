@@ -3,28 +3,27 @@ import getData from "../services/getData"
 
 const usePageOfData = () => {
   const [games, setGames] = useState([]);
-  const [page, setPage] = useState(1);
+  const [cursor, setCursor] = useState(null);
   const [hasMore, setHasMore] = useState(true);
   const [frontPageGame, setFrontPageGame] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const page_limit = 6;
+  const page_limit = 20;
 
   const fetchData = async () => {
-    if (loading) return;
+    if (loading || !hasMore) return;
     
     setLoading(true);
     
     try {
-      const data = await getData({ page, limit: page_limit });
+      const data = await getData({ cursor, limit: page_limit });
       
-      if (data?.length === 0) {
+      if (data?.data?.length === 0 || data?.data?.length < page_limit) {
         setHasMore(false);
-        return;
       }
       
-      setGames((game) => [...game, ...data]);
-      setPage((prev) => prev + 1);
+      setGames((prev) => [...prev, ...(data?.data || [])]);
+      setCursor(data?.nextCursor);
       
     } catch (error) {
       console.error("Error fetching games:", error);

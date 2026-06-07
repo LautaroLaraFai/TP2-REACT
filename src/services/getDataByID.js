@@ -1,6 +1,8 @@
+const API_BASE_URL = 'http://localhost:3000';
+
 export async function getDataByID(id) {
     try {
-        const response = await fetch(`https://69e6dd1368208c1debe7fc08.mockapi.io/SNG/Games/${id}`);
+        const response = await fetch(`${API_BASE_URL}/games/${id}`);
         
         if (!response.ok) {
             if (response.status === 404) {
@@ -11,6 +13,15 @@ export async function getDataByID(id) {
         }
         
         const game = await response.json();
+        
+        if (game.screenshots && Array.isArray(game.screenshots)) {
+            game.Screenshots = game.screenshots.map(s => s.imageUrl);
+        }
+        
+        if (game.genres && Array.isArray(game.genres)) {
+            game.Genres = game.genres.map(g => g.name);
+        }
+        
         return game;
         
     } catch (error) {

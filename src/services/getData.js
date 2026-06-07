@@ -1,19 +1,22 @@
 const API_BASE_URL = 'http://localhost:3000';
 
-export default async function getData() {
+export default async function getData({ cursor = null, limit = 20 } = {}) {
     try {
-        const response = await fetch(`${API_BASE_URL}/games?limit=200`);
+        const url = cursor 
+            ? `${API_BASE_URL}/games?cursor=${cursor}&limit=${limit}`
+            : `${API_BASE_URL}/games?limit=${limit}`;
+            
+        const response = await fetch(url);
         
         if (!response.ok) {
             throw new Error(`Error ${response.status}`);
         }
         
-        const data = await response.json();
-        return data.data || [];
+        return await response.json();
         
     } catch (error) {
         console.error("Error al obtener juegos:", error);
-        return [];
+        return { data: [], nextCursor: null, hasMore: false };
     }
 }
 // response example

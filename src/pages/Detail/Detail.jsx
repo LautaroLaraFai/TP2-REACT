@@ -20,7 +20,7 @@ const Detail = () => {
 
     useEffect(() => {
         const gameId = Number(id);
-        const isValidId = id && !isNaN(gameId) && gameId > 0 && gameId <= 54;
+        const isValidId = id && !isNaN(gameId) ;
         
         if (!isValidId) {
             navigate('/error');
