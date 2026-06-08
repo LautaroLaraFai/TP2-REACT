@@ -9,6 +9,7 @@ import SpanInfo from "../../components/SpanInfo/SpanInfo.jsx"
 import ImageGallery from "../../components/ImagenGallery/ImageGallery.jsx"
 import RatingStars from "../../components/RatingStars/RatingStars.jsx"
 import useFavorite from "../../hooks/useFavorite.jsx"
+import { validateGameId } from "../../services/validateGameId.js"
 
 const Detail = () => {
   const { t } = useTranslation();
@@ -19,13 +20,9 @@ const Detail = () => {
     const game = useGamesByID(id)
 
     useEffect(() => {
-        const gameId = Number(id);
-        const isValidId = id && !isNaN(gameId) ;
-        
-        if (!isValidId) {
-            navigate('/error');
-        }
-    }, [id, navigate])
+        validateGameId(id, navigate);
+    }, [id, navigate]);
+
 
     if (loading) {
         return (
