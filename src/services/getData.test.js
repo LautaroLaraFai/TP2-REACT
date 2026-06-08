@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import getData from "./getData";
 
 describe("getData", () => {
-
   beforeEach(() => {
     global.fetch = vi.fn();
     vi.spyOn(console, "error").mockImplementation(() => {});
@@ -12,54 +11,40 @@ describe("getData", () => {
     vi.restoreAllMocks();
   });
 
-
-
   it("Returns game data correctly", async () => {
-
-    const mockGames = [
-      {
-        id: 1,
-        Name: "Grand Theft Auto V",
-      },
-    ];
+    const mockResponse = {
+      data: [{ id: 55, Name: "Grand Theft Auto V" }],
+      nextCursor: 56,
+      hasMore: true,
+    };
 
     fetch.mockResolvedValue({
-      json: vi.fn().mockResolvedValue(mockGames),
+      ok: true,
+      json: vi.fn().mockResolvedValue(mockResponse),
     });
 
     const result = await getData();
 
-    expect(fetch).toHaveBeenCalledWith("https://69e6dd1368208c1debe7fc08.mockapi.io/SNG/Games?page=1&limit=60");
-    expect(result).toEqual(mockGames);
+    expect(fetch).toHaveBeenCalledWith("http://localhost:3000/games?limit=20");
+    expect(result).toEqual(mockResponse);
   });
 
-
-
-  it("Uses custom page and limit", async () => {
-
+  it("Uses custom cursor and limit", async () => {
     fetch.mockResolvedValue({
-      json: vi.fn().mockResolvedValue([]),
+      ok: true,
+      json: vi.fn().mockResolvedValue({ data: [], nextCursor: null, hasMore: false }),
     });
 
-    await getData({
-      page: 2,
-      limit: 10,
-    });
+    await getData({ cursor: 55, limit: 10 });
 
-    expect(fetch).toHaveBeenCalledWith("https://69e6dd1368208c1debe7fc08.mockapi.io/SNG/Games?page=2&limit=10");
+    expect(fetch).toHaveBeenCalledWith("http://localhost:3000/games?cursor=55&limit=10");
   });
 
-
-
-  it("Handles fetch errors correctly", async () => {
-
-    const error = new Error("Fetch failed");
-
-    fetch.mockRejectedValue(error);
+  it("Handles fetch errors", async () => {
+    fetch.mockRejectedValue(new Error("Fetch failed"));
 
     const result = await getData();
 
-    expect(console.error).toHaveBeenCalledWith(error);
-    expect(result).toBeUndefined();
+    expect(result).toEqual({ data: [], nextCursor: null, hasMore: false });
   });
 });
