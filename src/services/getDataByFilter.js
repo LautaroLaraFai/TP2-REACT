@@ -1,19 +1,21 @@
+const API_BASE_URL = 'http://localhost:3000';
+
 export default async function getDataByFilter(param, value) {
   try {
-    const response = await fetch(
-      `https://69e6dd1368208c1debe7fc08.mockapi.io/SNG/Games?${param}=${value}`
-    )
+    const url = `${API_BASE_URL}/games?${param}=${encodeURIComponent(value)}`;
+    const response = await fetch(url);
 
     if (!response.ok) {
-      console.error("HTTP error:", response.status)
-      return []
+      console.error("HTTP error:", response.status);
+      return [];
     }
 
-    const games = await response.json()
+    const data = await response.json();
 
-    return Array.isArray(games) ? games : []
+    
+    return Array.isArray(data) ? data : [];
   } catch (error) {
-    console.error("Error en getDataByFilter: ", error)
-    return []
+    console.error("Error en getDataByFilter: ", error);
+    return [];
   }
 }

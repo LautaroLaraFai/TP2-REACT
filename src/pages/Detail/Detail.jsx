@@ -50,7 +50,7 @@ const Detail = () => {
             <div className="grid grid-cols-[auto_1fr] gap-x-8 gap-y-4 w-fit mx-auto py-4 text-a-amber">
                 <SpanInfo label={t("detail.gameInfo.price")} textColor={"text-white"} data={`$${game?.Price}`}/>
                 <SpanInfo label={t("detail.gameInfo.developer")} textColor={"text-a-darkamber"} data={game?.Developer}/>
-                <SpanInfo label={t("detail.gameInfo.releaseDate")} textColor={"text-a-darkamber"} data={game?.ReleaseDate}/>
+                <SpanInfo label={t("detail.gameInfo.releaseDate")} textColor={"text-a-darkamber"} data={game?.ReleaseDate ? new Date(game.ReleaseDate).toLocaleDateString('es-AR') : ''}/>
                 <SpanInfo label={t("detail.gameInfo.rating")} textColor={"text-orange-700"} data={<RatingStars rating={game?.Rating} size="text-3xl" />}/>
                 <SpanInfo label={t("detail.gameInfo.genres")} textColor={"text-a-darkamber"} data={game?.Genres?.join(", ")}/>
             </div>
