@@ -171,8 +171,8 @@ const GamePDF = ({ game }) => {
 
               <View style={styles.infoRow}>
                 <Text style={styles.infoLabel}>Fecha de salida:</Text>
-                <Text style={styles.infoValue}>{game.ReleaseDate}</Text>
-              </View>
+                <Text style={styles.infoValue}>{game.ReleaseDate ? new Date(game.ReleaseDate).toLocaleDateString('es-AR') : ''}</Text>
+               </View>
 
               <View style={styles.infoRow}>
                 <Text style={styles.infoLabel}>Rating:</Text>
