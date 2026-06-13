@@ -5,12 +5,12 @@ import ImageGallery from "./ImageGallery";
 
 const mockGameWithImages = {
   Image: "/main-image.jpg",
-  Screenshots: ["/screenshot1.jpg", "/screenshot2.jpg"],
+  screenshots: [{ imageUrl: "/screenshot1.jpg" }, { imageUrl: "/screenshot2.jpg" }],
 };
 
 const mockGameWithoutImages = {
   Image: null,
-  Screenshots: [],
+  screenshots: [],
 };
 
 describe("ImageGallery component", () => {
@@ -28,7 +28,8 @@ describe("ImageGallery component", () => {
     const user = userEvent.setup();
     render(<ImageGallery game={mockGameWithImages} />);
     
-    const nextButton = screen.getAllByRole("button")[1];
+    const buttons = screen.getAllByRole("button");
+    const nextButton = buttons.find(btn => btn.querySelector('img[alt=""]')?.src?.includes("right-arrow"));
     await user.click(nextButton);
     
     expect(screen.getByAltText("Game screenshot")).toHaveAttribute("src", "/screenshot1.jpg");
