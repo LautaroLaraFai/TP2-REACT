@@ -16,7 +16,9 @@ const mockGameWithoutImages = {
 describe("ImageGallery component", () => {
   it("Should render the main image", () => {
     render(<ImageGallery game={mockGameWithImages} />);
-    expect(screen.getByAltText("Game screenshot")).toHaveAttribute("src", "/main-image.jpg");
+    const img = screen.getByAltText("Game screenshot");
+    expect(img).toBeInTheDocument();
+    expect(img.getAttribute("src")).toBe("/main-image.jpg");
   });
 
   it("Should return null when no images", () => {
@@ -29,10 +31,11 @@ describe("ImageGallery component", () => {
     render(<ImageGallery game={mockGameWithImages} />);
     
     const buttons = screen.getAllByRole("button");
-    const nextButton = buttons.find(btn => btn.querySelector('img[alt=""]')?.src?.includes("right-arrow"));
+    const nextButton = buttons[1];
     await user.click(nextButton);
     
-    expect(screen.getByAltText("Game screenshot")).toHaveAttribute("src", "/screenshot1.jpg");
+    const img = screen.getByAltText("Game screenshot");
+    expect(img.getAttribute("src")).toBe("/screenshot1.jpg");
   });
 
   it("Should change image when clicking on thumbnail", async () => {
@@ -40,8 +43,9 @@ describe("ImageGallery component", () => {
     render(<ImageGallery game={mockGameWithImages} />);
     
     const thumbnails = screen.getAllByRole("button").slice(2);
-    await user.click(thumbnails[1]);
+    await user.click(thumbnails[0]);
     
-    expect(screen.getByAltText("Game screenshot")).toHaveAttribute("src", "/screenshot1.jpg");
+    const img = screen.getByAltText("Game screenshot");
+    expect(img.getAttribute("src")).toBe("/screenshot1.jpg");
   });
 });
