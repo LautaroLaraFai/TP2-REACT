@@ -6,7 +6,16 @@ import Home from "./home";
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
     t: (key) => key,
+    i18n: {
+      language: "es",
+      changeLanguage: vi.fn(),
+    },
   }),
+  initReactI18next: {
+    type: "3rdParty",
+    init: vi.fn(),
+  },
+  Trans: ({ children }) => children,
 }));
 
 vi.mock("../../hooks/useFavorite.jsx", () => ({
