@@ -1,23 +1,24 @@
+import i18n from "../i18n.js";
+
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export default async function getData({ cursor = null, limit = 20 } = {}) {
-    try {
-        const url = cursor 
-            ? `${API_BASE_URL}/games?cursor=${cursor}&limit=${limit}`
-            : `${API_BASE_URL}/games?limit=${limit}`;
-            
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-            throw new Error(`Error ${response.status}`);
-        }
-        
-        return await response.json();
-        
-    } catch (error) {
-        console.error("Error al obtener juegos:", error);
-        return { data: [], nextCursor: null, hasMore: false };
-    }
+	try {
+		const url = cursor
+			? `${API_BASE_URL}/games?cursor=${cursor}&limit=${limit}&lang=${i18n.language}`
+			: `${API_BASE_URL}/games?limit=${limit}&lang=${i18n.language}`;
+
+		const response = await fetch(url);
+
+		if (!response.ok) {
+			throw new Error(`Error ${response.status}`);
+		}
+
+		return await response.json();
+	} catch (error) {
+		console.error("Error al obtener juegos:", error);
+		return { data: [], nextCursor: null, hasMore: false };
+	}
 }
 // response example
 // [
