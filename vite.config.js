@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
 
-  server: { // config de trabajo de Lucas
+  server: {
     host: true,
     port: 5173
   },
@@ -19,6 +19,8 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text"],
     },
+    env: {
+      VITE_API_URL: 'http://localhost:3000',
+    },
   },
-
 })

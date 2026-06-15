@@ -5,32 +5,30 @@ import getData from "../services/getData";
 
 vi.mock("../services/getData");
 
-const mockGames = [
+const mockResponse = {
+  data: [
     { id: 1, name: "Grand Theft Auto V" },
     { id: 2, name: "Mario" },
     { id: 3, name: "Zelda" }
-];
-
-getData.mockResolvedValue(mockGames);    //para que resuelva la promesa con mockGame
+  ],
+  nextCursor: 3,
+  hasMore: false
+};
 
 describe('UsePageOfData', () => {
-    it('Should call with page 1 and limit 6', () => {
-        const { result } = renderHook(() => usePageOfData())
-        const parameters = {
-            "limit": 6,
-            "page": 1
-        }
-        expect(getData).toHaveBeenCalledWith(parameters)
-    })
+  it('Should call with cursor null and limit 20', () => {
+    renderHook(() => usePageOfData());
+    expect(getData).toHaveBeenCalledWith({ cursor: null, limit: 20 });
+  });
 
-    it('Random game should not be null', async () => {
-        getData.mockResolvedValue(mockGames);
-        const { result } = renderHook(() => usePageOfData());
+  it('Random game should not be null', async () => {
+    getData.mockResolvedValue(mockResponse);
+    const { result } = renderHook(() => usePageOfData());
 
-        await waitFor(() => {
-            expect(result.current.games.length).toBe(3);
-        });
-        
-        expect(result.current.frontPageGame).not.toBeNull();
+    await waitFor(() => {
+      expect(result.current.games.length).toBe(3);
     });
-})
+    
+    expect(result.current.frontPageGame).not.toBeNull();
+  });
+});

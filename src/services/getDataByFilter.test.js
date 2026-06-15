@@ -1,57 +1,57 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi, beforeEach } from "vitest";
 import getDataByFilter from "./getDataByFilter";
 
 describe('getDataByFilter', () => {
-    it('Should call with the correct values', async () => {
-        const mockGame = [{ id: 1, Name: "Outer Wilds", price: 10}]
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
-        global.fetch = vi.fn(() =>
-            Promise.resolve({
-                ok: true,
-                json: () => Promise.resolve(mockGame),
-            })
-        );
-        const param = "Name"
-        const value = "Outer Wilds"
+  beforeEach(() => {
+    global.fetch = vi.fn();
+  });
 
-        const result = await getDataByFilter(param, value)
+  it('Should call with the correct values', async () => {
+    const mockGames = [{ id: 1, Name: "Outer Wilds", Price: 10 }];
 
-        expect(result).toEqual(mockGame)
-        expect(fetch).toHaveBeenCalledWith(`https://69e6dd1368208c1debe7fc08.mockapi.io/SNG/Games?${param}=${value}`)
-    })
+    global.fetch.mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve(mockGames),
+    });
 
-    it('Should return empty array if ok is false', async () => {
-        const mockGame = [{ id: 1, Name: "Outer Wilds", price: 10}]
+    const param = "Name";
+    const value = "Outer Wilds";
 
-        global.fetch = vi.fn(() =>
-            Promise.resolve({
-                ok: false,
-                json: () => Promise.resolve(mockGame),
-            })
-        );
-        const param = "Name"
-        const value = "Outer Wilds"
+    const result = await getDataByFilter(param, value);
 
-        const result = await getDataByFilter(param, value) 
-        
-        expect(result).toEqual([])
-    })
+    expect(result).toEqual(mockGames);
+    expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/games?${param}=${encodeURIComponent(value)}`);
+  });
 
-    it('Should return empty array if there were no games found', async () => {
-        const mockGame = []
+  it('Should return empty array if response is not ok', async () => {
+    global.fetch.mockResolvedValue({
+      ok: false,
+      status: 500,
+    });
 
-        global.fetch = vi.fn(() =>
-            Promise.resolve({
-                ok: true,
-                json: () => Promise.resolve(mockGame),
-            })
-        );
-        const param = "Name"
-        const value = "FMAKOSLFMDSKLFMEWNFMOÉF,COWEPFMOWM,OQÑA"
+    const result = await getDataByFilter("Name", "Outer Wilds");
 
-        const result = await getDataByFilter(param, value) 
-        
-        expect(result).toEqual([])
-    })
-    
-})
+    expect(result).toEqual([]);
+  });
+
+  it('Should return empty array if there were no games found', async () => {
+    global.fetch.mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve([]),
+    });
+
+    const result = await getDataByFilter("Name", "FMAKOSLFMDSKLFMEWNFMOÉF,COWEPFMOWM,OQÑA");
+
+    expect(result).toEqual([]);
+  });
+
+  it('Should handle fetch errors', async () => {
+    global.fetch.mockRejectedValue(new Error("Network error"));
+
+    const result = await getDataByFilter("Name", "Outer Wilds");
+
+    expect(result).toEqual([]);
+  });
+});
