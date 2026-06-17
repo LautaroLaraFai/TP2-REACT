@@ -1,65 +1,57 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import getData from "./getData";
+import i18n from "../i18n";
 
 describe("getData", () => {
+	beforeEach(() => {
+		global.fetch = vi.fn();
+		vi.spyOn(console, "error").mockImplementation(() => {});
+	});
 
-  beforeEach(() => {
-    global.fetch = vi.fn();
-    vi.spyOn(console, "error").mockImplementation(() => {});
-  });
+	afterEach(() => {
+		vi.restoreAllMocks();
+	});
 
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
+	it("Returns game data correctly", async () => {
+		const mockResponse = {
+			data: [{ id: 55, Name: "Grand Theft Auto V" }],
+			nextCursor: 56,
+			hasMore: true,
+		};
 
+		fetch.mockResolvedValue({
+			ok: true,
+			json: vi.fn().mockResolvedValue(mockResponse),
+		});
 
+		const result = await getData();
 
-  it("Returns game data correctly", async () => {
+		expect(fetch).toHaveBeenCalledWith(
+			`http://localhost:3000/games?limit=20&lang=${i18n.language}`,
+		);
+		expect(result).toEqual(mockResponse);
+	});
 
-    const mockGames = [
-      {
-        id: 1,
-        Name: "Grand Theft Auto V",
-      },
-    ];
+	it("Uses custom cursor and limit", async () => {
+		fetch.mockResolvedValue({
+			ok: true,
+			json: vi
+				.fn()
+				.mockResolvedValue({ data: [], nextCursor: null, hasMore: false }),
+		});
 
-    fetch.mockResolvedValue({
-      json: vi.fn().mockResolvedValue(mockGames),
-    });
+		await getData({ cursor: 55, limit: 10 });
 
-    const result = await getData();
+		expect(fetch).toHaveBeenCalledWith(
+			`http://localhost:3000/games?cursor=55&limit=10&lang=${i18n.language}`,
+		);
+	});
 
-    expect(fetch).toHaveBeenCalledWith("https://69e6dd1368208c1debe7fc08.mockapi.io/SNG/Games?page=1&limit=60");
-    expect(result).toEqual(mockGames);
-  });
+	it("Handles fetch errors", async () => {
+		fetch.mockRejectedValue(new Error("Fetch failed"));
 
+		const result = await getData();
 
-
-  it("Uses custom page and limit", async () => {
-
-    fetch.mockResolvedValue({
-      json: vi.fn().mockResolvedValue([]),
-    });
-
-    await getData({
-      page: 2,
-      limit: 10,
-    });
-
-    expect(fetch).toHaveBeenCalledWith("https://69e6dd1368208c1debe7fc08.mockapi.io/SNG/Games?page=2&limit=10");
-  });
-
-
-
-  it("Handles fetch errors correctly", async () => {
-
-    const error = new Error("Fetch failed");
-
-    fetch.mockRejectedValue(error);
-
-    const result = await getData();
-
-    expect(console.error).toHaveBeenCalledWith(error);
-    expect(result).toBeUndefined();
-  });
+		expect(result).toEqual({ data: [], nextCursor: null, hasMore: false });
+	});
 });

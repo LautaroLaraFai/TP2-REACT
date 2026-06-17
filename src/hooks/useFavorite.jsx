@@ -1,65 +1,54 @@
-// hooks/useFavorite.jsx
 import { useState, useEffect } from 'react';
-import { getDataByID } from '../services/getDataByID';
+
+import { API_BASE_URL } from "../config/apiurl.js";
 
 export default function useFavorite() {
   const [favoriteIds, setFavoriteIds] = useState([]);
   const [favoriteGames, setFavoriteGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const loadGames = async (ids) => {
+  const loadFavorites = async () => {
     setLoading(true);
-    if (ids.length === 0) {
-      setFavoriteGames([]);
+    try {
+      const response = await fetch(`${API_BASE_URL}/games?limit=100`);
+      const data = await response.json();
+      
+      const favoriteGamesList = data.data?.filter(game => game.isFavorite === true) || [];
+      setFavoriteGames(favoriteGamesList);
+      setFavoriteIds(favoriteGamesList.map(game => game.id));
+    } catch (error) {
+      console.error("Error loading favorites:", error);
+    } finally {
       setLoading(false);
-      return;
     }
-
-    const games = await Promise.all(
-      ids.map(id => getDataByID(id))
-    );
-    setFavoriteGames(games.filter(Boolean));
-    setLoading(false);
   };
 
-  // Cuando se entre a favorite desde otra pagina
-  useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('favorites') || '[]');
-    const ids = stored.map(Number);
-    setFavoriteIds(ids);
-    loadGames(ids);
-  }, []);
-  
-  // Cuando se añada a favorite un juego desde la misma pagina
-  useEffect(() => {
-    const handleFavoritesUpdate = () => {
-      const stored = JSON.parse(localStorage.getItem('favorites') || '[]');
-      const newIds = stored.map(Number);
-      setFavoriteIds(newIds);
-      loadGames(newIds);
-    };
-
-    window.addEventListener('favoritesUpdated', handleFavoritesUpdate);
-    return () => window.removeEventListener('favoritesUpdated', handleFavoritesUpdate);
-  }, []);
-
-  const toggleFavorite = (gameId) => {
+  const toggleFavorite = async (gameId) => {
     const idNumber = Number(gameId);
-    const newFavorites = favoriteIds.includes(idNumber)
-      ? favoriteIds.filter(id => id !== idNumber)
-      : [...favoriteIds, idNumber];
+    const isCurrentlyFavorite = favoriteIds.includes(idNumber);
     
-    setFavoriteIds(newFavorites);
-    localStorage.setItem('favorites', JSON.stringify(newFavorites));
-    
-    loadGames(newFavorites);
-    
-    window.dispatchEvent(new Event('favoritesUpdated'));
+    try {
+      const response = await fetch(`${API_BASE_URL}/games/${idNumber}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ isFavorite: !isCurrentlyFavorite })
+      });
+      
+      if (response.ok) {
+        await loadFavorites();
+      }
+    } catch (error) {
+      console.error("Error toggling favorite:", error);
+    }
   };
 
   const isFavorite = (gameId) => {
     return favoriteIds.includes(Number(gameId));
   };
+
+  useEffect(() => {
+    loadFavorites();
+  }, []);
 
   return { 
     favoriteIds,      

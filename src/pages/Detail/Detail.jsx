@@ -9,6 +9,7 @@ import SpanInfo from "../../components/SpanInfo/SpanInfo.jsx"
 import ImageGallery from "../../components/ImagenGallery/ImageGallery.jsx"
 import RatingStars from "../../components/RatingStars/RatingStars.jsx"
 import useFavorite from "../../hooks/useFavorite.jsx"
+import { validateGameId } from "../../services/validateGameId.js"
 
 const Detail = () => {
   const { t } = useTranslation();
@@ -19,13 +20,9 @@ const Detail = () => {
     const game = useGamesByID(id)
 
     useEffect(() => {
-        const gameId = Number(id);
-        const isValidId = id && !isNaN(gameId) && gameId > 0 && gameId <= 54;
-        
-        if (!isValidId) {
-            navigate('/error');
-        }
-    }, [id, navigate])
+        validateGameId(id, navigate);
+    }, [id, navigate]);
+
 
     if (loading) {
         return (
@@ -53,7 +50,7 @@ const Detail = () => {
             <div className="grid grid-cols-[auto_1fr] gap-x-8 gap-y-4 w-fit mx-auto py-4 text-a-amber">
                 <SpanInfo label={t("detail.gameInfo.price")} textColor={"text-white"} data={`$${game?.Price}`}/>
                 <SpanInfo label={t("detail.gameInfo.developer")} textColor={"text-a-darkamber"} data={game?.Developer}/>
-                <SpanInfo label={t("detail.gameInfo.releaseDate")} textColor={"text-a-darkamber"} data={game?.ReleaseDate}/>
+                <SpanInfo label={t("detail.gameInfo.releaseDate")} textColor={"text-a-darkamber"} data={game?.ReleaseDate ? new Date(game.ReleaseDate).toLocaleDateString('es-AR') : ''}/>
                 <SpanInfo label={t("detail.gameInfo.rating")} textColor={"text-orange-700"} data={<RatingStars rating={game?.Rating} size="text-3xl" />}/>
                 <SpanInfo label={t("detail.gameInfo.genres")} textColor={"text-a-darkamber"} data={game?.Genres?.join(", ")}/>
             </div>
@@ -78,7 +75,7 @@ const Detail = () => {
             {t("detail.gameInfo.description")}
           </h2>
           <div className="lg:text-2xl md:text-1.5xl sm:text-xl max-sm:text-lg leading-5 text-a-darkamber whitespace-pre-wrap wrap-break-word">
-            {game?.Description}
+            {game?.description}
           </div>
         </div>
       </div>

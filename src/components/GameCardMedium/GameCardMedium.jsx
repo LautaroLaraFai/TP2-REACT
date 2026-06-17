@@ -68,14 +68,14 @@ export default function GameCardMedium({
             ">
               USD$ {price}
             </span>
-            {releaseDate && (
-              <span className="
+           {releaseDate && (
+            <span className="
                 text-a-darkamber font-semibold tracking-widest uppercase
                 text-[10px] sm:text-sm md:text-base leading-tight
                 whitespace-nowrap
-              ">
-                {releaseDate}
-              </span>
+            ">
+                {new Date(releaseDate).toLocaleDateString('es-AR')}
+            </span>
             )}
           </div>
 

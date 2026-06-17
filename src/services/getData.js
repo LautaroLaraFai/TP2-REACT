@@ -1,17 +1,25 @@
-export default async function getData({ page=1, limit=60 } = {}) {
-    try {
-        const response = await fetch(
-            `https://69e6dd1368208c1debe7fc08.mockapi.io/SNG/Games?page=${page}&limit=${limit}`
-        );
-        const games = await response.json()  
-        return games 
-    } catch (error) {
-        console.error(error)
-    }
+import i18n from "../i18n.js";
+
+import { API_BASE_URL } from "../config/apiurl.js";
+
+export default async function getData({ cursor = null, limit = 20 } = {}) {
+	try {
+		const url = cursor
+			? `${API_BASE_URL}/games?cursor=${cursor}&limit=${limit}&lang=${i18n.language}`
+			: `${API_BASE_URL}/games?limit=${limit}&lang=${i18n.language}`;
+
+		const response = await fetch(url);
+
+		if (!response.ok) {
+			throw new Error(`Error ${response.status}`);
+		}
+
+		return await response.json();
+	} catch (error) {
+		console.error("Error al obtener juegos:", error);
+		return { data: [], nextCursor: null, hasMore: false };
+	}
 }
-
-
-
 // response example
 // [
 //  {

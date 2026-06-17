@@ -1,19 +1,22 @@
+import i18n from "../i18n.js";
+
+import { API_BASE_URL } from "../config/apiurl.js";
+
 export default async function getDataByFilter(param, value) {
-  try {
-    const response = await fetch(
-      `https://69e6dd1368208c1debe7fc08.mockapi.io/SNG/Games?${param}=${value}`
-    )
+	try {
+		const url = `${API_BASE_URL}/games?${param}=${encodeURIComponent(value)}&lang=${i18n.language}`;
+		const response = await fetch(url);
 
-    if (!response.ok) {
-      console.error("HTTP error:", response.status)
-      return []
-    }
+		if (!response.ok) {
+			console.error("HTTP error:", response.status);
+			return [];
+		}
 
-    const games = await response.json()
+		const data = await response.json();
 
-    return Array.isArray(games) ? games : []
-  } catch (error) {
-    console.error("Error en getDataByFilter: ", error)
-    return []
-  }
+		return Array.isArray(data) ? data : [];
+	} catch (error) {
+		console.error("Error en getDataByFilter: ", error);
+		return [];
+	}
 }
