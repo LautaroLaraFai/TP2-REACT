@@ -1,6 +1,6 @@
 import i18n from "../i18n.js";
 
-const API_BASE_URL = "http://localhost:3000";
+import { API_BASE_URL } from "../config/apiurl.js";
 
 export const validateGameId = async (id, navigate) => {
 	const gameId = Number(id);
