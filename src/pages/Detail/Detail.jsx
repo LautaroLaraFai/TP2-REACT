@@ -75,7 +75,7 @@ const Detail = () => {
             {t("detail.gameInfo.description")}
           </h2>
           <div className="lg:text-2xl md:text-1.5xl sm:text-xl max-sm:text-lg leading-5 text-a-darkamber whitespace-pre-wrap wrap-break-word">
-            {game?.Description}
+            {game?.description}
           </div>
         </div>
       </div>
