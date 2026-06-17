@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const API_BASE_URL = 'http://localhost:3000';
+import { API_BASE_URL } from "../config/apiurl.js";
 
 export default function useFavorite() {
   const [favoriteIds, setFavoriteIds] = useState([]);

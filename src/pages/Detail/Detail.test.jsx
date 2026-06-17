@@ -43,7 +43,7 @@ vi.mock("../../services/globals", () => ({
     ReleaseDate: "2020",
     Rating: 5,
     Genres: ["RPG", "Action"],
-    Description: "Open world futuristic RPG",
+    description: "Open world futuristic RPG",
   }),
 }));
 
