@@ -39,7 +39,7 @@ export default function Home () {
             key={frontPageGame?.id}
             gameId={frontPageGame?.id}
             name={frontPageGame?.Name}
-            description={frontPageGame?.Description}
+            description={frontPageGame?.description}
             price={frontPageGame?.Price}
             image={frontPageGame?.Image}
             onClick={() => toggleFavorite(frontPageGame?.id)}
