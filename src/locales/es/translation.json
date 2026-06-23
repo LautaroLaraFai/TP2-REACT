@@ -47,5 +47,33 @@
     "footer": {
         "favText": "Favoritos",
         "copyright": "© MAETS — GAME OVER PARA LOS COPIONES. ESTE CONTENIDO TIENE COPYRIGHT. SI LO COPIAS SIN AUTORIZACIÓN, APARECE EL JEFE FINAL Y NO TRAE CONTINUES."
+    },
+    "register": {
+        "registerTitle": "Registro de usuario",
+        "registerButton": "Registrarme",
+        "registerSuccess": "¡Registro exitoso!",
+        "registerQuestion": "Ya tienes una cuenta?",
+        "registerQuestionLogin": "Ingresar"
+    },
+    "form": {
+        "homeButton": "Home",
+        "formName": "Nombre",
+        "formEmail": "Correo electrónico",
+        "formPassword": "Contraseña"
+    },
+    "login": {
+        "loginTitle": "Ingreso de usuario",
+        "loginButton": "Ingresar",
+        "loginSuccess": "¡Ingreso exitoso!",
+        "loginQuestion": "Eres nuevo en MAETS?",
+        "loginQuestionRegister": "Regístrate"
+    },
+    "validation": {
+        "nameRequired": "El nombre es obligatorio",
+        "nameMinLength": "Mínimo 3 caracteres",
+        "emailRequired": "El correo es obligatorio",
+        "emailInvalid": "No es un formato de correo válido",
+        "passwordRequired": "La contraseña es obligatoria",
+        "passwordMinLength": "Mínimo 8 caracteres"
     }
 }
