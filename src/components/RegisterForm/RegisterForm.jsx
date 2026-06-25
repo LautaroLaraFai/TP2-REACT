@@ -3,33 +3,30 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import FormInput from "../FormInput/FormInput.jsx";
 import Loader from "../Loader/Loader.jsx";
-import { validateField, validateAll, initialValuesRegister } from "../../services/formValidation.js";
+import { initialValuesRegister } from "../../services/formValidation.js";
 import { useFormSubmit } from "../../hooks/useFormSubmit.jsx";
+import { registerRequest } from "../../services/authService.js";
 
-
-// Simula llamada a backend. Reemplazar por fetch real cuando exista API.
-async function fakeRegisterRequest(data) {
-  await new Promise((r) => setTimeout(r, 1200));
-  if (data.email === "ocupado@test.co") {
-    return { ok: false, field: "email", message: "Este correo ya está registrado" };
-  }
-  return { ok: true };
-}
 
 export default function RegisterForm({ redirectTo = "/" }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const [values, setValues] = useState(initialValuesRegister);
 
-  const { errors, submitted, status, handleSubmit } = useFormSubmit({
-    values,
-    validateField,
-    onRequest: fakeRegisterRequest,
-    redirectTo: redirectTo,
-    navigate,
-    typeForm: "register"
-  });
+  const { errors, submitted, status, handleSubmit } =
+    useFormSubmit({
+      values,
+      onRequest: async (data) => {
+        const result = await registerRequest(data);
+        return result;
+      },
+      navigate,
+      redirectTo,
+      typeForm: "register",
+      t,
+    });
 
-  const { t } = useTranslation()
 
   function handleChange(e) {
     const { name, value } = e.target;

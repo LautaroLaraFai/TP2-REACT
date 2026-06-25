@@ -3,7 +3,7 @@ import { EMAIL_RE } from "../const/form.js";
 export const initialValuesRegister = { name: "", email: "", password: "" };
 export const initialValuesLogin = { email: "", password: "" };
 
-export function validateField(name, value, typeForm) {
+export function validateField(name, value, typeForm, t) {
   if (name === "name") {
     if (!value.trim()) return t("validation.nameRequired");
     if (value.trim().length < 3) return t("validation.nameMinLength");
@@ -16,17 +16,10 @@ export function validateField(name, value, typeForm) {
 
   if (name === "password") {
     if (!value) return t("validation.passwordRequired");
-    if (typeForm === "register" && value.length < 8) return t("validation.passwordMinLength");
+    if (typeForm === "register" && value.length < 8) {
+      return t("validation.passwordMinLength");
+    }
   }
-  return "";
-}
 
-export function validateAll() {
-  const newErrors = {};
-  Object.keys(values).forEach((name) => {
-    newErrors[name] = validateField(name, values[name]);
-  });
-  setErrors(newErrors);
-  setSubmitted(true);
-  return Object.values(newErrors).every((msg) => !msg);
+  return "";
 }
