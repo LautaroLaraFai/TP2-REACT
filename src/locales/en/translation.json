@@ -47,5 +47,33 @@
     "footer": {
         "favText": "Favorites",
         "copyright": "© MAETS — GAME OVER, COPYCATS. CONTENT HAS COPYRIGHT. UNAUTHORIZED COPY = FINAL BOSS APPEARS. NO CONTINUES. INSERT COIN? NO. YOU'RE DEAD."
+    },
+    "register": {
+        "registerTitle": "User Registration",
+        "registerButton": "Sign Up",
+        "registerSuccess": "Registration successful!",
+        "registerQuestion": "Already have an account?",
+        "registerQuestionLogin": "Log In"
+    },
+    "form": {
+        "homeButton": "Home",
+        "formName": "Name",
+        "formEmail": "Email Address",
+        "formPassword": "Password"
+    },
+    "login": {
+        "loginTitle": "User Login",
+        "loginButton": "Log In",
+        "loginSuccess": "Log In successful!",
+        "loginQuestion": "Are you new to MAETS?",
+        "loginQuestionRegister": "Sign Up"
+    },
+    "validation": {
+        "nameRequired": "Name is required",
+        "nameMinLength": "Minimum 3 characters",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Invalid email format",
+        "passwordRequired": "Password is required",
+        "passwordMinLength": "Minimum 8 characters"
     }
 }
