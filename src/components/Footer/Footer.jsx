@@ -18,7 +18,7 @@ export const Footer = () => {
           {/*Marcos*/}
           <div className="flex flex-col items-center lg:w-40 md:w-32 sm:w-28 max-sm:w-20">
             <div className="px-wrap-lg group w-full lg:h-40 md:h-32 sm:h-28 max-sm:h-20 aspect-square">
-              <div className="px-border-lg group-hover:bg-a-darkamber group-active:bg-orange-700 transition-colors duration-200 md:-inset-0.75 max-md:-inset-0.5"/>
+              <div className="px-border-lg group-hover:bg-a-darkamber group-active:bg-a-red transition-colors duration-200 md:-inset-0.75 max-md:-inset-0.5"/>
               <a href="https://github.com/Marcos-Chavez-5505" target="_blank">
                 <img
                   src={marcosPixelArt}
@@ -27,15 +27,21 @@ export const Footer = () => {
                 />
               </a>
             </div>
-            <p className="md:mt-4 max-md:mt-3 text-center lg:text-xl md:text-lg sm:text-base max-sm:text-sm leading-4.5">
-              Marcos Chavez
-            </p>
+            <div className="md:mt-4 max-md:mt-3 text-center">
+              <p className="font-medium lg:text-xl md:text-lg sm:text-base max-sm:text-sm leading-4.5 lg:mb-4 md:mb-3 sm:mb-3 max-sm:mb-2">
+                Marcos Chavez
+              </p>
+              <p className="text-a-darkamber font-bold lg:text-lg md:text-base sm:text-sm max-sm:text-sm uppercase tracking-wider leading-3.5 flex flex-col gap-1">
+                Dev [PM]<span className="text-a-lime">#1</span>
+              </p>
+            </div>
+
           </div>
 
           {/* Lauti */}
           <div className="flex flex-col items-center lg:w-40 md:w-32 sm:w-28 max-sm:w-20">
             <div className="px-wrap-lg group w-full lg:h-40 md:h-32 sm:h-28 max-sm:h-20 aspect-square">
-              <div className="px-border-lg group-hover:bg-a-darkamber group-active:bg-orange-700 transition-colors duration-200 md:-inset-0.75 max-md:-inset-0.5"/>
+              <div className="px-border-lg group-hover:bg-a-darkamber group-active:bg-a-red transition-colors duration-200 md:-inset-0.75 max-md:-inset-0.5"/>
               <a href="https://github.com/LautaroLaraFai" target="_blank">
                 <img
                   src={lautiPixelArt}
@@ -48,8 +54,8 @@ export const Footer = () => {
               <p className="font-medium lg:text-xl md:text-lg sm:text-base max-sm:text-sm leading-4.5 lg:mb-4 md:mb-3 sm:mb-3 max-sm:mb-2">
                 Lautaro Lara
               </p>
-              <p className="text-a-darkamber font-bold lg:text-lg md:text-base sm:text-sm max-sm:text-sm uppercase tracking-wider leading-3.5">
-                Project Manager
+              <p className="text-a-darkamber font-bold lg:text-lg md:text-base sm:text-sm max-sm:text-sm uppercase tracking-wider leading-3.5 flex flex-col gap-1">
+                Dev [PM]<span className="text-a-lime">#2</span>
               </p>
             </div>
           </div>
@@ -57,7 +63,7 @@ export const Footer = () => {
           {/*Lucas*/}
           <div className="flex flex-col items-center lg:w-40 md:w-32 sm:w-28 max-sm:w-20">
             <div className="px-wrap-lg group w-full lg:h-40 md:h-32 sm:h-28 max-sm:h-20 aspect-square">
-              <div className="px-border-lg group-hover:bg-a-darkamber group-active:bg-orange-700 transition-colors duration-200 md:-inset-0.75 max-md:-inset-0.5"/>
+              <div className="px-border-lg group-hover:bg-a-darkamber group-active:bg-a-red transition-colors duration-200 md:-inset-0.75 max-md:-inset-0.5"/>
               <a href="https://github.com/LucasLautaroMartinez" target="_blank">
                 <img
                   src={lucasPixelArt}
@@ -66,9 +72,14 @@ export const Footer = () => {
                 />
               </a>
             </div>
-            <p className="md:mt-4 max-md:mt-3 text-center lg:text-xl md:text-lg sm:text-base max-sm:text-sm leading-4.5">
-              Lucas Martinez
-            </p>
+            <div className="md:mt-4 max-md:mt-3 text-center">
+              <p className="font-medium lg:text-xl md:text-lg sm:text-base max-sm:text-sm leading-4.5 lg:mb-4 md:mb-3 sm:mb-3 max-sm:mb-2">
+                Lucas Martinez
+              </p>
+              <p className="text-a-darkamber font-bold lg:text-lg md:text-base sm:text-sm max-sm:text-sm uppercase tracking-wider leading-3.5 flex flex-col gap-1">
+                Dev [PM]<span className="text-a-lime">#3</span>
+              </p>
+            </div>
           </div>
         </div>
 
@@ -76,7 +87,7 @@ export const Footer = () => {
         <div className="flex justify-center md:gap-16 max-md:gap-8 mb-4">
           <Link
             to="/"
-            className="px-wrap-sm hover:text-orange-700 active:text-orange-600 font-medium lg:text-xl md:text-lg sm:text-base max-sm:text-sm"
+            className="px-wrap-sm hover:text-a-red active:text-orange-600 font-medium lg:text-xl md:text-lg sm:text-base max-sm:text-sm"
             onClick={() => {
               setClearInput(true)
               setSearchActive(false)
@@ -87,7 +98,7 @@ export const Footer = () => {
           </Link>
           <Link 
             to="/favorite" 
-            className="px-wrap-sm hover:text-orange-700 active:text-orange-600 font-medium lg:text-xl md:text-lg sm:text-base max-sm:text-sm"
+            className="px-wrap-sm hover:text-a-red active:text-orange-600 font-medium lg:text-xl md:text-lg sm:text-base max-sm:text-sm"
           >
             <span className="px-inner-sm bg-t-bg/80 inline-block! md:px-5 max-md:px-4 py-0.5">{t("footer.favText")}</span>
           </Link>
