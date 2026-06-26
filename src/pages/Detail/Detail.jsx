@@ -8,29 +8,29 @@ import { PDFDownloadButton } from "../../components/PdfGenerator/PdfGenerator.js
 import SpanInfo from "../../components/SpanInfo/SpanInfo.jsx"
 import ImageGallery from "../../components/ImagenGallery/ImageGallery.jsx"
 import RatingStars from "../../components/RatingStars/RatingStars.jsx"
-import useFavorite from "../../hooks/useFavorite.jsx"
+import { useFavorites } from "../../context/FavoriteContext";
 import { validateGameId } from "../../services/validateGameId.js"
 
 const Detail = () => {
   const { t } = useTranslation();
-  const { id } = useParams()
-  const navigate = useNavigate()
-  const { loading, isFavorite, toggleFavorite } = useFavorite()
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { isFavorite, toggleFavorite, loading } = useFavorites();
   
-    const game = useGamesByID(id)
+  const game = useGamesByID(id);
 
-    useEffect(() => {
-        validateGameId(id, navigate);
-    }, [id, navigate]);
+  useEffect(() => {
+    validateGameId(id, navigate);
+  }, [id, navigate]);
 
 
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center h-screen bg-neutral-800">
-            <div className="text-a-amber text-2xl">{t("detail.loadingText")}</div>
-            </div>
-        )
-    }
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-neutral-800">
+        <div className="text-a-amber text-2xl">{t("detail.loadingText")}</div>
+      </div>
+    )
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 lg:px-4 md:px-8 max-md:px-8 md:py-12">
@@ -56,9 +56,10 @@ const Detail = () => {
             </div>
 
             <div className="shrink-0 flex items-center gap-3 mt-5 justify-between lg:px-4 md:px-3 sm:px-2 max-sm:px-1">
-              <FavoriteButton  
-                isAdded={isFavorite(id)}
-                onClick={toggleFavorite ? () => toggleFavorite(game.id) : undefined}
+              <FavoriteButton
+                gameId={id}
+                // isAdded={isFavorite(game?.id)}
+                // onClick={toggleFavorite ? () => toggleFavorite(game.id) : undefined}
                 extraStyles="lg:scale-110 md:scale-100 max-md:scale-90 cursor-pointer"
               />
               <PDFDownloadButton game={game} />

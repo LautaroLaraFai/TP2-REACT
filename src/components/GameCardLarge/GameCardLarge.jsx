@@ -15,13 +15,6 @@ export default function GameCardLarge({
 
   const { t } = useTranslation()
 
-  const handleFavoriteClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    onClick();
-  };
-
-
   return (
     <div className="px-wrap-md group lg:mx-26 md:mx-12 sm:mx-10 max-sm:mx-5 mt-12 mb-14 max-sm:mt-8 max-sm:mb-10">
       <div className="px-border-md bg-a-amber md:-inset-0.75 max-md:-inset-0.5"/>
@@ -73,8 +66,7 @@ export default function GameCardLarge({
         </div>
 
         <FavoriteButton
-          isAdded={isFavorite}
-          onClick={handleFavoriteClick}
+          gameId={gameId}
           extraStyles={`
             absolute
             lg:top-6 lg:right-6 lg:scale-130
