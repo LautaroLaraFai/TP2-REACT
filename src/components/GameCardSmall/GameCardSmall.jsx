@@ -5,8 +5,7 @@ export default function GameCardSmall({
   name,
   price,
   image = "",
-  onClick,       
-  isFavorite,    
+  onClick,
   gameId,
   disableSearch
   }){
