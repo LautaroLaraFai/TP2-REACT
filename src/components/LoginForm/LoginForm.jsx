@@ -40,6 +40,20 @@ export default function LoginForm({ redirectTo = "/" }) {
 
   if (status === "loading") return <Loader />;
 
+  if (status === "success") {
+    return (
+      <div className="flex flex-col items-center gap-4 py-12" role="status">
+        <span
+          className="w-14 h-14 flex items-center justify-center border-2 border-a-lime text-a-lime text-2xl"
+          aria-hidden="true"
+        >
+          ✓
+        </span>
+        <p className="text-a-lime">{t("register.registerSuccess")}</p>
+      </div>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-95 flex flex-col gap-4">
       <FormInput
