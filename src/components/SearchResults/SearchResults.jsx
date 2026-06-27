@@ -6,8 +6,7 @@ export default function SearchResults({
   isLoading,
   filteredGames,
   disableSearch,
-  toggleFavorite,
-  isFavorite
+  toggleFavorite
 }) {
   const { t } = useTranslation();
 
@@ -31,7 +30,6 @@ export default function SearchResults({
     <CardGrid
       games={filteredGames}
       toggleFavorite={toggleFavorite}
-      isFavorite={isFavorite}
       disableSearch={disableSearch}
       animated={true}
     />

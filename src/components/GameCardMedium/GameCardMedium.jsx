@@ -7,9 +7,7 @@ export default function GameCardMedium({
   genres = [],
   image = "",
   releaseDate,
-  onClick,
-  isFavorite,
-  gameId,
+  gameId
 }) {
 
   return (

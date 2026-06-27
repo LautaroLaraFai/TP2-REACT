@@ -9,7 +9,6 @@ export default function GameCardLarge({
   price,
   image = "",
   onClick,
-  isFavorite,    
   gameId
 }) {
 

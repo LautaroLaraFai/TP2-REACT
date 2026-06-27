@@ -4,14 +4,10 @@ import { useFavorites } from "../../context/FavoriteContext";
 
 export default function FavoriteButton({
   gameId,
-  extraStyles = "",
-  iconClassName = "",
+  extraStyles = ""
 }) {
-  const { favorites, toggleFavorite } = useFavorites();
-
-  const isAdded = favorites.some(
-    (fav) => fav.gameId === gameId
-  );
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const isAdded = isFavorite(gameId);
 
   return (
     <button
@@ -21,11 +17,15 @@ export default function FavoriteButton({
     >
       <div className="px-wrap-sm w-full h-full">
         <div className="px-border-sm bg-a-amber -inset-0.5" />
-        <div className="px-inner-sm p-0.5 w-full h-full flex items-center justify-center bg-a-amber hover:bg-a-darkamber active:bg-a-lime transition-[background-color] duration-0">
-          <img
-            src={isAdded ? BrokenHeartIcon : HeartIcon}
-            className={iconClassName}
-          />
+        <div
+          className="
+            px-inner-sm p-0.5 w-full h-full flex items-center
+            justify-center bg-a-amber hover:bg-a-darkamber
+            active:bg-a-lime transition-[background-color]
+            duration-0
+          "
+        >
+          <img src={isAdded ? BrokenHeartIcon : HeartIcon} />
         </div>
       </div>
     </button>

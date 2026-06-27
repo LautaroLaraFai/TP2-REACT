@@ -4,13 +4,14 @@ import { Footer } from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header.jsx";
 import "../index.css";
 import SearchResults from "../components/SearchResults/SearchResults.jsx";
-import useFavorite from "../hooks/useFavorite.jsx";
+import { useFavorites } from '../context/FavoriteContext.jsx';
 
 export default function MainLayout({ children, showHeader = true }) {
   const [searchActive, setSearchActive] = useState(false);
   const [filteredGames, setFilteredGames] = useState([]);
   const [clearInput, setClearInput] = useState(false);
-  const { toggleFavorite, isFavorite, loading, setLoading } = useFavorite()
+  const [searchLoading, setSearchLoading] = useState(false);
+  const { toggleFavorite } = useFavorites();
 
   const disableSearch = () => {
     setSearchActive(false);
@@ -25,7 +26,7 @@ export default function MainLayout({ children, showHeader = true }) {
           setFilteredGames={setFilteredGames}
           clearInput={clearInput}
           setClearInput={setClearInput}
-          setIsLoading={setLoading}
+          setIsLoading={setSearchLoading}
         />
         )
       }
@@ -55,11 +56,10 @@ export default function MainLayout({ children, showHeader = true }) {
             <div className="px-border-lg-t bg-p-bg md:-inset-0.75 max-md:-inset-0.5" />
             <div className="px-inner-lg-t">
               <SearchResults
-                isLoading={loading}
+                isLoading={searchLoading}
                 filteredGames={filteredGames}
                 disableSearch={disableSearch}
                 toggleFavorite={toggleFavorite}
-                isFavorite={isFavorite}
               />
             </div>
           </div>

@@ -58,8 +58,6 @@ const Detail = () => {
             <div className="shrink-0 flex items-center gap-3 mt-5 justify-between lg:px-4 md:px-3 sm:px-2 max-sm:px-1">
               <FavoriteButton
                 gameId={id}
-                // isAdded={isFavorite(game?.id)}
-                // onClick={toggleFavorite ? () => toggleFavorite(game.id) : undefined}
                 extraStyles="lg:scale-110 md:scale-100 max-md:scale-90 cursor-pointer"
               />
               <PDFDownloadButton game={game} />
