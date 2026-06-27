@@ -9,7 +9,9 @@
                 "blackTongue": "Lengua Negra"
             }
         },
-        "searchBarPlaceholder": "Buscar juego o @desarrollador..."
+        "searchBarPlaceholder": "Buscar juego o @desarrollador...",
+        "loginText": "Ingresar",
+        "logoutText": "Cerrar Sesión"
     },
     "home": {
         "recommendations": "Recomendaciones",
