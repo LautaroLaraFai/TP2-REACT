@@ -9,7 +9,9 @@
                 "blackTongue": "Lugbúrz"
             }
         },
-        "searchBarPlaceholder": "Gimbatul lûpo agh @ufum..."
+        "searchBarPlaceholder": "Gimbatul lûpo agh @ufum...",
+        "loginText": "Zâg snaga",
+        "logoutText": "Snaga-ghâsh!"
     },
     "home": {
         "recommendations": "Burzum",

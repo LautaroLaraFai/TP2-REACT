@@ -4,6 +4,7 @@ import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import SearchBar from "../SearchBar/SearchBar"
+import { useAuth } from "../../context/AuthContext.jsx"
 
 const Header = ({
   clearInput,
@@ -13,11 +14,10 @@ const Header = ({
   setIsLoading
 }) => {
   const { t } = useTranslation()
-
+  const { isAuthenticated, logout, user } = useAuth()
   const [isLangSwitcherOpen, setIsLangSwitcherOpen] = useState(false)
-  const onClose = () => {
-    setIsLangSwitcherOpen(false)
-  }
+  const onClose = () => {setIsLangSwitcherOpen(false)}
+
   return (
     <header
       className="
@@ -31,12 +31,12 @@ const Header = ({
       <div className="px-border-lg bg-a-amber md:-inset-0.75 max-md:-inset-0.5" />
       <div
         className="
-          px-inner-lg
-          flex items-center justify-between
-          h-16 md:h-18
-          gap-3 md:gap-6
-          bg-p-bg
-          px-4 sm:px-6 md:px-8 lg:px-10
+        px-inner-lg
+        flex items-center justify-between
+        h-16 md:h-18
+        gap-3 md:gap-6
+        bg-p-bg
+        px-4 sm:px-6 md:px-8 lg:px-10
         "
       >
         <Link
@@ -78,35 +78,85 @@ const Header = ({
             shrink-0
           "
         >
-          <Link
-            to="/favorite"
+          <div
             className="
-              text-sm sm:text-base md:text-lg lg:text-xl
-              font-medium
-              w-14 sm:w-16 md:w-22 lg:w-26
-              text-center whitespace-nowrap
-              hover:text-orange-700 active:text-orange-600
+              flex items-center
+              gap-2 sm:gap-3 md:gap-6
+              shrink-0
             "
-            onClick={() => {
-              setClearInput(true)
-              setSearchActive(false)
-              setFilteredGames([])
-            }}
           >
-            {t("header.favText")}
-          </Link>
-          <div className="relative">
-            <button
-              className="
-                text-sm sm:text-base md:text-lg lg:text-xl
-                font-medium
-                w-14 sm:w-16 md:w-22 lg:w-26
-                text-center whitespace-nowrap
-                hover:text-orange-700 active:text-orange-600 cursor-pointer
-              "
-              onClick={() => setIsLangSwitcherOpen(!isLangSwitcherOpen)}>
-              {t("header.langText")}
-            </button>
+            {isAuthenticated ? (
+              <>
+                <Link
+                  to="/favorite"
+                  className="
+                    text-sm sm:text-base md:text-lg lg:text-xl
+                    font-medium
+                    w-14 sm:w-16 md:w-22 lg:w-26
+                    text-center whitespace-nowrap
+                    hover:text-orange-700 active:text-orange-600
+                  "
+                  onClick={() => {
+                    setClearInput(true)
+                    setSearchActive(false)
+                    setFilteredGames([])
+                  }}
+                >
+                  {t("header.favText")}
+                </Link>
+                
+                <button
+                  onClick={logout}
+                  className="
+                    text-center cursor-pointer
+                    w-32 sm:w-25 md:w-30 max-sm:w-20
+                    overflow-hidden bg-p-bg z-1000
+                    px-wrap-sm font-medium text-p-bg py-1 px-0.5
+                    text-sm sm:text-base md:text-lg lg:text-xl
+                    hover:text-orange-700 active:text-orange-600
+                  "
+                >
+                  <div className="px-border-sm bg-a-amber -inset-0.5" />
+                  <div className="px-inner-sm relative w-full h-full flex flex-col justify-center hover:bg-a-darkamber active:bg-a-lime">
+                    {t("header.logoutText")}
+                  </div>
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="
+                    text-center cursor-pointer
+                    w-32 sm:w-25 md:w-30 max-sm:w-20
+                    overflow-hidden bg-p-bg z-1000
+                    px-wrap-sm font-medium text-p-bg py-1 px-0.5
+                    text-sm sm:text-base md:text-lg lg:text-xl
+                    hover:text-orange-700 active:text-orange-600
+                  "
+                >
+                  <div className="px-border-sm bg-a-amber -inset-0.5" />
+                  <div className="px-inner-sm relative w-full h-full flex flex-col justify-center hover:bg-a-darkamber active:bg-a-lime">
+                    {t("header.loginText")}
+                  </div>
+                </Link>
+              </>
+            )}
+
+            <div className="relative">
+              <button
+                className="
+                  text-sm sm:text-base md:text-lg lg:text-xl
+                  font-medium
+                  w-14 sm:w-16 md:w-22 lg:w-26
+                  text-center whitespace-nowrap
+                  hover:text-orange-700 active:text-orange-600 cursor-pointer
+                "
+                onClick={() => setIsLangSwitcherOpen(!isLangSwitcherOpen)}
+              >
+                {t("header.langText")}
+              </button>
+            </div>
           </div>
         </div>
       </div>
