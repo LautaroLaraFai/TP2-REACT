@@ -202,6 +202,22 @@ Accedé a la aplicación directamente desde:
 
 **[https://tp-2-react-nine.vercel.app/](https://tp-2-react-nine.vercel.app/)**
 
+
+## Variables de entorno
+
+Es importante colocar en un `.env` las siguientes variables de entorno
+
+### Backend local
+```env
+VITE_API_URL="http://localhost:3000/api"
+```
+
+### Backend deploy
+```env
+VITE_API_URL="https://tp-3-rest-api-express-7afz.vercel.app/api"
+```
+
+
 ---
 
 ## Backend
