@@ -1,3 +1,4 @@
+import { useOptimisticFavorite } from "../../hooks/useOptimisticFavorite.js";
 import HeartIcon from "../../assets/heart-pixel.svg";
 import BrokenHeartIcon from "../../assets/broken-heart-pixel.svg";
 import { useFavorites } from "../../context/FavoriteContext";
@@ -6,12 +7,11 @@ export default function FavoriteButton({
   gameId,
   extraStyles = ""
 }) {
-  const { isFavorite, toggleFavorite } = useFavorites();
-  const isAdded = isFavorite(gameId);
+  const { optimisticFavorite, handleFavoriteClick } = useOptimisticFavorite(gameId);
 
   return (
     <button
-      onClick={() => toggleFavorite(gameId)}
+      onClick={handleFavoriteClick}
       className={`w-10 h-10 p-0 bg-transparent border-none outline-none cursor-pointer ${extraStyles}`}
       type="button"
     >
@@ -25,7 +25,7 @@ export default function FavoriteButton({
             duration-0
           "
         >
-          <img src={isAdded ? BrokenHeartIcon : HeartIcon} />
+          <img src={optimisticFavorite ? BrokenHeartIcon : HeartIcon} />
         </div>
       </div>
     </button>
