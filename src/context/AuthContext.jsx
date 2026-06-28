@@ -36,6 +36,7 @@ export function AuthProvider({ children }) {
     localStorage.removeItem("token");
     setUser(null);
     setToken(null);
+    window.location.reload();
   };
 
   const bootstrapAuth = async (storedToken) => {

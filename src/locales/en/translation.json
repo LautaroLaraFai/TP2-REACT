@@ -9,7 +9,9 @@
                 "blackTongue": "Black Speech"
             }
         },
-        "searchBarPlaceholder": "Search game or @developer..."
+        "searchBarPlaceholder": "Search game or @developer...",
+        "loginText": "Log In",
+        "logoutText": "Log Out"
     },
     "home": {
         "recommendations": "Recommendations",

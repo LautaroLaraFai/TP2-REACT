@@ -3,7 +3,6 @@ import GameCardSmall from "../GameCardSmall/GameCardSmall.jsx";
 const CardGrid = ({
   games,
   toggleFavorite,
-  isFavorite,
   disableSearch,
   animated = false
 }) => {
@@ -21,7 +20,6 @@ const CardGrid = ({
             name={game.Name}
             alt={game.Name}
             onClick={toggleFavorite ? () => toggleFavorite(game.id) : undefined}
-            isFavorite={isFavorite ? isFavorite(game.id) : undefined}
             disableSearch={disableSearch}
           />
         );

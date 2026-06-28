@@ -5,18 +5,11 @@ export default function GameCardSmall({
   name,
   price,
   image = "",
-  onClick,       
-  isFavorite,    
+  onClick,
   gameId,
   disableSearch
   }){
     
-  const handleFavoriteClick = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      onClick(); 
-  };
-
   return (
     <div className="px-wrap-md group relative">
       <div className="px-border-md bg-a-amber md:-inset-0.75 max-md:-inset-0.5" />
@@ -32,8 +25,7 @@ export default function GameCardSmall({
       </Link>
         {FavoriteButton && (
           <FavoriteButton
-            isAdded={isFavorite}  
-            onClick={handleFavoriteClick}
+            gameId={gameId}
             extraStyles={`
               absolute top-2 right-2
               translate-x-[150%] opacity-0

@@ -7,7 +7,8 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router'
 import Logo from './assets/Logo.svg?url'
 import ScrollToTop from "./services/ScrollToTop";
-import { AuthProvider } from './context/AuthContext.jsx';
+import { FavoriteProvider } from "./context/FavoriteContext";
+import { AuthProvider } from "./context/AuthContext";
 
 // Interceptor simple
 const originalFetch = window.fetch;
@@ -32,10 +33,15 @@ document.head.appendChild(faviconLink)
 
 
 createRoot(document.getElementById('root')).render(
-    <AuthProvider>
-        <BrowserRouter>
-        <ScrollToTop />
-        <App />
-        </BrowserRouter>
-    </AuthProvider>
+    <BrowserRouter>
+      
+      <ScrollToTop/>
+
+      <AuthProvider>
+        <FavoriteProvider>
+          <App/>
+        </FavoriteProvider>
+      </AuthProvider>
+    
+    </BrowserRouter>
 )
