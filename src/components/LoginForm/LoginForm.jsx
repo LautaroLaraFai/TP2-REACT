@@ -22,7 +22,10 @@ export default function LoginForm({ redirectTo = "/" }) {
         const result = await loginRequest(data);
 
         if (result.ok) {
-          login(result.token);
+          await login(
+            result.accessToken,
+            result.refreshToken
+          );
         }
 
         return result;

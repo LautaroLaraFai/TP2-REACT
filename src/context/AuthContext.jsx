@@ -1,64 +1,116 @@
 import { createContext, useContext, useEffect, useState, useRef } from "react";
-import { getMe } from "../services/authService";
-import { API_BASE_URL } from "../config/apiurl";
+import { getMe, refreshAccessToken, logoutRequest } from "../services/authService";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
+  const [refreshToken, setRefreshToken] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const didInit = useRef(false);
+
 
   useEffect(() => {
     if (didInit.current) return;
     didInit.current = true;
 
-    const storedToken = localStorage.getItem("token");
+    const storedAccessToken = localStorage.getItem("accessToken");
+    const storedRefreshToken = localStorage.getItem("refreshToken");
 
-    if (!storedToken) {
+    if (!storedAccessToken || !storedRefreshToken) {
       setLoading(false);
       return;
     }
 
-    bootstrapAuth(storedToken).finally(() => setLoading(false));
+    bootstrapAuth(storedAccessToken, storedRefreshToken).finally(() => setLoading(false));
   }, []);
 
-  const login = async (jwt) => {
-    localStorage.setItem("token", jwt);
-    setToken(jwt);
 
-    await bootstrapAuth(jwt);
+  const login = async (accessToken, refreshToken) => {
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("refreshToken",refreshToken);
+
+    setAccessToken(accessToken);
+    setRefreshToken(refreshToken);
+
+    await bootstrapAuth(accessToken, refreshToken);
   };
 
-  const logout = () => {
-    localStorage.removeItem("token");
+
+  const refreshSession = async () => {
+    const tokenToUse = refreshToken || localStorage.getItem("refreshToken");
+
+    if (!tokenToUse) {
+      throw new Error("No refresh token");
+    }
+    const newAccessToken = await refreshAccessToken(tokenToUse);
+    localStorage.setItem("accessToken", newAccessToken);
+    setAccessToken(newAccessToken);
+
+    return newAccessToken;
+  };
+
+
+  const logout = async () => {
+    if (refreshToken) {
+      try {
+        await logoutRequest(refreshToken);
+      } catch {}
+    }
+
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+
     setUser(null);
-    setToken(null);
+    setAccessToken(null);
+    setRefreshToken(null);
+
     window.location.reload();
   };
 
-  const bootstrapAuth = async (storedToken) => {
+
+  const bootstrapAuth = async (storedAccessToken, storedRefreshToken) => {
     try {
-      const me = await getMe(storedToken);
+      const me = await getMe(storedAccessToken);
+
       setUser(me);
-      setToken(storedToken);
+      setAccessToken(storedAccessToken);
+      setRefreshToken(storedRefreshToken);
     } catch {
-      localStorage.removeItem("token");
-      setUser(null);
-      setToken(null);
+      try {
+        const newAccessToken = await refreshAccessToken(storedRefreshToken);
+
+        localStorage.setItem("accessToken", newAccessToken);
+
+        const me = await getMe(newAccessToken);
+
+        setUser(me);
+        setAccessToken(newAccessToken);
+        setRefreshToken(storedRefreshToken);
+      } catch {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+
+        setUser(null);
+        setAccessToken(null);
+        setRefreshToken(null);
+      }
     }
   };
+
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        token,
+        accessToken,
+        refreshToken,
         loading,
         login,
         logout,
+        refreshSession,
         isAuthenticated: !!user,
       }}
     >

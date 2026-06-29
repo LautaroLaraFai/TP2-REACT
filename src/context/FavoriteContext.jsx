@@ -7,23 +7,41 @@ const FavoriteContext = createContext();
 
 export function FavoriteProvider({ children }) {
   const navigate = useNavigate();
-  const { token, isAuthenticated, loading } = useAuth();
+  const { accessToken, refreshSession, isAuthenticated, loading } = useAuth();
   const [favorites, setFavorites] = useState([]);
   const [loadingState, setLoading] = useState(true);
 
 
   const fetchFavorites = async () => {
-    if (!token) return [];
+    if (!accessToken) return [];
 
     const res = await fetch(`${API_BASE_URL}/favorites`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
 
-    if (res.status === 403) {
-      console.warn("Token rejected by backend");
-      return [];
+    if (res.status === 401) {
+      try {
+        const newAccessToken = await refreshSession();
+
+        const retry = await fetch(
+          `${API_BASE_URL}/favorites`,
+          {
+            headers: {
+              Authorization:
+                `Bearer ${newAccessToken}`,
+            },
+          }
+        );
+
+        if (!retry.ok) return [];
+
+        return await retry.json();
+
+      } catch {
+        return [];
+      }
     }
 
     if (!res.ok) return [];
@@ -35,7 +53,7 @@ export function FavoriteProvider({ children }) {
   useEffect(() => {
     if (loading) return;
 
-    if (!isAuthenticated || !token) {
+    if (!isAuthenticated || !accessToken) {
       setFavorites([]);
       setLoading(false);
       return;
@@ -52,7 +70,7 @@ export function FavoriteProvider({ children }) {
     };
 
     load();
-  }, [isAuthenticated, token, loading]);
+  }, [isAuthenticated, accessToken, loading]);
 
 
   const toggleFavorite = async (gameId) => {
@@ -69,12 +87,40 @@ export function FavoriteProvider({ children }) {
     const isFav = isFavorite(gameId);
     const method = isFav ? "DELETE" : "POST";
 
-    await fetch(`${API_BASE_URL}/favorites/${gameId}`, {
-      method,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    let tokenToUse = accessToken;
+
+    let res = await fetch(
+      `${API_BASE_URL}/favorites/${gameId}`,
+      {
+        method,
+        headers: {
+          Authorization: `Bearer ${tokenToUse}`,
+        },
+      }
+    );
+
+    if (res.status === 401) {
+      try {
+        tokenToUse = await refreshSession();
+
+        res = await fetch(
+          `${API_BASE_URL}/favorites/${gameId}`,
+          {
+            method,
+            headers: {
+              Authorization:
+                `Bearer ${tokenToUse}`,
+            },
+          }
+        );
+      } catch {
+        return;
+      }
+    }
+
+    if (!res.ok) {
+      return;
+    }
 
     const updated = await fetchFavorites();
     setFavorites(updated);
