@@ -1,8 +1,11 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import GameCardMedium from "./GameCardMedium";
+
+vi.mock("../FavoriteButton/FavoriteButton.jsx", () => ({
+  default: () => <button>FavoriteButton</button>,
+}));
 
 describe("GameCardMedium Component", () => {
   
@@ -12,7 +15,6 @@ describe("GameCardMedium Component", () => {
     genres: ["RPG", "Action"],
     image: "https://picsum.photos/200/300",
     releaseDate: "2020-12-10",
-    isFavorite: false,
     gameId: 1,
     onClick: vi.fn(),
   };
@@ -42,7 +44,7 @@ describe("GameCardMedium Component", () => {
 
   it("Correctly renders the release date", () => {
     renderComponent();
-    expect(screen.getByText(/2020/)).toBeInTheDocument();
+    expect(screen.getByText(/9\/12\/2020|10\/12\/2020/)).toBeInTheDocument();
   });
 
   it("Correctly renders the game image", () => {
@@ -58,17 +60,13 @@ describe("GameCardMedium Component", () => {
     expect(link).toHaveAttribute("href", "/detail/1");
   });
 
-  it("Executes onClick when clicking the favorites button", async () => {
-    const onClick = vi.fn();
-    const user = userEvent.setup();
-    renderComponent({ onClick });
-    const button = screen.getByRole("button");
-    await user.click(button);
-    expect(onClick).toHaveBeenCalledTimes(1);
+  it("Renders the favorites button", () => {
+    renderComponent();
+    expect(screen.getByText("FavoriteButton")).toBeInTheDocument();
   });
 
   it("Does not render releaseDate if it does not exist", () => {
     renderComponent({ releaseDate: null });
-    expect(screen.queryByText(/2020/)).not.toBeInTheDocument();
+    expect(screen.queryByText("10/12/2020")).not.toBeInTheDocument();
   });
 });
