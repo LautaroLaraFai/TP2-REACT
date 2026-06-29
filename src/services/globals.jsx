@@ -1,11 +1,10 @@
-//!  Este archivo es un intento de optimizar los fetchs
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { getDataByID } from './getDataByID';
 
 let lastID = null
-let lastLang = null  // ← Agregar idioma a la cache
+let lastLang = null
 let savedGame = null
 
 export const useGamesByID = (id) => {
@@ -28,13 +27,13 @@ export const useGamesByID = (id) => {
             
             const data = await getDataByID(id)
             lastID = id
-            lastLang = currentLang  // ← Guardar el idioma
+            lastLang = currentLang
             savedGame = data
             setGame(data)
         }
 
         loadByID()
-    }, [id, isDetailPage, i18n.language]) // ← Agregar i18n.language como dependencia
+    }, [id, isDetailPage, i18n.language])
 
     return game
 }
