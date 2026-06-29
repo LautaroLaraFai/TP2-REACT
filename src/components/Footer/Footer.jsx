@@ -31,8 +31,8 @@ export const Footer = () => {
               <p className="font-medium lg:text-xl md:text-lg sm:text-base max-sm:text-sm leading-4.5 lg:mb-4 md:mb-3 sm:mb-3 max-sm:mb-2">
                 Marcos Chavez
               </p>
-              <p className="text-a-darkamber font-bold lg:text-lg md:text-base sm:text-sm max-sm:text-sm uppercase tracking-wider leading-3.5 flex flex-col gap-1">
-                Dev [PM]<span className="text-a-lime">#1</span>
+              <p className="text-a-darkamber font-bold lg:text-lg md:text-base sm:text-sm max-sm:text-sm uppercase tracking-wider leading-1.5 flex flex-col gap-1">
+                Developer
               </p>
             </div>
 
@@ -54,8 +54,8 @@ export const Footer = () => {
               <p className="font-medium lg:text-xl md:text-lg sm:text-base max-sm:text-sm leading-4.5 lg:mb-4 md:mb-3 sm:mb-3 max-sm:mb-2">
                 Lautaro Lara
               </p>
-              <p className="text-a-darkamber font-bold lg:text-lg md:text-base sm:text-sm max-sm:text-sm uppercase tracking-wider leading-3.5 flex flex-col gap-1">
-                Dev [PM]<span className="text-a-lime">#2</span>
+              <p className="text-a-darkamber font-bold lg:text-lg md:text-base sm:text-sm max-sm:text-sm uppercase tracking-wider leading-1.5 flex flex-col gap-1">
+                Developer<span className="text-a-lime">PM&nbsp;<span className="lg:text-base md:text-sm sm:text-xs max-sm:text-xs brightness-75">FE</span></span>
               </p>
             </div>
           </div>
@@ -76,8 +76,9 @@ export const Footer = () => {
               <p className="font-medium lg:text-xl md:text-lg sm:text-base max-sm:text-sm leading-4.5 lg:mb-4 md:mb-3 sm:mb-3 max-sm:mb-2">
                 Lucas Martinez
               </p>
-              <p className="text-a-darkamber font-bold lg:text-lg md:text-base sm:text-sm max-sm:text-sm uppercase tracking-wider leading-3.5 flex flex-col gap-1">
-                Dev [PM]<span className="text-a-lime">#3</span>
+              <p className="text-a-darkamber font-bold lg:text-lg md:text-base sm:text-sm max-sm:text-sm uppercase tracking-wider leading-1.5 flex flex-col gap-1">
+                Developer<span className="text-a-lime">PM&nbsp;<span className="lg:text-base md:text-sm sm:text-xs max-sm:text-xs brightness-75">BE</span></span>
+
               </p>
             </div>
           </div>
