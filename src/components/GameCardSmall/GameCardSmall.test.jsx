@@ -4,6 +4,10 @@ import { describe, it, expect, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import GameCardSmall from "./GameCardSmall";
 
+vi.mock("../FavoriteButton/FavoriteButton.jsx", () => ({
+  default: () => <button>FavoriteButton</button>,
+}));
+
 describe("GameCardSmall Component", () => {
 
   const defaultProps = {
@@ -11,12 +15,9 @@ describe("GameCardSmall Component", () => {
     price: 59.99,
     image: "https://picsum.photos/200/300",
     gameId: 1,
-    isFavorite: false,
     onClick: vi.fn(),
     disableSearch: vi.fn(),
   };
-
-
 
   it("Correctly renders the game name", () => {
     render(
@@ -29,8 +30,6 @@ describe("GameCardSmall Component", () => {
     expect(screen.getByText("Cyberpunk 2077")).toBeInTheDocument();
   });
 
-
-
   it("Correctly renders the price", () => {
     render(
       <MemoryRouter>
@@ -41,8 +40,6 @@ describe("GameCardSmall Component", () => {
     expect(screen.getByText("USD$ 59.99")).toBeInTheDocument();
   });
 
-
-
   it("Correctly renders the image", () => {
     render(
       <MemoryRouter>
@@ -50,16 +47,14 @@ describe("GameCardSmall Component", () => {
       </MemoryRouter>
     );
 
-    const images = screen.getAllByRole("img");
-    
-    expect(images[0]).toBeInTheDocument();
-    expect(images[0]).toHaveAttribute(
+    const image = screen.getByRole("img");
+
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute(
       "src",
       "https://picsum.photos/200/300"
     );
   });
-
-
 
   it("Renders the link to the game detail page", () => {
     render(
@@ -73,29 +68,15 @@ describe("GameCardSmall Component", () => {
     expect(link).toHaveAttribute("href", "/detail/1");
   });
 
-
-  
-  it("Executes onClick when clicking the favorites button", async () => {
-    const onClick = vi.fn();
-    const user = userEvent.setup();
-
+  it("Renders the favorites button", () => {
     render(
       <MemoryRouter>
-        <GameCardSmall
-          {...defaultProps}
-          onClick={onClick}
-        />
+        <GameCardSmall {...defaultProps} />
       </MemoryRouter>
     );
 
-    const buttons = screen.getAllByRole("button");
-
-    await user.click(buttons[0]);
-
-    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(screen.getByText("FavoriteButton")).toBeInTheDocument();
   });
-
-
 
   it("Executes disableSearch when clicking the link", async () => {
     const disableSearch = vi.fn();

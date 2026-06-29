@@ -1,15 +1,17 @@
 import { useState } from "react";
+import { Outlet } from 'react-router'
 import { Footer } from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header.jsx";
 import "../index.css";
 import SearchResults from "../components/SearchResults/SearchResults.jsx";
-import useFavorite from "../hooks/useFavorite.jsx";
+import { useFavorites } from '../context/FavoriteContext.jsx';
 
-export default function MainLayout({ children }) {
+export default function MainLayout({ children, showHeader = true, showFooter = true }) {
   const [searchActive, setSearchActive] = useState(false);
   const [filteredGames, setFilteredGames] = useState([]);
   const [clearInput, setClearInput] = useState(false);
-  const { toggleFavorite, isFavorite, loading, setLoading } = useFavorite()
+  const [searchLoading, setSearchLoading] = useState(false);
+  const { toggleFavorite } = useFavorites();
 
   const disableSearch = () => {
     setSearchActive(false);
@@ -18,13 +20,16 @@ export default function MainLayout({ children }) {
 
   return (
     <>
-      <Header
-        setSearchActive={setSearchActive}
-        setFilteredGames={setFilteredGames}
-        clearInput={clearInput}
-        setClearInput={setClearInput}
-        setIsLoading={setLoading}
-      />
+      {showHeader && (
+        <Header
+          setSearchActive={setSearchActive}
+          setFilteredGames={setFilteredGames}
+          clearInput={clearInput}
+          setClearInput={setClearInput}
+          setIsLoading={setSearchLoading}
+        />
+        )
+      }
 
       <main
         className="
@@ -36,10 +41,10 @@ export default function MainLayout({ children }) {
       >
         {/* Contenido normal */}
         {!searchActive && (
-          <div className="flex-1! px-wrap-lg-t">
-            <div className="px-border-lg-t bg-p-bg md:-inset-0.75 max-md:-inset-0.5" />
-            <div className="px-inner-lg-t bg-p-bg">
-              {children}
+          <div className={`flex-1! ${showFooter ? `px-wrap-lg-t` : `px-wrap-lg`}`}>
+            <div className={`${showFooter ? `px-border-lg-t` : `px-border-lg`} bg-p-bg md:-inset-0.75 max-md:-inset-0.5`} />
+            <div className={`${showFooter ? `px-inner-lg-t` : `px-inner-lg`} bg-p-bg`}>
+              <Outlet/>
             </div>
           </div>
         )}
@@ -50,17 +55,17 @@ export default function MainLayout({ children }) {
             <div className="px-border-lg-t bg-p-bg md:-inset-0.75 max-md:-inset-0.5" />
             <div className="px-inner-lg-t">
               <SearchResults
-                isLoading={loading}
+                isLoading={searchLoading}
                 filteredGames={filteredGames}
                 disableSearch={disableSearch}
                 toggleFavorite={toggleFavorite}
-                isFavorite={isFavorite}
               />
             </div>
           </div>
         )}
 
-        <Footer />
+        {showFooter && <Footer />}
+
       </main>
     </>
   );

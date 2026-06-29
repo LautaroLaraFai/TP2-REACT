@@ -9,7 +9,9 @@
                 "blackTongue": "Lugbúrz"
             }
         },
-        "searchBarPlaceholder": "Gimbatul lûpo agh @ufum..."
+        "searchBarPlaceholder": "Gimbatul lûpo agh @ufum...",
+        "loginText": "Zâg snaga",
+        "logoutText": "Snaga-ghâsh!"
     },
     "home": {
         "recommendations": "Burzum",
@@ -47,5 +49,43 @@
     "footer": {
         "favText": "Udu",
         "copyright": "© MAETS — NAR LAM. GOTHOB SKAI. TARK GIMBAT GHAASH. ASH BURZUM NA KHIL. UDO NAR FASH. SKAI GURM."
+    },
+    "register": {
+        "registerTitle": "Snaga-krimpat",
+        "registerButton": "Krimpat",
+        "registerSuccess": "Krimpat gimbatul!",
+        "registerQuestion": "Ash nazg burzum-ishi?",
+        "registerQuestionLogin": "Glob"
+    },
+    "form": {
+        "homeButton": "Zûl",
+        "formName": "Muzg",
+        "formEmail": "Patar-ghâsh",
+        "formPassword": "Ghash-kat",
+        "formPasswordRepeat": "Ghash-kat agh burz"
+    },
+    "login": {
+        "loginTitle": "Globat",
+        "loginButton": "Glob",
+        "loginSuccess": "Globat gimbatul!",
+        "loginQuestion": "MAETS-ishi ash snaga-hai?",
+        "loginQuestionRegister": "Krimpat"
+    },
+    "validation": {
+        "nameRequired": "Muzg gimbatul-ishi",
+        "nameMinLength": "Lûk 3 krimpat",
+        "emailRequired": "Patar-ghâsh gimbatul-ishi",
+        "emailInvalid": "Patar-ghâsh globat búbhosh",
+        "passwordRequired": "Ghash-kat gimbatul-ishi",
+        "passwordMinLength": "Lûk 8 krimpat"
+    },
+    "apiErrorPage": {
+        "title": "Glob-hosh",
+        "message": "Burzum-ishi globat server",
+        "retryButton": "Glob agh"
+    },
+    "errorPage": {
+        "title": "Patar búbhosh",
+        "homeButton": "Gakh agh Zûl"
     }
 }

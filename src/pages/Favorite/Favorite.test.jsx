@@ -1,8 +1,7 @@
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import Favorite from "./Favorite";
-import useFavorite from "../../hooks/useFavorite.jsx";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
@@ -19,8 +18,12 @@ vi.mock("react-i18next", () => ({
   Trans: ({ children }) => children,
 }));
 
-vi.mock("../../hooks/useFavorite.jsx", () => ({
-  default: vi.fn(),
+vi.mock("../../context/FavoriteContext", () => ({
+  useFavorites: vi.fn(),
+}));
+
+vi.mock("../../services/hydrateFavorites.js", () => ({
+  hydrateFavorites: vi.fn(),
 }));
 
 vi.mock("../../layouts/Section.jsx", () => ({
@@ -35,48 +38,55 @@ vi.mock("../../components/CardGridFavorite/CardGridFavorite.jsx", () => ({
   CardGridFavorite: () => <div>CardGridFavorite</div>,
 }));
 
-
 describe("Favorite Component", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
 
-  it("Render loader spinner when loading is true", () => {
-    useFavorite.mockReturnValue({
-      favoriteGames: [],
-      loading: true,
+  it("Render loader spinner when loading is true", async () => {
+    const { useFavorites } = await import("../../context/FavoriteContext");
+    const { hydrateFavorites } = await import("../../services/hydrateFavorites.js");
+
+    useFavorites.mockReturnValue({
+      favorites: [1],
       toggleFavorite: vi.fn(),
-      isFavorite: vi.fn(),
     });
+
+    hydrateFavorites.mockImplementation(() => new Promise(() => {}));
 
     render(<MemoryRouter><Favorite/></MemoryRouter>);
     expect(screen.getByText("Loader")).toBeInTheDocument();
   });
 
+  it("Render message when no favorites", async () => {
+    const { useFavorites } = await import("../../context/FavoriteContext");
 
-  
-  it("Render message when no favorites", () => {
-    useFavorite.mockReturnValue({
-      favoriteGames: [],
-      loading: false,
+    useFavorites.mockReturnValue({
+      favorites: [],
       toggleFavorite: vi.fn(),
-      isFavorite: vi.fn(),
     });
 
     render(<MemoryRouter><Favorite/></MemoryRouter>);
-    expect(screen.getByText("favorite.favNoGameInfo")).toBeInTheDocument();
-    expect(screen.getByText("favorite.favExploreText")).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByText("favorite.favNoGameInfo")).toBeInTheDocument();
+      expect(screen.getByText("favorite.favExploreText")).toBeInTheDocument();
+    });
   });
 
+  it("Render link to Home", async () => {
+    const { useFavorites } = await import("../../context/FavoriteContext");
 
-
-  it("Render link to Home", () => {
-    useFavorite.mockReturnValue({
-      favoriteGames: [],
-      loading: false,
+    useFavorites.mockReturnValue({
+      favorites: [],
       toggleFavorite: vi.fn(),
-      isFavorite: vi.fn(),
     });
 
     render(<MemoryRouter><Favorite/></MemoryRouter>);
-    const link = screen.getByRole("link");
-    expect(link).toHaveAttribute("href", "/");
+
+    await waitFor(() => {
+      const link = screen.getByRole("link");
+      expect(link).toHaveAttribute("href", "/");
+    });
   });
 });

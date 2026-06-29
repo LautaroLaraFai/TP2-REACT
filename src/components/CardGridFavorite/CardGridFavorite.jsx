@@ -2,8 +2,6 @@ import GameCardMedium from "../GameCardMedium/GameCardMedium.jsx";
 
 export const CardGridFavorite = ({
   games,
-  toggleFavorite,
-  isFavorite,
   animated = false
 }) => {
   return (
@@ -18,8 +16,6 @@ export const CardGridFavorite = ({
             image={game?.Image}
             genres={game?.Genres}
             releaseDate={game?.ReleaseDate}
-            onClick={toggleFavorite ? () => toggleFavorite(game.id) : undefined}
-            isFavorite={isFavorite(game.id)}
           />
         );
 

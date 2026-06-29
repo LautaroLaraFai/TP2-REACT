@@ -6,14 +6,14 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from "../../components/Loader/Loader.jsx"
 import usePageOfData from "../../hooks/usePageOfData.jsx"
 import CardGrid from "../../components/CardGrid/CardGrid.jsx"
-import useFavorite from "../../hooks/useFavorite.jsx";
+import { useFavorites } from "../../context/FavoriteContext";
 
 export default function Home () {
 
   const { t } = useTranslation()
 
   const { games, fetchData, hasMore, frontPageGame } = usePageOfData();
-  const { toggleFavorite, isFavorite } = useFavorite()
+  const { toggleFavorite } = useFavorites();
   
   return (
     <InfiniteScroll
@@ -43,7 +43,6 @@ export default function Home () {
             price={frontPageGame?.Price}
             image={frontPageGame?.Image}
             onClick={() => toggleFavorite(frontPageGame?.id)}
-            isFavorite={isFavorite(frontPageGame?.id)} 
           />
         )}
 
@@ -55,7 +54,6 @@ export default function Home () {
         <CardGrid 
           games={games}
           toggleFavorite={toggleFavorite}
-          isFavorite={isFavorite}
         />
       </Section>
 

@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next"
+import { getDataByID } from "../services/getDataByID";
 import getData from "../services/getData"
 
 const usePageOfData = () => {
@@ -7,7 +9,7 @@ const usePageOfData = () => {
   const [hasMore, setHasMore] = useState(true);
   const [frontPageGame, setFrontPageGame] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const { i18n } = useTranslation();
   const page_limit = 20;
 
   const fetchData = async () => {
@@ -41,6 +43,18 @@ const usePageOfData = () => {
       getRandomGame(games);
     }
   }, [games]);
+
+  useEffect(() => {
+    const reloadFrontPageGame = async () => {
+      if (!frontPageGame) return;
+
+      const game = await getDataByID(frontPageGame.id);
+
+      if (game) setFrontPageGame(game);
+    };
+
+    reloadFrontPageGame();
+  }, [i18n.language]);
 
   const getRandomGame = (games) => {
     if (!games || games.length === 0) return;

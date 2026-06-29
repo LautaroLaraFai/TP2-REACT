@@ -7,15 +7,8 @@ export default function GameCardMedium({
   genres = [],
   image = "",
   releaseDate,
-  onClick,
-  isFavorite,
-  gameId,
+  gameId
 }) {
-  const handleFavoriteClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    onClick?.();
-  };
 
   return (
     <div className="px-wrap-sm group relative lg:w-200 lg:mx-auto md:mx-12 sm:mx-8 max-sm:mx-4">
@@ -81,8 +74,7 @@ export default function GameCardMedium({
 
           {FavoriteButton && (
             <FavoriteButton
-              isAdded={isFavorite}
-              onClick={handleFavoriteClick}
+              gameId={gameId}
               extraStyles={`
                 shrink-0
                 scale-60 sm:scale-80 md:scale-90 lg:scale-110
