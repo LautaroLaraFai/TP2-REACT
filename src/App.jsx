@@ -47,6 +47,11 @@ function App() {
           }
         />
       </Route>
+
+      <Route element={<MainLayout showHeader={false} showFooter={false} />}>
+        <Route path="*" element={<ErrorPage />} />
+      </Route>
+
     </Routes>
   );
 }
