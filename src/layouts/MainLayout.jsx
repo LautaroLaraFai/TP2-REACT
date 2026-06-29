@@ -6,7 +6,7 @@ import "../index.css";
 import SearchResults from "../components/SearchResults/SearchResults.jsx";
 import { useFavorites } from '../context/FavoriteContext.jsx';
 
-export default function MainLayout({ children, showHeader = true }) {
+export default function MainLayout({ children, showHeader = true, showFooter = true }) {
   const [searchActive, setSearchActive] = useState(false);
   const [filteredGames, setFilteredGames] = useState([]);
   const [clearInput, setClearInput] = useState(false);
@@ -41,10 +41,9 @@ export default function MainLayout({ children, showHeader = true }) {
       >
         {/* Contenido normal */}
         {!searchActive && (
-          <div className="flex-1! px-wrap-lg-t">
-            <div className="px-border-lg-t bg-p-bg md:-inset-0.75 max-md:-inset-0.5" />
-            <div className="px-inner-lg-t bg-p-bg">
-              {/* {children} */}
+          <div className={`flex-1! ${showFooter ? `px-wrap-lg-t` : `px-wrap-lg`}`}>
+            <div className={`${showFooter ? `px-border-lg-t` : `px-border-lg`} bg-p-bg md:-inset-0.75 max-md:-inset-0.5`} />
+            <div className={`${showFooter ? `px-inner-lg-t` : `px-inner-lg`} bg-p-bg`}>
               <Outlet/>
             </div>
           </div>
@@ -65,7 +64,8 @@ export default function MainLayout({ children, showHeader = true }) {
           </div>
         )}
 
-        <Footer />
+        {showFooter && <Footer />}
+
       </main>
     </>
   );

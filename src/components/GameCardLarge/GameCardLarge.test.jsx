@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import GameCardLarge from "./GameCardLarge";
@@ -10,6 +9,14 @@ vi.mock("react-i18next", () => ({
   }),
 }));
 
+vi.mock("../FavoriteButton/FavoriteButton.jsx", () => ({
+  default: () => <button>FavoriteButton</button>,
+}));
+
+vi.mock("../../assets/goto-arrow-inverted-color.svg", () => ({
+  default: "goto-arrow.svg",
+}));
+
 describe("GameCardLarge Component", () => {
 
   const defaultProps = {
@@ -17,7 +24,6 @@ describe("GameCardLarge Component", () => {
     description: "Open world futuristic RPG",
     price: 59.99,
     image: "https://picsum.photos/200/300",
-    isFavorite: false,
     gameId: 1,
     onClick: vi.fn(),
   };
@@ -30,15 +36,11 @@ describe("GameCardLarge Component", () => {
     );
   };
 
-
-
   it("Render game name", () => {
     renderComponent();
 
     expect(screen.getByText("Cyberpunk 2077")).toBeInTheDocument();
   });
-
-
 
   it("Render game description", () => {
     renderComponent();
@@ -46,35 +48,27 @@ describe("GameCardLarge Component", () => {
     expect(screen.getByText("Open world futuristic RPG")).toBeInTheDocument();
   });
 
-
-
   it("Render game price", () => {
     renderComponent();
 
     expect(screen.getByText("USD$ 59.99")).toBeInTheDocument();
   });
 
-
-
   it("Render game image", () => {
     renderComponent();
 
-    const image = screen.getByRole("img", {name: /Cyberpunk 2077/i,});
+    const image = screen.getByRole("img", { name: /Cyberpunk 2077/i });
     //? La ' i ' en "/Cyberpunk 2077/i" significa 'case insensitive'
 
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute("src", "https://picsum.photos/200/300");
   });
 
-
-
   it("Correctly renders the store button", () => {
     renderComponent();
 
     expect(screen.getByText("home.gameCardLargeStore")).toBeInTheDocument();
   });
-
-
 
   it("Render link to game details", () => {
     renderComponent();
@@ -88,18 +82,9 @@ describe("GameCardLarge Component", () => {
     ).toBe(true);
   });
 
+  it("Render favorite button", () => {
+    renderComponent();
 
-
-  it("Execute onClick when clicking favorite button", async () => {
-    const onClick = vi.fn();
-    const user = userEvent.setup();
-
-    renderComponent({ onClick });
-
-    const button = screen.getByRole("button");
-
-    await user.click(button);
-
-    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(screen.getByText("FavoriteButton")).toBeInTheDocument();
   });
 });

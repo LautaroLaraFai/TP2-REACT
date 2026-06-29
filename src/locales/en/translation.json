@@ -77,5 +77,14 @@
         "emailInvalid": "Invalid email format",
         "passwordRequired": "Password is required",
         "passwordMinLength": "Minimum 8 characters"
+    },
+    "apiErrorPage": {
+        "title": "Connection Error",
+        "message": "Could not connect to the server",
+        "retryButton": "Retry"
+    },
+    "errorPage": {
+        "title": "Page Not Found",
+        "homeButton": "Go Back Home"
     }
 }

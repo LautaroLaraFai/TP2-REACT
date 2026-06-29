@@ -18,10 +18,9 @@ vi.mock("react-i18next", () => ({
   Trans: ({ children }) => children,
 }));
 
-vi.mock("../../hooks/useFavorite.jsx", () => ({
-  default: () => ({
+vi.mock("../../context/FavoriteContext", () => ({
+  useFavorites: () => ({
     toggleFavorite: vi.fn(),
-    isFavorite: vi.fn(() => false),
   }),
 }));
 

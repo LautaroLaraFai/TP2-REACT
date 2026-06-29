@@ -78,5 +78,14 @@
         "emailInvalid": "Patar-ghâsh globat búbhosh",
         "passwordRequired": "Ghash-kat gimbatul-ishi",
         "passwordMinLength": "Lûk 8 krimpat"
+    },
+    "apiErrorPage": {
+        "title": "Glob-hosh",
+        "message": "Burzum-ishi globat server",
+        "retryButton": "Glob agh"
+    },
+    "errorPage": {
+        "title": "Patar búbhosh",
+        "homeButton": "Gakh agh Zûl"
     }
 }

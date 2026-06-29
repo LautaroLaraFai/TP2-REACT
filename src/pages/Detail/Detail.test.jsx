@@ -1,12 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import Detail from "./Detail";
-import useFavorite from "../../hooks/useFavorite.jsx";
 
 const mockNavigate = vi.fn();
-const mockToggleFavorite = vi.fn();
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({
@@ -30,8 +27,12 @@ vi.mock("react-router", () => ({
   useNavigate: () => mockNavigate,
 }));
 
-vi.mock("../../hooks/useFavorite.jsx", () => ({
-  default: vi.fn(),
+vi.mock("../../context/FavoriteContext", () => ({
+  useFavorites: vi.fn(),
+}));
+
+vi.mock("../../services/validateGameId.js", () => ({
+  validateGameId: vi.fn(),
 }));
 
 vi.mock("../../services/globals", () => ({
@@ -63,15 +64,19 @@ vi.mock("../../components/PdfGenerator/PdfGenerator.jsx", () => ({
   PDFDownloadButton: () => <button>PDF Button</button>,
 }));
 
+vi.mock("../../components/FavoriteButton/FavoriteButton.jsx", () => ({
+  default: () => <button>Favorite Button</button>,
+}));
 
 describe("Detail Component", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
+  it("Render loader spinner when loading is true", async () => {
+    const { useFavorites } = await import("../../context/FavoriteContext");
 
-  it("Render loader spinner when loading is true", () => {
-    useFavorite.mockReturnValue({
+    useFavorites.mockReturnValue({
       loading: true,
       isFavorite: vi.fn(),
       toggleFavorite: vi.fn(),
@@ -81,37 +86,20 @@ describe("Detail Component", () => {
     expect(screen.getByText("detail.loadingText")).toBeInTheDocument();
   });
 
+  it("Render basic game info", async () => {
+    const { useFavorites } = await import("../../context/FavoriteContext");
 
-
-  it("Render basic game info", () => {
-    useFavorite.mockReturnValue({
+    useFavorites.mockReturnValue({
       loading: false,
       isFavorite: vi.fn(() => false),
-      toggleFavorite: mockToggleFavorite,
+      toggleFavorite: vi.fn(),
     });
 
     render(<MemoryRouter><Detail/></MemoryRouter>);
     expect(screen.getByText("Cyberpunk 2077")).toBeInTheDocument();
     expect(screen.getByText("Open world futuristic RPG")).toBeInTheDocument();
-  });
-
-
-
-  it("Execute toggleFavorite when clicking favorite button", async () => {
-    useFavorite.mockReturnValue({
-      loading: false,
-      isFavorite: vi.fn(() => false),
-      toggleFavorite: mockToggleFavorite,
-    });
-
-    const user = userEvent.setup();
-
-    render(<MemoryRouter><Detail/></MemoryRouter>);
-
-    const favoriteButton = screen.getAllByRole("button")[0];
-
-    await user.click(favoriteButton);
-
-    expect(mockToggleFavorite).toHaveBeenCalledWith(1);
+    expect(screen.getByText("ImageGallery")).toBeInTheDocument();
+    expect(screen.getByText("PDF Button")).toBeInTheDocument();
+    expect(screen.getByText("Favorite Button")).toBeInTheDocument();
   });
 });

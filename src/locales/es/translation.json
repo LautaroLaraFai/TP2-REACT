@@ -77,5 +77,14 @@
         "emailInvalid": "No es un formato de correo válido",
         "passwordRequired": "La contraseña es obligatoria",
         "passwordMinLength": "Mínimo 8 caracteres"
+    },
+    "apiErrorPage": {
+        "title": "Error de Conexión",
+        "message": "No se pudo conectar con el servidor",
+        "retryButton": "Reintentar"
+    },
+    "errorPage": {
+        "title": "Página no encontrada",
+        "homeButton": "Volver al Home"
     }
 }

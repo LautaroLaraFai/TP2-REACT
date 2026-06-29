@@ -3,8 +3,16 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import MainLayout from "./MainLayout";
 
+vi.mock("react-router", async () => {
+  const actual = await vi.importActual("react-router");
+  return {
+    ...actual,
+    Outlet: () => <div data-testid="mock-outlet">Outlet Component</div>,
+  };
+});
+
 vi.mock("../components/Header/Header.jsx", () => ({
-  default: ({ setSearchActive, setFilteredGames, clearInput, setClearInput, setIsLoading }) => (
+  default: () => (
     <div data-testid="mock-header">Header Component</div>
   ),
 }));
@@ -14,17 +22,14 @@ vi.mock("../components/Footer/Footer.jsx", () => ({
 }));
 
 vi.mock("../components/SearchResults/SearchResults.jsx", () => ({
-  default: ({ isLoading, filteredGames, disableSearch, toggleFavorite, isFavorite }) => (
+  default: () => (
     <div data-testid="mock-search-results">Search Results Component</div>
   ),
 }));
 
-vi.mock("../hooks/useFavorite.jsx", () => ({
-  default: () => ({
+vi.mock("../context/FavoriteContext.jsx", () => ({
+  useFavorites: () => ({
     toggleFavorite: vi.fn(),
-    isFavorite: vi.fn(() => false),
-    loading: false,
-    setLoading: vi.fn(),
   }),
 }));
 
@@ -35,16 +40,14 @@ vi.mock("react-i18next", () => ({
 }));
 
 describe("MainLayout component", () => {
-  it("Should render children when searchActive is false", () => {
+  it("Should render outlet content when searchActive is false", () => {
     render(
       <MemoryRouter>
-        <MainLayout>
-          <div data-testid="test-child">Child Content</div>
-        </MainLayout>
+        <MainLayout />
       </MemoryRouter>
     );
     
-    expect(screen.getByTestId("test-child")).toBeInTheDocument();
+    expect(screen.getByTestId("mock-outlet")).toBeInTheDocument();
     expect(screen.getByTestId("mock-header")).toBeInTheDocument();
     expect(screen.getByTestId("mock-footer")).toBeInTheDocument();
   });
@@ -52,13 +55,41 @@ describe("MainLayout component", () => {
   it("Should not render SearchResults when searchActive is false", () => {
     render(
       <MemoryRouter>
-        <MainLayout>
-          <div>Child Content</div>
-        </MainLayout>
+        <MainLayout />
       </MemoryRouter>
     );
     
     const searchResults = screen.queryByTestId("mock-search-results");
     expect(searchResults).not.toBeInTheDocument();
+  });
+
+  it("Should not render header when showHeader is false", () => {
+    render(
+      <MemoryRouter>
+        <MainLayout showHeader={false} />
+      </MemoryRouter>
+    );
+
+    expect(screen.queryByTestId("mock-header")).not.toBeInTheDocument();
+  });
+
+  it("Should not render footer when showFooter is false", () => {
+    render(
+      <MemoryRouter>
+        <MainLayout showFooter={false} />
+      </MemoryRouter>
+    );
+
+    expect(screen.queryByTestId("mock-footer")).not.toBeInTheDocument();
+  });
+
+  it("Should still render outlet when showFooter is false", () => {
+    render(
+      <MemoryRouter>
+        <MainLayout showFooter={false} />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByTestId("mock-outlet")).toBeInTheDocument();
   });
 });

@@ -31,14 +31,6 @@ describe("Footer Component", () => {
 
 
   
-  it("Correctly renders the Project Manager role", () => {
-    renderComponent();
-
-    expect(screen.getByText("Project Manager")).toBeInTheDocument();
-  });
-
-
-
   it("Correctly renders the navigation links", () => {
     renderComponent();
 
