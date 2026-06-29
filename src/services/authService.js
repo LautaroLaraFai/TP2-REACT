@@ -40,7 +40,8 @@ export async function loginRequest(data) {
 
   return {
     ok: true,
-    token: json.token,
+    accessToken: json.accessToken,
+    refreshToken: json.refreshToken,
     user: json.user,
   };
 }
@@ -60,4 +61,38 @@ export async function getMe(token) {
   if (!res.ok) throw new Error("Request failed");
 
   return res.json();
+}
+
+
+export async function refreshAccessToken(refreshToken) {
+  const res = await fetch(`${API_BASE_URL}/auth/refresh`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      refreshToken,
+    }),
+  });
+
+  const json = await res.json();
+
+  if (!res.ok) {
+    throw new Error(json.error || "Refresh failed");
+  }
+
+  return json.accessToken;
+}
+
+
+export async function logoutRequest(refreshToken) {
+  await fetch(`${API_BASE_URL}/auth/logout`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      refreshToken,
+    }),
+  });
 }
